@@ -1,0 +1,956 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Sass @import, @extend, Mixin - 깃 블로그</title>
+<meta name="description" content="@import">
+
+
+  <meta name="author" content="깡탱">
+  
+  <meta property="article:author" content="깡탱">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="깃 블로그">
+<meta property="og:title" content="Sass @import, @extend, Mixin">
+<meta property="og:url" content="http://localhost:4000/html%20&%20css/CSS13/">
+
+
+  <meta property="og:description" content="@import">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-02-25T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/html%20&%20css/CSS13/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "깡탱",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="깃 블로그 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="../../favicon_package_v0.16/apple-touch-icon.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="../../favicon_package_v0.16/favicon-32x32.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="../../favicon_package_v0.16/favicon-16x16.png"
+/>
+<link rel="manifest" href="../../favicon_package_v0.16/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="../../favicon_package_v0.16/safari-pinned-tab.svg"
+  color="#5bbad5"
+/>
+<meta name="msapplication-TileColor" content="#da532c" />
+<meta name="theme-color" content="#ffffff" />
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          깃 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/">Quick-Start Guide</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+<div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">깡탱</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>안녕하세요! 개발공부중입니다 :)</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://kimtaeng516@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/kkangtaeng" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>   
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+            📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">101</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
+      </li>
+      <li>
+        <span class="nav__sub-title">TIL</span>
+            <ul>
+                
+                    
+                
+                    
+                        <li><a href="/categories/JavaScript" class="">JavaScript (15)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/HTML&CSS" class="">HTML & CSS(15)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/React" class="">React (6)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Database" class="">Database (6)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Algorithm" class="">Algorithm (25)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Concept" class="">Concept (8)</a></li>
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/TIL-ETC" class="">ETC(10)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Projects</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Subllet" class="">Subllet (14)</a></li>
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                        <li><a href="/categories/Lohas" class="">Lohas (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Etc</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/etc" class="">etc (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+      </li>
+  </ul>
+</nav> 
+</div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Sass @import, @extend, Mixin">
+    <meta itemprop="description" content="@import">
+    <meta itemprop="datePublished" content="2022-02-25T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/html%20&%20css/CSS13/" class="u-url" itemprop="url">Sass @import, @extend, Mixin
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <h2 id="import">@import</h2>
+
+<ul>
+  <li>1개의 CSS 파일에 모든 스타일을 작성하면 유지보수하기 힘들고 가독성이 좋지 않은 단점에 따라 CSS 파일을 분리해서 사용하면 재사용 및 유지보수 측면에 유리하다.</li>
+  <li>SASS는 @import를 사용하여 분리된 stylesheet 파일을 import할 수 있다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">import</span> <span class="dl">"</span><span class="s2">foo.scss</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">@</span><span class="nd">import</span> <span class="dl">"</span><span class="s2">foo</span><span class="dl">"</span><span class="p">;</span>
+<span class="c1">// 확장자는 생략 가능</span>
+
+<span class="p">@</span><span class="nd">import</span> <span class="dl">"</span><span class="s2">nav</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">footer</span><span class="dl">"</span><span class="p">;</span>
+<span class="c1">// 여러개의 파일을 한번에 임포트할 수 있다.</span>
+</code></pre></div></div>
+
+<h2 id="extend">@extend</h2>
+
+<ul>
+  <li>기존 스타일을 상속할때 사용한다. (확장)</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="p">.</span><span class="nx">nav</span> <span class="p">{</span>
+    <span class="nl">padding</span><span class="p">:</span> <span class="mi">10</span><span class="nx">px</span><span class="p">;</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="mi">10</span><span class="nx">px</span><span class="p">;</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="nx">red</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nx">nav</span><span class="o">-</span><span class="nx">blue</span> <span class="p">{</span>
+    <span class="p">@</span><span class="nd">extend</span> <span class="p">.</span><span class="nx">nav</span><span class="p">;</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="nx">blue</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 컴파일 후</span>
+<span class="p">.</span><span class="nx">nav</span> <span class="p">.</span><span class="nx">nav</span><span class="o">-</span><span class="nx">blue</span> <span class="p">{</span>
+    <span class="nl">padding</span><span class="p">:</span> <span class="mi">10</span><span class="nx">px</span><span class="p">;</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="mi">10</span><span class="nx">px</span><span class="p">;</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="nx">red</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nx">nav</span><span class="o">-</span><span class="nx">blue</span> <span class="p">{</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="nx">blue</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>위와 같이 다중 선택자를 만들 수 있다.</li>
+  <li>하지만 확장 기능은 부작용이 있을 수 있어 Mixin 사용을 권장한다.</li>
+</ul>
+
+<h2 id="mixin">Mixin</h2>
+
+<ul>
+  <li>Mixin은 재사용할 CSS 선언 그룹을 정의하는 기능이다.</li>
+  <li><code class="language-plaintext highlighter-rouge">@mixin</code>을 선언하고 <code class="language-plaintext highlighter-rouge">@include</code>로 불러들인다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">mixin</span> <span class="nx">name</span> <span class="p">{</span>
+  <span class="nx">style</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 예시</span>
+<span class="p">@</span><span class="nd">mixing</span> <span class="nx">square</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="mi">20</span><span class="nx">px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="mi">20</span><span class="nx">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nx">box</span> <span class="p">{</span>
+    <span class="p">@</span><span class="nd">include</span> <span class="nx">square</span><span class="p">;</span>
+    <span class="c1">// 추가적인 스타일지정도 가능</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="nx">red</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>위에 예시처럼 추가적인 스타일 지정도 가능하다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="p">@</span><span class="nd">mixin</span> <span class="nx">square</span><span class="p">(</span><span class="nx">$size</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="nx">$size</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="nx">$size</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nx">box</span> <span class="p">{</span>
+    <span class="p">@</span><span class="nd">include</span> <span class="nx">square</span><span class="p">(</span><span class="mi">10</span><span class="nx">px</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>mixin은 함수와 같이 매개 변수를 사용할 수 있다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="p">@</span><span class="nd">mixin</span> <span class="nx">square</span><span class="p">(</span><span class="nx">$size</span><span class="p">:</span> <span class="mi">10</span><span class="nx">px</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="nx">$size</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="nx">$size</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nx">box</span> <span class="p">{</span>
+    <span class="p">@</span><span class="nd">include</span> <span class="nx">square</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>매개 변수의 초기값 설정도 가능하다.</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#html-css" class="page__taxonomy-item p-category" rel="tag">HTML & CSS</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-02-25T00:00:00+09:00">February 25, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Sass+%40import%2C+%40extend%2C+Mixin%20http%3A%2F%2Flocalhost%3A4000%2Fhtml%2520%26%2520css%2FCSS13%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fhtml%2520%26%2520css%2FCSS13%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fhtml%2520%26%2520css%2FCSS13%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/html%20&%20css/CSS12/" class="pagination--pager" title="Sass nesting, 조건문과 반복문, 주석
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS12/" rel="permalink">Sass nesting, 조건문과 반복문, 주석
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">nesting
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS11/" rel="permalink">Sass 데이터타입, 변수, 연산자
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Sass
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS10/" rel="permalink">transition
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">transition
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS9/" rel="permalink">transform
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">transform
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/kkangtaeng" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 깡탱. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

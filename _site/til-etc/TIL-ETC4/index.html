@@ -1,0 +1,997 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Linux 사용권한과 환경변수 - 깃 블로그</title>
+<meta name="description" content="사용권한">
+
+
+  <meta name="author" content="깡탱">
+  
+  <meta property="article:author" content="깡탱">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="깃 블로그">
+<meta property="og:title" content="Linux 사용권한과 환경변수">
+<meta property="og:url" content="http://localhost:4000/til-etc/TIL-ETC4/">
+
+
+  <meta property="og:description" content="사용권한">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-10-05T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/til-etc/TIL-ETC4/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "깡탱",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="깃 블로그 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="../../favicon_package_v0.16/apple-touch-icon.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="../../favicon_package_v0.16/favicon-32x32.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="../../favicon_package_v0.16/favicon-16x16.png"
+/>
+<link rel="manifest" href="../../favicon_package_v0.16/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="../../favicon_package_v0.16/safari-pinned-tab.svg"
+  color="#5bbad5"
+/>
+<meta name="msapplication-TileColor" content="#da532c" />
+<meta name="theme-color" content="#ffffff" />
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          깃 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/">Quick-Start Guide</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+<div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">깡탱</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>안녕하세요! 개발공부중입니다 :)</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://kimtaeng516@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/kkangtaeng" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>   
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+            📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">101</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
+      </li>
+      <li>
+        <span class="nav__sub-title">TIL</span>
+            <ul>
+                
+                    
+                
+                    
+                        <li><a href="/categories/JavaScript" class="">JavaScript (15)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/HTML&CSS" class="">HTML & CSS(15)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/React" class="">React (6)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Database" class="">Database (6)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Algorithm" class="">Algorithm (25)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Concept" class="">Concept (8)</a></li>
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/TIL-ETC" class="">ETC(10)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Projects</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Subllet" class="">Subllet (14)</a></li>
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                        <li><a href="/categories/Lohas" class="">Lohas (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Etc</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/etc" class="">etc (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+      </li>
+  </ul>
+</nav> 
+</div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Linux 사용권한과 환경변수">
+    <meta itemprop="description" content="사용권한">
+    <meta itemprop="datePublished" content="2021-10-05T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/til-etc/TIL-ETC4/" class="u-url" itemprop="url">Linux 사용권한과 환경변수
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <h2 id="사용권한">사용권한</h2>
+
+<ul>
+  <li>명령어 <code class="language-plaintext highlighter-rouge">ls -l</code>을 입력하면 파일의 권한을 알 수 있다.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/150669433-85e2d9bf-fd83-411f-bb01-1796dbdea5d5.png" alt="다운로드" /></p>
+
+<p>처음 시작은 <code class="language-plaintext highlighter-rouge">-</code>와 <code class="language-plaintext highlighter-rouge">d</code>로 각각 not directory와 directory로 파일이면 <code class="language-plaintext highlighter-rouge">-</code> 폴더이면 <code class="language-plaintext highlighter-rouge">d</code>를 나타낸다.<br />
+다음으로 <code class="language-plaintext highlighter-rouge">r</code>은 read permission으로 일기 권한,<br />
+<code class="language-plaintext highlighter-rouge">w</code>는 write permission으로 쓰기 권한,<br />
+<code class="language-plaintext highlighter-rouge">x</code>는 execute permission으로 실행 권한을 나타낸다.</p>
+
+<ul>
+  <li>user: 파일의 소유자로 기본적으로 파일을 만든 사람이 소유자가 된다. 따라서 user를 소유자라고 하기도 한다.</li>
+  <li>group: 여러 user가 포함될 수 있는데, 그룹에 속한 모든 user는 파일에 대한 동일한 group 엑세스 권한을 갖는다.</li>
+  <li>other: 파일에 대한 엑세스 권한이 있는 다른 user이며, 파일을 만들지 않은 다른 모든 user를 의미한다.</li>
+</ul>
+
+<h2 id="chmod">chmod</h2>
+
+<ul>
+  <li>폴더나 파일의 권한을 변경하는 명령어로, 읽기, 쓰기, 실행 권한을 변경할 수 있다.</li>
+  <li>폴더나 파일의 소유자가 다를 경우엔, <code class="language-plaintext highlighter-rouge">sudo</code>명령어를 통해 변경할 수 있다.</li>
+</ul>
+
+<h3 id="symbolic-method">Symbolic method</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">+</code>, <code class="language-plaintext highlighter-rouge">-</code>, <code class="language-plaintext highlighter-rouge">=</code>과 액세스 유형을 표기해서 변경하는 방법이다.</li>
+  <li>Access class, Operator, Access Type 으로 구분한다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Access class</th>
+      <th>Operator</th>
+      <th>Access Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>u (user)</td>
+      <td>+ (add access)</td>
+      <td>r (read)</td>
+    </tr>
+    <tr>
+      <td>g (group)</td>
+      <td>- (remove access)</td>
+      <td>w (write)</td>
+    </tr>
+    <tr>
+      <td>o (other)</td>
+      <td>= (set exact access)</td>
+      <td>x (execute)</td>
+    </tr>
+    <tr>
+      <td>a (all)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="nx">chmod</span> <span class="nx">g</span><span class="o">-</span><span class="nx">r</span> <span class="nx">test</span><span class="p">.</span><span class="nx">js</span>
+<span class="nx">chmod</span> <span class="nx">g</span><span class="o">+</span><span class="nx">w</span> <span class="nx">test</span><span class="p">.</span><span class="nx">js</span>
+</code></pre></div></div>
+
+<h3 id="absolute-form">Absolute form</h3>
+
+<ul>
+  <li>숫자 7까지 나타내는 3 bit의 합으로 표기하여 변경하는 방법이다.</li>
+  <li>각 그룹마다 rwx가 나타나고, 각 영역의 boolean 값으로 표기할 수 있다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Permission</th>
+      <th>Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>r (read)</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>w (write)</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>e (execute)</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//예시</span>
+<span class="nx">chmod</span> <span class="mi">744</span> <span class="nx">test</span><span class="p">.</span><span class="nx">js</span> <span class="c1">// -rwxr--r--</span>
+<span class="c1">// user=rwx(4+2+1), group/read=r(4+0+0)</span>
+</code></pre></div></div>
+
+<h2 id="환경변수">환경변수</h2>
+
+<ul>
+  <li>명령어 <code class="language-plaintext highlighter-rouge">export</code>를 이용해, 기록된 환경변수를 확인할 수 있다.</li>
+  <li>명령어 <code class="language-plaintext highlighter-rouge">export</code>를 이용해, 새로운 환경변수를 추가할 수 있다.
+    <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="nx">urclass</span><span class="o">=</span><span class="dl">"</span><span class="s2">is good</span><span class="dl">"</span>
+<span class="c1">// 이 때 등호 표시 앞뒤에는 반드시 공백이 없어야 한다!!</span>
+</code></pre></div>    </div>
+  </li>
+  <li>명령어 <code class="language-plaintext highlighter-rouge">echo</code>와 환경변수를 같이 입력하면, 환경변수의 값을 확인할 수 있다. 이 때 환경변수의 앞에는 <code class="language-plaintext highlighter-rouge">$</code>을 입력해야 한다.
+    <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">echo</span> <span class="nx">$urclass</span>
+<span class="c1">// is good</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="dotenv">dotenv</h3>
+
+<ul>
+  <li>dotenv를 이용하여 Javascript에서 환경변수를 사용할 수 있다.
+    <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mkdir</span> <span class="nx">environment_variable</span>
+<span class="nx">cd</span> <span class="nx">environment_variable</span>
+<span class="nx">npm</span> <span class="nx">init</span> <span class="c1">// 엔터 키를 여러번 입력한다.</span>
+<span class="nx">npm</span> <span class="nx">i</span> <span class="nx">dotenv</span> <span class="c1">// dotenv 모듈을 설치합니다.</span>
+<span class="c1">// 이 때 생성된 폴더는 설치할 모듈과 이름이 같으면 안된다.</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="env">.env</h3>
+
+<ul>
+  <li>환경변수를 Node.js에서 영구 적용하는 방법이다.
+    <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">dotenv</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">dotenv</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">dotenv</span><span class="p">.</span><span class="nx">config</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">myname</span><span class="p">);</span>
+</code></pre></div>    </div>
+    <p>index.js를 위처럼 수정하고, node index.js를 하면 환경변수를 출력할 수 있다.</p>
+  </li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#til-etc" class="page__taxonomy-item p-category" rel="tag">TIL-ETC</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2021-10-05T00:00:00+09:00">October 5, 2021</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Linux+%EC%82%AC%EC%9A%A9%EA%B6%8C%ED%95%9C%EA%B3%BC+%ED%99%98%EA%B2%BD%EB%B3%80%EC%88%98%20http%3A%2F%2Flocalhost%3A4000%2Ftil-etc%2FTIL-ETC4%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Ftil-etc%2FTIL-ETC4%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Ftil-etc%2FTIL-ETC4%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/algorithm/AL15/" class="pagination--pager" title="프로그래머스 LV.2 최솟값 만들기
+">이전</a>
+    
+    
+      <a href="/algorithm/AL16/" class="pagination--pager" title="Big-O와 Greedy
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS13/" rel="permalink">Sass @import, @extend, Mixin
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">@import
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS12/" rel="permalink">Sass nesting, 조건문과 반복문, 주석
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">nesting
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS11/" rel="permalink">Sass 데이터타입, 변수, 연산자
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Sass
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS10/" rel="permalink">transition
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">transition
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/kkangtaeng" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 깡탱. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

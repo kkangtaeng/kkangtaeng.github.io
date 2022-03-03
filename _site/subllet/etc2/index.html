@@ -1,0 +1,1032 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>AWS S3 이미지 서버 구축 및 연결 - 깃 블로그</title>
+<meta name="description" content="이미지를 업로드 하고 배포환경에서도 이미지를 불러오려면 어떻게 해야될지 고민하다가 url을 받아 그 url을 데이터베이스에 저장하고 불러올 수 있지 않을까 고민하던 중 S3 이미지 서버 구축을 하여 연결할 수 있다는 것을 알았다">
+
+
+  <meta name="author" content="깡탱">
+  
+  <meta property="article:author" content="깡탱">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="깃 블로그">
+<meta property="og:title" content="AWS S3 이미지 서버 구축 및 연결">
+<meta property="og:url" content="http://localhost:4000/subllet/etc2/">
+
+
+  <meta property="og:description" content="이미지를 업로드 하고 배포환경에서도 이미지를 불러오려면 어떻게 해야될지 고민하다가 url을 받아 그 url을 데이터베이스에 저장하고 불러올 수 있지 않을까 고민하던 중 S3 이미지 서버 구축을 하여 연결할 수 있다는 것을 알았다">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-12-15T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/subllet/etc2/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "깡탱",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="깃 블로그 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="../../favicon_package_v0.16/apple-touch-icon.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="../../favicon_package_v0.16/favicon-32x32.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="../../favicon_package_v0.16/favicon-16x16.png"
+/>
+<link rel="manifest" href="../../favicon_package_v0.16/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="../../favicon_package_v0.16/safari-pinned-tab.svg"
+  color="#5bbad5"
+/>
+<meta name="msapplication-TileColor" content="#da532c" />
+<meta name="theme-color" content="#ffffff" />
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          깃 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/">Quick-Start Guide</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+<div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">깡탱</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>안녕하세요! 개발공부중입니다 :)</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://kimtaeng516@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/kkangtaeng" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>   
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+            📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">101</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
+      </li>
+      <li>
+        <span class="nav__sub-title">TIL</span>
+            <ul>
+                
+                    
+                
+                    
+                        <li><a href="/categories/JavaScript" class="">JavaScript (15)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/HTML&CSS" class="">HTML & CSS(15)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/React" class="">React (6)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Database" class="">Database (6)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Algorithm" class="">Algorithm (25)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Concept" class="">Concept (8)</a></li>
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/TIL-ETC" class="">ETC(10)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Projects</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Subllet" class="">Subllet (14)</a></li>
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                        <li><a href="/categories/Lohas" class="">Lohas (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Etc</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/etc" class="">etc (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+      </li>
+  </ul>
+</nav> 
+</div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="AWS S3 이미지 서버 구축 및 연결">
+    <meta itemprop="description" content="이미지를 업로드 하고 배포환경에서도 이미지를 불러오려면 어떻게 해야될지 고민하다가 url을 받아 그 url을 데이터베이스에 저장하고 불러올 수 있지 않을까 고민하던 중 S3 이미지 서버 구축을 하여 연결할 수 있다는 것을 알았다">
+    <meta itemprop="datePublished" content="2021-12-15T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/subllet/etc2/" class="u-url" itemprop="url">AWS S3 이미지 서버 구축 및 연결
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p>이미지를 업로드 하고 배포환경에서도 이미지를 불러오려면 어떻게 해야될지 고민하다가 url을 받아 그 url을 데이터베이스에 저장하고 불러올 수 있지 않을까 고민하던 중 S3 이미지 서버 구축을 하여 연결할 수 있다는 것을 알았다</p>
+
+<h2 id="--aws-s3-이미지-서버-구축">- AWS S3 이미지 서버 구축</h2>
+
+<h3 id="1-iam-역활-설정">1. IAM 역활 설정</h3>
+
+<p>IAM 메뉴에 들어와 AWS에 접근할 수 있는 권한을 먼저 부여해야한다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/146034411-df41f11c-c66c-4b82-9f5d-1bddd3cf9190.png" alt="스크린샷_2021-12-14_23 59 22" /></p>
+
+<p>먼저 IAM 페이지로 들어와 <code class="language-plaintext highlighter-rouge">역할</code>탭을 클릭 후, <code class="language-plaintext highlighter-rouge">역할 만들기</code>를 클릭한다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/146034422-5d63d87b-2af6-4798-9981-2d9c74660bb4.png" alt="스크린샷_2021-12-15_00 03 09" /></p>
+
+<p>그 다음, <code class="language-plaintext highlighter-rouge">S3</code>를 선택하고 사용사례 선택도 <code class="language-plaintext highlighter-rouge">S3</code>를 선택한다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/146034429-197e0753-d276-4ce7-b661-3a21d04d92aa.png" alt="스크린샷_2021-12-15_00 05 16" /></p>
+
+<p>그 다음, <code class="language-plaintext highlighter-rouge">AmazonS3FullAccess</code>를 체크 후 다음으로 넘어가서 태그는 건너뛴다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/146034432-eae99c50-3837-4cd1-a5d6-0270aa489232.png" alt="스크린샷_2021-12-15_00 07 01" /></p>
+
+<p>그리고 역할 이름을 작성한다. (역할 이름은 존재하지 않는걸루!)</p>
+
+<h3 id="2-cognito-권한-부여">2. Cognito 권한 부여</h3>
+
+<p>먼저 Cognito 페이지로 들어가 <code class="language-plaintext highlighter-rouge">자격 증명 풀관리</code>를 클릭해서 들어간다.</p>
+
+<p>그다음, <code class="language-plaintext highlighter-rouge">새 자격 증명 풀 만들기</code>를 클릭한다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/146034434-2af05117-4d09-47df-b2c9-fb6e56a632e5.png" alt="스크린샷_2021-12-15_00 10 58" /></p>
+
+<p>그 다음, <code class="language-plaintext highlighter-rouge">자격증명 풀 이름</code>을 작성하고, <code class="language-plaintext highlighter-rouge">인증되지 않은 자격 증명에 대한 액세스 활성화</code> 를 체크하고 풀 생성을 클릭한다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/146034438-b8dd7769-2501-4ef8-b75c-cd1cc5b223c1.png" alt="스크린샷_2021-12-15_00 16 09" /></p>
+
+<p>그 다음, <code class="language-plaintext highlighter-rouge">세부정보 보기</code>를 클릭, <code class="language-plaintext highlighter-rouge">정책 문서 보기</code> 클릭, <code class="language-plaintext highlighter-rouge">편집</code>을 눌러</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">Version</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-10-17</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Statement</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">Effect</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Allow</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">Action</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">cognito-sync:*</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">cognito-identity:*</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">s3:*</span><span class="dl">"</span><span class="p">],</span>
+      <span class="dl">"</span><span class="s2">Resource</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">*</span><span class="dl">"</span><span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위 코드로 변경한다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/146034442-f9de9509-9481-423c-8121-e25a7e249ad2.png" alt="스크린샷_2021-12-15_00 17 56" /></p>
+
+<p>위처럼 자격 증명 풀ID와 리전을 받을 수 있다.</p>
+
+<h3 id="s3-버킷-생성">S3 버킷 생성</h3>
+
+<p>S3 페이지로 들어가 <code class="language-plaintext highlighter-rouge">버킷 만들기</code>를 클릭하고 버킷 이름을 작성한다. (버킷 이름은 고유한걸로!!)</p>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/146034444-a04f1aa4-3fe7-4e8e-b901-48a8104acfbd.png" alt="스크린샷_2021-12-15_00 21 37" /></p>
+
+<p>그리고 <code class="language-plaintext highlighter-rouge">모든 퍼블릭 엑세스 차단</code>을 체크 해체하고 <code class="language-plaintext highlighter-rouge">버킷 만들기</code>를 클릭한다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/146034445-651eeca8-3f1b-4847-99dc-17df02c4d26c.png" alt="스크린샷_2021-12-15_00 25 05" /></p>
+
+<p>그 다음, 버킷으로 들어가 <code class="language-plaintext highlighter-rouge">권한</code>탭을 클릭 후, 버킷 정책에서 <code class="language-plaintext highlighter-rouge">편집</code>을 클릭하고</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">Version</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2012-10-17</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Statement</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">Sid</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AddPerm</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">Effect</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Allow</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">Principal</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">*</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">Action</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">s3:*</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">Resource</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">arn:aws:s3:::&lt;버킷 이름&gt;/*</span><span class="dl">"</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="p">&lt;</span><span class="err">버킷</span> <span class="err">이름</span><span class="p">&gt;</span>은 아까 만든 버킷 이름!!!
+</code></pre></div></div>
+
+<p>위 코드로 변경한다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/146034448-a4463ac1-43ab-4b46-b922-d305c483ac8b.png" alt="스크린샷_2021-12-15_00 27 17" /></p>
+
+<p>그리고, 밑에 스크롤을 내려 CORS도 <code class="language-plaintext highlighter-rouge">편집</code>을 클릭하고</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">AllowedOrigins</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">*</span><span class="dl">"</span><span class="p">],</span>
+    <span class="na">AllowedMethods</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">PUT</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">HEAD</span><span class="dl">"</span><span class="p">],</span>
+    <span class="na">AllowedHeaders</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">*</span><span class="dl">"</span><span class="p">],</span>
+    <span class="na">ExposeHeaders</span><span class="p">:</span> <span class="p">[</span>
+      <span class="dl">"</span><span class="s2">x-amz-server-side-encryption</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">x-amz-request-id</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">x-amz-id-2</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="na">MaxAgeSeconds</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">];</span>
+</code></pre></div></div>
+
+<p>위 코드로 변경한다.</p>
+
+<h2 id="--aws-s3-이미지-서버-연결">- AWS S3 이미지 서버 연결</h2>
+
+<h3 id="1-aws-sdk">1. AWS SDK</h3>
+
+<p>먼저 aws-sdk 모듈을 설치한다.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">AWS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">aws-sdk</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">AWS</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span>
+  <span class="na">region</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ap-northeast-2</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 버킷의 리전</span>
+  <span class="na">credentials</span><span class="p">:</span> <span class="k">new</span> <span class="nx">AWS</span><span class="p">.</span><span class="nx">CognitoIdentityCredentials</span><span class="p">({</span>
+    <span class="na">IdentityPoolId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ap-northeast-2:553da489-28ff-4eb6-b0ba-1187a7a08c29</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 자격 증명 풀ID</span>
+  <span class="p">}),</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>위 코드에서 region 과 IdentityPoolId 를 넣어준다.</p>
+
+<h3 id="2-">2. <input type="file" /></h3>
+
+<p>클라이언트에서 파일 업로드를 하기 위해서 위 태그를 사용한다.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">profile</span><span class="p">,</span> <span class="nx">setProfile</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="nx">UserInfo</span><span class="p">.</span><span class="nx">profile</span><span class="p">);</span>
+
+<span class="c1">//...</span>
+
+<span class="kd">const</span> <span class="nx">AWS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">aws-sdk</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">AWS</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span>
+  <span class="na">region</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ap-northeast-2</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 버킷의 리전</span>
+  <span class="na">credentials</span><span class="p">:</span> <span class="k">new</span> <span class="nx">AWS</span><span class="p">.</span><span class="nx">CognitoIdentityCredentials</span><span class="p">({</span>
+    <span class="na">IdentityPoolId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ap-northeast-2:553da489-28ff-4eb6-b0ba-1187a7a08c29</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 자격 증명 풀ID</span>
+  <span class="p">}),</span>
+<span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">changeProfile</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">image</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">setProfile</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AWS</span><span class="p">.</span><span class="nx">S3</span><span class="p">.</span><span class="nx">ManagedUpload</span><span class="p">({</span>
+      <span class="na">params</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">Bucket</span><span class="p">:</span> <span class="dl">"</span><span class="s2">subllet-profile</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">Key</span><span class="p">:</span> <span class="nx">image</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+        <span class="na">Body</span><span class="p">:</span> <span class="nx">image</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">});</span>
+
+    <span class="kd">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">upload</span><span class="p">.</span><span class="nx">promise</span><span class="p">();</span>
+
+    <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+      <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setProfile</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">Location</span><span class="p">);</span>
+      <span class="p">},</span>
+      <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">);</span>
+  <span class="p">};</span>
+
+<span class="c1">//...</span>
+
+<span class="p">&lt;</span><span class="nt">label</span> <span class="na">htmlFor</span><span class="p">=</span><span class="s">"file"</span><span class="p">&gt;</span>프로필 사진변경<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span>
+	<span class="na">type</span><span class="p">=</span><span class="s">"file"</span>
+  <span class="na">id</span><span class="p">=</span><span class="s">"file"</span>
+  <span class="na">style</span><span class="p">=</span>
+  <span class="na">onChange</span><span class="p">=</span><span class="si">{</span><span class="nx">changeProfile</span><span class="si">}</span>
+<span class="p">/&gt;</span>
+</code></pre></div></div>
+
+<p>위처럼 코드를 작성하면 S3 버킷에 이미지가 저장된다!!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#subllet" class="page__taxonomy-item p-category" rel="tag">Subllet</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2021-12-15T00:00:00+09:00">December 15, 2021</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=AWS+S3+%EC%9D%B4%EB%AF%B8%EC%A7%80+%EC%84%9C%EB%B2%84+%EA%B5%AC%EC%B6%95+%EB%B0%8F+%EC%97%B0%EA%B2%B0%20http%3A%2F%2Flocalhost%3A4000%2Fsubllet%2Fetc2%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fsubllet%2Fetc2%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fsubllet%2Fetc2%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/subllet/log8/" class="pagination--pager" title="Project_Log 8
+">이전</a>
+    
+    
+      <a href="/subllet/log9/" class="pagination--pager" title="Project_Log 9
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS13/" rel="permalink">Sass @import, @extend, Mixin
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">@import
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS12/" rel="permalink">Sass nesting, 조건문과 반복문, 주석
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">nesting
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS11/" rel="permalink">Sass 데이터타입, 변수, 연산자
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Sass
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS10/" rel="permalink">transition
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">transition
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/kkangtaeng" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 깡탱. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

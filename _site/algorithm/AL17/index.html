@@ -1,0 +1,936 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>수학 알고리즘 - 깃 블로그</title>
+<meta name="description" content="순열과 조합">
+
+
+  <meta name="author" content="깡탱">
+  
+  <meta property="article:author" content="깡탱">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="깃 블로그">
+<meta property="og:title" content="수학 알고리즘">
+<meta property="og:url" content="http://localhost:4000/algorithm/AL17/">
+
+
+  <meta property="og:description" content="순열과 조합">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-10-07T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/algorithm/AL17/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "깡탱",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="깃 블로그 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="../../favicon_package_v0.16/apple-touch-icon.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="../../favicon_package_v0.16/favicon-32x32.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="../../favicon_package_v0.16/favicon-16x16.png"
+/>
+<link rel="manifest" href="../../favicon_package_v0.16/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="../../favicon_package_v0.16/safari-pinned-tab.svg"
+  color="#5bbad5"
+/>
+<meta name="msapplication-TileColor" content="#da532c" />
+<meta name="theme-color" content="#ffffff" />
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          깃 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/">Quick-Start Guide</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+<div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">깡탱</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>안녕하세요! 개발공부중입니다 :)</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://kimtaeng516@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/kkangtaeng" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>   
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+            📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">101</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
+      </li>
+      <li>
+        <span class="nav__sub-title">TIL</span>
+            <ul>
+                
+                    
+                
+                    
+                        <li><a href="/categories/JavaScript" class="">JavaScript (15)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/HTML&CSS" class="">HTML & CSS(15)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/React" class="">React (6)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Database" class="">Database (6)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Algorithm" class="">Algorithm (25)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Concept" class="">Concept (8)</a></li>
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/TIL-ETC" class="">ETC(10)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Projects</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Subllet" class="">Subllet (14)</a></li>
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                        <li><a href="/categories/Lohas" class="">Lohas (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Etc</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/etc" class="">etc (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+      </li>
+  </ul>
+</nav> 
+</div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="수학 알고리즘">
+    <meta itemprop="description" content="순열과 조합">
+    <meta itemprop="datePublished" content="2021-10-07T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/algorithm/AL17/" class="u-url" itemprop="url">수학 알고리즘
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <h2 id="순열과-조합">순열과 조합</h2>
+
+<p>[A, B, C, D, E]로 이루어진 5장의 카드 중 3장을 선택하여 나열하려고 한다.</p>
+
+<h3 id="순열---순서를-생각하며-3장을-선택한다">순열 - 순서를 생각하며 3장을 선택한다.</h3>
+
+<p>위 조건을 만족하려면, 다음과 같은 방법으로 경우의 수를 구한다.</p>
+
+<ul>
+  <li>첫번째 나열하는 카드를 선택하는 방법에는 5가지가 있다.</li>
+  <li>첫번째 카드를 나열하고 난 다음, 두번째 카드를 선택하는 방법에는 4가지가 있다.</li>
+  <li>두번째 카드를 나열하고 난 다음, 세번째 카드를 선택하는 방법에는 3가지가 있다.</li>
+</ul>
+
+<p>따라서 5 X 4 X 3 = 60가지의 방법이 있다.</p>
+
+<p>이렇게 n개 중에서 일부만 선택해서 나열하는 것을 순열이라고 하고, 순서를 지키며 나열해야 한다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/154302340-afd1f8bf-82ba-4b91-a853-7f6eb1fd9417.png" alt="스크린샷" /></p>
+
+<ul>
+  <li>5장에서 3장을 선택하는 모든 순열의 수 = 5P3 = (5 X 4 X 3 X 2 X 1) / (2 X 1) = 60</li>
+  <li>일반식 : nPr = n! / (n - r)!</li>
+</ul>
+
+<h3 id="조합---순서를-생각하지-않고-선택한다">조합 - 순서를 생각하지 않고 선택한다.</h3>
+
+<p>위 같은 경우 모든 경우의 수를 구할 때 3장을 하나의 그룹으로 선택해야 한다. 위 조건을 만족하려면, 다음과 같은 방법으로 경우의 수를 구한다.</p>
+
+<ul>
+  <li>순열로 구할 수 있는 경우를 찾는다.</li>
+  <li>순열로 구할 수 있는 경우에서 중복된 경우의 수를 나눈다.</li>
+</ul>
+
+<p>조합은 순열과 달리 순서를 고려하지 않는다. 예를 들어, 순열에서는 [A, B, C], [A, C, B], [B, A, C], [B, C, A], [C, A, B], [C, B, A]의 여섯 가지는 모두 다른 경우로 취급하지만, 조합에서는 이 여섯 가지를 하나의 경우로 취급한다.<br />
+여기서 나온 3장의 카드를 순열 공식에 적용한 결과가 3! / (3-3)! = (3 X 2 X 1) / 1 = 6 이다. 따라서 순서를 생각하느라 중복된 부분이 발생한 순열의 모든 가짓수를, 중복된 6가지로 나누어 주면 조합의 모든 경우의 수를 얻을 수 있다.<br />
+(5 X 4 X 3 X 2 X 1) / ((3 X 2 X 1) X (2 X 1)) = 10</p>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/154302560-a8b7f004-b56a-47ea-a803-d021e8a9c32a.png" alt="스크린샷" /></p>
+
+<ul>
+  <li>5장에서 3장을 무작위로 선택하는 조합에서 모든 경우의 수 = 5C3 = 5! / (3! * 2!) = 10</li>
+  <li>일반식: nCr = n! / (r! * (n - r)!)</li>
+</ul>
+
+<h2 id="멱집합">멱집합</h2>
+
+<p>어떤 집합이 있을 때, 이 집합의 모든 부분집합을 멱집합이라고 한다.</p>
+
+<p>모든 부분집합을 나열하는 방법은 다음과 같이 몇 단계로 구분할 수 있다. 부분집합을 나열하는 방법에서 가장 앞 원소가 있는지 없는지에 따라 단계를 나누는 기준을 결정한다.</p>
+
+<hr />
+<ul>
+  <li>Step A: 1을 제외한 {2, 3}의 부분집합을 나열합니다.
+    <ul>
+      <li>Step B: 2를 제외한 {3}의 부분집합을 나열합니다.
+        <ul>
+          <li>Step C: 3을 제외한 {}의 부분집합을 나열합니다. → {}</li>
+          <li>Step C: {}의 모든 부분집합에 {3}을 추가한 집합들을 나열합니다. → {3}</li>
+        </ul>
+      </li>
+      <li>Step B: {3}의 모든 부분집합에 {2}를 추가한 집합들을 나열합니다.
+        <ul>
+          <li>Step C: {3}의 모든 부분집합에 {2}를 추가한 집합들을 나열하려면, {}의 모든 부분집합에 {2}를 추가한 집합들을 나열한 다음 {}의 모든 부분집합에 {2, 3}을 추가한 집합들을 나열합니다. → {2}, {2, 3}</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Step A: {2, 3}의 모든 부분집합에 {1}을 추가한 집합들을 나열합니다.
+    <ul>
+      <li>Step B: {2, 3}의 모든 부분집합에 {1}을 추가한 집합들을 나열하려면, {3}의 모든 부분집합에 {1}을 추가한 집합들을 나열한 다음 {3}의 모든 부분집합에 {1, 2}를 추가한 집합들을 나열합니다.
+        <ul>
+          <li>Step C: {3}의 모든 부분집합에 {1}을 추가한 집합을 나열하려면, {}의 모든 부분집합에 {1}을 추가한 집합들을 나열한 다음 {}의 모든 부분집합에 {1, 3}을 추가한 집합들을 나열합니다. → {1}, {1, 3}</li>
+          <li>Step C: {3}의 모든 부분집합에 {1, 2}를 추가한 집합을 나열하려면, {}의 모든 부분집합에 {1, 2}를 추가한 집합들을 나열한 다음 {}의 모든 부분집합에 {1, 2, 3}을 추가한 집합들을 나열합니다. → {1, 2}, {1, 2, 3}</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p>원소가 있는지 없는지 2가지 경우를 고려하기 때문에 집합의 요소가 n개일때 모든 부분집합의 개수는 2^n개다.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#algorithm" class="page__taxonomy-item p-category" rel="tag">Algorithm</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2021-10-07T00:00:00+09:00">October 7, 2021</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EC%88%98%ED%95%99+%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%20http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FAL17%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FAL17%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2FAL17%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/algorithm/AL16/" class="pagination--pager" title="Big-O와 Greedy
+">이전</a>
+    
+    
+      <a href="/database/DB1/" class="pagination--pager" title="SQL 데이터베이스 명령어
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS13/" rel="permalink">Sass @import, @extend, Mixin
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">@import
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS12/" rel="permalink">Sass nesting, 조건문과 반복문, 주석
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">nesting
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS11/" rel="permalink">Sass 데이터타입, 변수, 연산자
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Sass
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS10/" rel="permalink">transition
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">transition
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/kkangtaeng" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 깡탱. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

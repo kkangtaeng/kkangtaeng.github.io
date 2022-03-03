@@ -1,0 +1,918 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>객체 지향 - 깃 블로그</title>
+<meta name="description" content="객체 지향 프로그래밍">
+
+
+  <meta name="author" content="깡탱">
+  
+  <meta property="article:author" content="깡탱">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="깃 블로그">
+<meta property="og:title" content="객체 지향">
+<meta property="og:url" content="http://localhost:4000/javascript/JS10/">
+
+
+  <meta property="og:description" content="객체 지향 프로그래밍">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-08-23T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/javascript/JS10/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "깡탱",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="깃 블로그 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="../../favicon_package_v0.16/apple-touch-icon.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="../../favicon_package_v0.16/favicon-32x32.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="../../favicon_package_v0.16/favicon-16x16.png"
+/>
+<link rel="manifest" href="../../favicon_package_v0.16/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="../../favicon_package_v0.16/safari-pinned-tab.svg"
+  color="#5bbad5"
+/>
+<meta name="msapplication-TileColor" content="#da532c" />
+<meta name="theme-color" content="#ffffff" />
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          깃 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/">Quick-Start Guide</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+<div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">깡탱</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>안녕하세요! 개발공부중입니다 :)</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://kimtaeng516@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/kkangtaeng" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>   
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+            📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">101</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
+      </li>
+      <li>
+        <span class="nav__sub-title">TIL</span>
+            <ul>
+                
+                    
+                
+                    
+                        <li><a href="/categories/JavaScript" class="">JavaScript (15)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/HTML&CSS" class="">HTML & CSS(15)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/React" class="">React (6)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Database" class="">Database (6)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Algorithm" class="">Algorithm (25)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Concept" class="">Concept (8)</a></li>
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/TIL-ETC" class="">ETC(10)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Projects</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Subllet" class="">Subllet (14)</a></li>
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                        <li><a href="/categories/Lohas" class="">Lohas (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Etc</span>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/etc" class="">etc (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+      </li>
+  </ul>
+</nav> 
+</div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="객체 지향">
+    <meta itemprop="description" content="객체 지향 프로그래밍">
+    <meta itemprop="datePublished" content="2021-08-23T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/javascript/JS10/" class="u-url" itemprop="url">객체 지향
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <h2 id="객체-지향-프로그래밍">객체 지향 프로그래밍</h2>
+
+<ul>
+  <li>객체 지향 프로그래밍은 데이터와 기능을 한곳에 묶어서 처리한다. 속성과 메소드가 하나의 객체라는 개념에 포함되며, 이는 자바스크립트 내장 타입은 <code class="language-plaintext highlighter-rouge">object</code>와는 다르게, <code class="language-plaintext highlighter-rouge">class</code>라고 한다.</li>
+</ul>
+
+<h3 id="클래스와-인스턴스">클래스와 인스턴스</h3>
+
+<ul>
+  <li>객체 지향 프로그래밍은 하나의 모델이 되는 청사진을 만들고, 그 청사진을 바탕으로 한 객체를 만드는 프로그래밍 패턴인데, 이 때, 청사진을 바탕으로 한 객체는 인스턴스(instance)라고 하고 청사진은 클래스(class)라고 한다.</li>
+  <li>클래스는 그냥 일반적인 함수를 정의하듯 만드는데, 암묵적인 규칙으로 보통 대문자와 일반명사를 사용해서 만든다.</li>
+  <li>클래스를 만들 때에는, 생성자 함수 <code class="language-plaintext highlighter-rouge">constructor</code> 함수를 사용하고 return값은 만들지 않는다.</li>
+  <li>인스턴스를 만들 때에는, <code class="language-plaintext highlighter-rouge">new</code>키워드를 사용하고, 즉시 생성자 함수가 실행되며, 변수에 클래스의 설계를 닮은 인스턴스가 할당된다. (각각의 인스턴스는 클래스의 고유한 속성과 메소드를 갖는다.)</li>
+  <li>this는 인스턴스 객체를 의미하고, 파라미터로 넘어온 brand, name, color 등은 인스턴스 생성시 지정하는 값이며, this에 할당한다는 것은, 만들어진 인스턴스에 해당 속성을 부여하겠다는 의미이다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="kd">class</span> <span class="nx">Car</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">brand</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">brand</span> <span class="o">=</span> <span class="nx">brand</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">Avante</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="dl">'</span><span class="s1">hyundai</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">avante</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">blue</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">Series3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="dl">'</span><span class="s1">BMW</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Series3</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">green</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">Cclass</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="dl">'</span><span class="s1">Benz</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Cclass</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">grey</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Avante</span><span class="p">)</span> <span class="c1">// Car {brand: 'hyundai', name: 'avante', color: 'blue'}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Series3</span><span class="p">)</span> <span class="c1">// Car {brand: 'BMW', name: 'Series3', color: 'green'}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Cclass</span><span class="p">)</span> <span class="c1">// Car {brand: 'Benz', name: 'Cclass', color: 'grey'}</span>
+</code></pre></div></div>
+
+<h3 id="객체-지향의-컨셉">객체 지향의 컨셉</h3>
+
+<ol>
+  <li>캡슐화 (Encapsulation)
+    <ul>
+      <li>데이터(속성)와 기능(메소드)를 따로 정의하는 것이 아닌, 하나의 객체 안에 넣어서 묶는 것이다.</li>
+      <li>느슨한 결합(코드 실행 순서에 따라 절차적으로 코드를 작성하는 것이 아닌, 코드가 상징하는 실제 모습과 닮게 코드를 모아 결합하는 것을 의미)에 유리하다. (언제든 구현을 수정할 수 있음)</li>
+      <li>은닉화(내부 데이터나 내부 구현이 외부로 노출되지 않도록 하고 동작은 노출시킴)의 특징도 포함하고 있다.</li>
+      <li>코드가 복잡하지 않게 만들고, 재사용성을 높인다.</li>
+    </ul>
+  </li>
+  <li>추상화 (Abstraction)
+    <ul>
+      <li>내부 구현은 아주 복잡한데, 실제로 노출되는 부분은 단순하게 만드는 것이다.</li>
+      <li>너무 많은 기능들이 노출되지 않은 덕분에 예기치 못한 사용상의 변화가 일어나지 않도록 만든다.</li>
+      <li>캡슐화와 차이점은 캡슐화는 코드나 데이터의 은닉에 포커스가 맞춰져 있다면, 추상화는 클래스를 사용하는 사람이 필요하지 않은 메소드 등을 노출시키지 않고, 단순한 이름으로 정의하는 것에 포커스가 맞춰져 있다.</li>
+      <li>클래스 정의 시, 메소드와 속성만 정의한 것을 인터페이스라고 부른다.</li>
+      <li>코드가 복잡하지 않게 만들고, 단순화된 사용으로 인해 변화에 대한 영향을 최소화 한다.</li>
+    </ul>
+  </li>
+  <li>상속 (Inheritance)
+    <ul>
+      <li>상속은 부모 클래스의 특징을 자식 클래스가 물려받는 것이다. 즉, 기븐 클래스의 특징을 파생 클래스가 상속받는다.</li>
+      <li>불필요한 코드를 줄어 재사용성을 높인다.</li>
+    </ul>
+  </li>
+  <li>다형성 (Polymorphism)
+    <ul>
+      <li>동일한 메소드에 대해 조건문 대신 객체의 특성에 맞게 달리 작성하는 것이 가능하다.</li>
+    </ul>
+  </li>
+</ol>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#javascript" class="page__taxonomy-item p-category" rel="tag">JavaScript</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2021-08-23T00:00:00+09:00">August 23, 2021</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EA%B0%9D%EC%B2%B4+%EC%A7%80%ED%96%A5%20http%3A%2F%2Flocalhost%3A4000%2Fjavascript%2FJS10%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjavascript%2FJS10%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjavascript%2FJS10%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/react/React3/" class="pagination--pager" title="React Props, State
+">이전</a>
+    
+    
+      <a href="/javascript/JS11/" class="pagination--pager" title="재귀
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS13/" rel="permalink">Sass @import, @extend, Mixin
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">@import
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS12/" rel="permalink">Sass nesting, 조건문과 반복문, 주석
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">nesting
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS11/" rel="permalink">Sass 데이터타입, 변수, 연산자
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Sass
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/html%20&%20css/CSS10/" rel="permalink">transition
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">transition
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/kkangtaeng" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 깡탱. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
