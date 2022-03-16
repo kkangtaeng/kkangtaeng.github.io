@@ -1,10 +1,4 @@
 var store = [{
-        "title": "준비",
-        "excerpt":"test  ","categories": ["Lohas"],
-        "tags": [],
-        "url": "/lohas/test1/",
-        "teaser": null
-      },{
         "title": "변수, 함수, 타입",
         "excerpt":"코드 스테이츠에 합류하게 되면서 생에 처음으로 블로그를 작성해본다. 처음이다 보니 낯설고 약간은?! 오글거리지만 최대한 틈나는 대로 작성해보려고 한다. 변수 변수 선언 및 할당 변수는 이름이 붙은 값를 의미하고 상황에 따라 변할 수 있는 값이다. 변수 할당은 “같다”라는 의미가 아닌 “대입”이란 의미의 “=”를 사용한다. let name; // 변수 선언 name =...","categories": ["JavaScript"],
         "tags": [],
@@ -603,5 +597,23 @@ var store = [{
         "excerpt":"@import 1개의 CSS 파일에 모든 스타일을 작성하면 유지보수하기 힘들고 가독성이 좋지 않은 단점에 따라 CSS 파일을 분리해서 사용하면 재사용 및 유지보수 측면에 유리하다. SASS는 @import를 사용하여 분리된 stylesheet 파일을 import할 수 있다. @import \"foo.scss\"; @import \"foo\"; // 확장자는 생략 가능 @import \"nav\", \"footer\"; // 여러개의 파일을 한번에 임포트할 수 있다....","categories": ["HTML & CSS"],
         "tags": [],
         "url": "/html%20&%20css/CSS13/",
+        "teaser": null
+      },{
+        "title": "Project_Log 1",
+        "excerpt":"Lohas 인테리어 회사 소개 및 시공사례 (포트폴리오) 게시 사이트 관리자 로그인 및 관리자 사진 밑 글 작성 기능 추가적으로 커뮤니티 기능도 생각중 오늘 한것 사이트 탐색 및 대략적인 구상 대략적인 툴 준비 사용 예정 스택 (프론트엔드) Javascript React Styled-components 다음엔!! 인테리어 하는 친구의 부탁으로 연습 겸 만들어 볼 예정이다!! 앞으로...","categories": ["Lohas"],
+        "tags": [],
+        "url": "/lohas/log1/",
+        "teaser": null
+      },{
+        "title": "Project_Log 2",
+        "excerpt":"오늘 한것      Wiki 대략적인 틀 구성   대략적인 Requirements 및 Wireframe 작성   대략적인 스키마 및 API 작성   Client 페이지 작성 및 라우팅 연결   내일은!!      Server 초기 개발 환경 설계 및 구축   대략적인 Prototype 및 UI 디자인  ","categories": ["Lohas"],
+        "tags": [],
+        "url": "/lohas/log2/",
+        "teaser": null
+      },{
+        "title": "TypeScript의 사용 이유와 기본 타입",
+        "excerpt":"TypeScript를 사용하는 이유 Javascript는 타입 시스템이 없는 동적 프로그래밍 언어로, 변수에 문자열, 숫자, 불린 등 여러 타입의 값을 가질 수 있다. 그로인해 유연하게 개발할 수 있는 환경을 제공하는 장점이 있지만, 런타임 환경에서 쉽게 에러가 발생할 수 있는 단점이 있다. // 예시를 한번 보자 // Javascript function add(num1, num2) { console.log(num1...","categories": ["JavaScript"],
+        "tags": [],
+        "url": "/javascript/JS16/",
         "teaser": null
       }]

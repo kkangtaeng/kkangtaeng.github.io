@@ -1,0 +1,140 @@
+I"%<h2 id="nesting">nesting</h2>
+
+<ul>
+  <li>nesting은 Sass의 유용한 확장 기능으로 선언을 중첩하는 기능이다.</li>
+  <li>CSS는 후손 셀렉터의 경우 부모요소를 기술해야 하지만 SASS는 간단히 작성할 수 있다.</li>
+  <li>하지만 너무 깊은 nesting은 가독성을 나쁘게 하고 셀렉터를 복잡하게 하기 때문에 주의해야 한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// CSS</span>
+<span class="p">.</span><span class="nx">nav</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="mi">80</span><span class="o">%</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="mi">20</span><span class="nx">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nx">nav</span> <span class="nx">ul</span> <span class="p">{</span>
+  <span class="nx">list</span><span class="o">-</span><span class="nx">style</span><span class="p">:</span> <span class="nx">none</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nx">nav</span> <span class="nx">li</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nx">red</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// SASS</span>
+<span class="p">.</span><span class="nx">nav</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="mi">80</span><span class="o">%</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="mi">20</span><span class="nx">px</span><span class="p">;</span>
+  <span class="nx">ul</span> <span class="p">{</span>
+    <span class="nx">list</span><span class="o">-</span><span class="nx">style</span><span class="p">:</span> <span class="nx">none</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">li</span> <span class="p">{</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="nx">red</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>부모 요소의 참조가 필요한 경우 <code class="language-plaintext highlighter-rouge">&amp;</code>를 사용한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="p">.</span><span class="nx">nav</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nx">red</span><span class="p">;</span>
+  <span class="nx">$hover</span> <span class="p">{</span>
+    <span class="nx">text</span><span class="o">-</span><span class="nx">decoration</span><span class="p">:</span> <span class="nx">underline</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="조건문과-반복문">조건문과 반복문</h2>
+
+<h3 id="if">if</h3>
+
+<ul>
+  <li>Javascript와 같이 if문을 사용 가능하다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="nx">condition</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span>
+
+<span class="c1">// 예시</span>
+<span class="nx">$type</span><span class="p">:</span> <span class="nx">red</span><span class="p">;</span>
+
+<span class="nx">div</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="k">if</span><span class="p">(</span><span class="nx">$type</span> <span class="o">==</span> <span class="nx">red</span><span class="p">,</span> <span class="nx">red</span><span class="p">,</span> <span class="nx">blue</span><span class="p">);</span> <span class="c1">// color: red;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="if-else">@if, @else</h3>
+
+<ul>
+  <li>else if 문도 사용이 가능하다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="nx">$type</span><span class="p">:</span> <span class="nx">red</span><span class="p">;</span>
+
+<span class="nx">div</span> <span class="p">{</span>
+  <span class="p">@</span><span class="nd">if</span> <span class="nx">$type</span> <span class="o">==</span> <span class="nx">red</span> <span class="p">{</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="nx">red</span><span class="p">;</span>
+  <span class="p">}</span> <span class="p">@</span><span class="nd">else</span> <span class="k">if</span> <span class="nx">$type</span> <span class="o">==</span> <span class="nx">blue</span> <span class="p">{</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="nx">blue</span><span class="p">;</span>
+  <span class="p">}</span> <span class="p">@</span><span class="nd">else</span> <span class="p">{</span>
+    <span class="na">color</span><span class="p">:</span> <span class="nx">black</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="for">@for</h3>
+
+<ul>
+  <li>for문도 사용이 가능하다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="p">@</span><span class="nd">for</span> <span class="nx">$i</span> <span class="k">from</span> <span class="mi">1</span> <span class="nx">through</span> <span class="mi">3</span> <span class="p">{</span>
+  <span class="p">.</span><span class="nx">item</span><span class="o">-</span><span class="err">#</span><span class="p">{</span><span class="nx">$i</span><span class="p">}</span> <span class="p">{</span> <span class="na">width</span><span class="p">:</span> <span class="mi">2</span><span class="nx">em</span> <span class="o">*</span> <span class="nx">$i</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 결과</span>
+<span class="p">.</span><span class="nx">item</span><span class="o">-</span><span class="mi">1</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="mi">2</span><span class="nx">em</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nx">item</span><span class="o">-</span><span class="mi">2</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="mi">4</span><span class="nx">em</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nx">item</span><span class="o">-</span><span class="mi">3</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="mi">6</span><span class="nx">em</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="while">@while</h3>
+
+<ul>
+  <li>while문도 사용이 가능하다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="nx">$i</span><span class="p">:</span> <span class="mi">6</span><span class="p">;</span>
+<span class="p">@</span><span class="nd">while</span> <span class="nx">$i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+  <span class="p">.</span><span class="nx">item</span><span class="o">-</span><span class="err">#</span><span class="p">{</span><span class="nx">$i</span><span class="p">}</span> <span class="p">{</span> <span class="na">width</span><span class="p">:</span> <span class="mi">2</span><span class="nx">em</span> <span class="o">*</span> <span class="nx">$i</span><span class="p">;</span> <span class="p">}</span>
+  <span class="nl">$i</span><span class="p">:</span> <span class="nx">$i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 결과</span>
+<span class="p">.</span><span class="nx">item</span><span class="o">-</span><span class="mi">6</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="mi">12</span><span class="nx">em</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nx">item</span><span class="o">-</span><span class="mi">4</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="mi">8</span><span class="nx">em</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nx">item</span><span class="o">-</span><span class="mi">2</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="mi">4</span><span class="nx">em</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="주석">주석</h2>
+
+<ul>
+  <li>CSS는 <code class="language-plaintext highlighter-rouge">/* */</code>만 지원하지만 SASS는 <code class="language-plaintext highlighter-rouge">/* */</code>와 <code class="language-plaintext highlighter-rouge">//</code>를 모두 사용할 수 있다.</li>
+</ul>
+:ET

@@ -1,0 +1,112 @@
+I"A<h3 id="오늘-한것">오늘 한것</h3>
+
+<ul>
+  <li>모두보기 페이지 필터링 기능 구현완료!!</li>
+  <li>상세보기 페이지 기능 구현 완료 및 추가적으로 발생한 버그 수정</li>
+  <li>회원정보변경 페이지 비밀번호 변경 컴포넌트 기능 구현 완료</li>
+  <li>회원정보변경 페이지 회원정보(닉네임, 프로필사진) 컴포넌트 대략적인 기능 구현</li>
+</ul>
+
+<h3 id="힘든-점">힘든 점</h3>
+
+<ul>
+  <li>필터기능을 구현하는게 조금 힘들었다.. 3가지 기준에서 각 항목을 전부 적용해야 했기에 접근방법이 어려웠던것 같다. 처음에는 각 항목을 순차적으로 필터링하여 각 기준이 겹쳐지게 되어 나중에 모든가격같은 모두보기 항목을 클릭했을 때에는 전체서비스에서 필터링이 되는것이 아닌 필터링이 이미 된 배열을 필터링하고 있었다..</li>
+  <li>그러다가 문득 그럼 그 기준에서의 항목을 상태로 관리하면 어떨까? 그럼 그 상태를 기준으로 계속 필터링을 하면 되지않을까? 라는 생각이 들었고 바로 수정작업을 했다!!</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">filterServices</span> <span class="o">=</span> <span class="p">(</span><span class="nx">category</span><span class="p">,</span> <span class="nx">price</span><span class="p">,</span> <span class="nx">free</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">category</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setCategoryName</span><span class="p">(</span><span class="nx">category</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">category</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">모든 카테고리</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">setSelect</span><span class="p">({</span> <span class="p">...</span><span class="nx">select</span><span class="p">,</span> <span class="na">category</span><span class="p">:</span> <span class="dl">""</span> <span class="p">});</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">setSelect</span><span class="p">({</span>
+        <span class="p">...</span><span class="nx">select</span><span class="p">,</span>
+        <span class="na">category</span><span class="p">:</span> <span class="nx">category</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">(),</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">price</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setpriceName</span><span class="p">(</span><span class="nx">price</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">price</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">모든 가격</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">setSelect</span><span class="p">({</span> <span class="p">...</span><span class="nx">select</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="dl">""</span> <span class="p">});</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">setSelect</span><span class="p">({</span>
+        <span class="p">...</span><span class="nx">select</span><span class="p">,</span>
+        <span class="na">price</span><span class="p">:</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">price</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span><span class="p">),</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">free</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setfreeName</span><span class="p">(</span><span class="nx">free</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">free</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">모든 체험</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">setSelect</span><span class="p">({</span> <span class="p">...</span><span class="nx">select</span><span class="p">,</span> <span class="na">free</span><span class="p">:</span> <span class="dl">""</span> <span class="p">});</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">boolean</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">free</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">유</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">boolean</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">boolean</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nx">setSelect</span><span class="p">({</span>
+        <span class="p">...</span><span class="nx">select</span><span class="p">,</span>
+        <span class="na">free</span><span class="p">:</span> <span class="nx">boolean</span><span class="p">,</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>그래서 처음 작성했던 코드에서 위처럼 상태로 관리하였고, 그 후 바로 위 함수안에서 filter를 하니 select 상태가 undefined로 나왔다.. 생각해보니 코드가 먼저 실행되고 나중에 적용되니 undefined라는것을 바로 깨달았다ㅠㅠ</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">services</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">filtered</span> <span class="o">=</span> <span class="nx">services</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">service</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">select</span><span class="p">.</span><span class="nx">category</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">select</span><span class="p">.</span><span class="nx">price</span> <span class="o">&amp;&amp;</span> <span class="nx">select</span><span class="p">.</span><span class="nx">free</span> <span class="o">===</span> <span class="dl">""</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">service</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">select</span><span class="p">.</span><span class="nx">price</span> <span class="o">&amp;&amp;</span> <span class="nx">select</span><span class="p">.</span><span class="nx">free</span> <span class="o">===</span> <span class="dl">""</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">service</span><span class="p">.</span><span class="nx">category</span> <span class="o">===</span> <span class="nx">select</span><span class="p">.</span><span class="nx">category</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">select</span><span class="p">.</span><span class="nx">category</span> <span class="o">&amp;&amp;</span> <span class="nx">select</span><span class="p">.</span><span class="nx">free</span> <span class="o">===</span> <span class="dl">""</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">service</span><span class="p">.</span><span class="nx">Prices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">price</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="nx">select</span><span class="p">.</span><span class="nx">price</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">select</span><span class="p">.</span><span class="nx">category</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">select</span><span class="p">.</span><span class="nx">price</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">service</span><span class="p">.</span><span class="nx">demo</span> <span class="o">===</span> <span class="nx">select</span><span class="p">.</span><span class="nx">free</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">select</span><span class="p">.</span><span class="nx">category</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span>
+          <span class="nb">Number</span><span class="p">(</span><span class="nx">service</span><span class="p">.</span><span class="nx">Prices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">price</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="nx">select</span><span class="p">.</span><span class="nx">price</span> <span class="o">&amp;&amp;</span>
+          <span class="nx">service</span><span class="p">.</span><span class="nx">demo</span> <span class="o">===</span> <span class="nx">select</span><span class="p">.</span><span class="nx">free</span>
+        <span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">select</span><span class="p">.</span><span class="nx">price</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span>
+          <span class="nx">service</span><span class="p">.</span><span class="nx">category</span> <span class="o">===</span> <span class="nx">select</span><span class="p">.</span><span class="nx">category</span> <span class="o">&amp;&amp;</span> <span class="nx">service</span><span class="p">.</span><span class="nx">demo</span> <span class="o">===</span> <span class="nx">select</span><span class="p">.</span><span class="nx">free</span>
+        <span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">select</span><span class="p">.</span><span class="nx">free</span> <span class="o">===</span> <span class="dl">""</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span>
+          <span class="nx">service</span><span class="p">.</span><span class="nx">category</span> <span class="o">===</span> <span class="nx">select</span><span class="p">.</span><span class="nx">category</span> <span class="o">&amp;&amp;</span>
+          <span class="nb">Number</span><span class="p">(</span><span class="nx">service</span><span class="p">.</span><span class="nx">Prices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">price</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="nx">select</span><span class="p">.</span><span class="nx">price</span>
+        <span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span>
+          <span class="nx">service</span><span class="p">.</span><span class="nx">category</span> <span class="o">===</span> <span class="nx">select</span><span class="p">.</span><span class="nx">category</span> <span class="o">&amp;&amp;</span>
+          <span class="nb">Number</span><span class="p">(</span><span class="nx">service</span><span class="p">.</span><span class="nx">Prices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">price</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="nx">select</span><span class="p">.</span><span class="nx">price</span> <span class="o">&amp;&amp;</span>
+          <span class="nx">service</span><span class="p">.</span><span class="nx">demo</span> <span class="o">===</span> <span class="nx">select</span><span class="p">.</span><span class="nx">free</span>
+        <span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="nx">setFilter</span><span class="p">(</span><span class="nx">filtered</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">},</span> <span class="p">[</span><span class="nx">select</span><span class="p">]);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>그래서 useEffect를 사용하여 처음과 select가 바뀔때 필터링하게 코드를 수정하였고, 각 filter기준을 정하여 코드를 작성하였다!!</li>
+  <li>위처럼 작성하니 기능 구현은 되었지만 뭔가 찝찝한건 사실이다ㅠㅠ 뭔가 더 좋은 방법이 있을 것 같은데 알고리즘은 솔직히 현업에서 많이 안쓰이지 않을까? 라는 생각을 잠깐 했지만 왠지 알고리즘을 어느정도 이해하게 된다면 위같은 상황에서 코드를 깔끔하게 작성할 수 있지 않을 까 생각이 들었다</li>
+</ul>
+
+<h3 id="내일은">내일은!!</h3>
+
+<ul>
+  <li>회원정보변경 페이지 추가 기능 구현!!</li>
+  <li>s3를 이용한 이미지 서버 구축 및 연결!!</li>
+</ul>
+:ET

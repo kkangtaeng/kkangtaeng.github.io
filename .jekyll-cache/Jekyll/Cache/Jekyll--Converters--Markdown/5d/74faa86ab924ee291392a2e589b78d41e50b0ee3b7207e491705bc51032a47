@@ -1,0 +1,22 @@
+I"y<h2 id="fetch">fetch</h2>
+
+<ul>
+  <li>fetch API는 네트워크를 통해 URL로 요청하는 것을 가능하게 해주는 API이다.</li>
+</ul>
+
+<h3 id="fetch-사용법">fetch 사용법</h3>
+
+<ul>
+  <li>fetch는 인자로 URL을 받고, Promise 타입의 객체를 반환한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://test.com/testing</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+  <span class="c1">// 자체적으로 있는 json()메소드를 사용해, 응답을 JSON형태로 변환시켜 다음 promise로 전달</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">json</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">json</span><span class="p">))</span>
+  <span class="c1">// 콘솔에 json을 출력</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+  <span class="c1">// 에러가 발생할 경우, 에러를 콘솔에 출력</span>
+</code></pre></div></div>
+:ET

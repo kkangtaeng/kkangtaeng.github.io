@@ -1,0 +1,125 @@
+I"<h2 id="관계형-데이터베이스">관계형 데이터베이스</h2>
+
+<ul>
+  <li>구조화된 데이터는 하나의 테이블로 표현할 수 있고, 사전에 정의된 테이블을 사용하는 데이터베이스 이다.</li>
+</ul>
+
+<h3 id="관계형-데이터베이스의-키워드">관계형 데이터베이스의 키워드</h3>
+
+<ul>
+  <li>데이터 (data) - 각 항목에 저장되는 값</li>
+  <li>테이블 (table) - 사전에 정의된 열의 데이터 타입대로 작성된 데이터가 행으로 축적되는 표</li>
+  <li>칼럼, 열 (column, field) - 테이블의 열</li>
+  <li>레코드, 행 (record, tuple) - 테이블의 행</li>
+  <li>키(key) - 테이블의 각 레코드를 구분하는 값</li>
+  <li>기본키 (primary key) - 테이블의 고유한 값</li>
+  <li>외래키 (foreign key) - 다른 테이블의 기본키를 참조하는 키</li>
+</ul>
+
+<h3 id="관계-종류">관계 종류</h3>
+
+<ul>
+  <li>1 : 1 - 하나의 레코드가 다른 테이블의 레코드 한개와 연결된 경우</li>
+  <li>1 : N - 하나의 레코드가 서로 다른 여러 개의 레코드와 연결된 경우</li>
+  <li>N : N - 여러 개의 레코드가 다른 테이블의 여러 개의 레코드와 관계가 있는 경우</li>
+</ul>
+
+<h2 id="집합연산">집합연산</h2>
+
+<ul>
+  <li>레코드를 조회하고 분류한 뒤, 특정 작업을 하는 연산이다.</li>
+</ul>
+
+<h3 id="group-by">GROUP BY</h3>
+
+<ul>
+  <li>데이터를 조회할 때 그룹으로 묶어서 조회한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">SELECT</span> <span class="o">*</span> <span class="nx">FROM</span> <span class="nx">테이블명</span>
+<span class="nx">GROUP</span> <span class="nx">BY</span> <span class="nx">특정값</span>
+
+<span class="c1">// 특정값에 따라 데이터를 그룹화 한다.</span>
+</code></pre></div></div>
+
+<h3 id="having">HAVING</h3>
+
+<ul>
+  <li>GROUP BY 로 조회된 결과를 필터링한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">SELECT</span> <span class="o">*</span> <span class="nx">FROM</span> <span class="nx">테이블명</span>
+<span class="nx">GROUP</span> <span class="nx">BY</span> <span class="nx">특정값</span>
+<span class="nx">HAVING</span> <span class="nx">조건</span>
+
+<span class="c1">// 특정값에 따라 데이터를 그룹화 한뒤 조건에 따라 필터링한다.</span>
+</code></pre></div></div>
+
+<h2 id="sql-내장-함수">SQL 내장 함수</h2>
+
+<h3 id="count">COUNT()</h3>
+
+<ul>
+  <li>레코드의 개수를 센다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">SELECT</span> <span class="nx">COUNT</span><span class="p">(</span><span class="nx">레코드명</span><span class="p">)</span>
+<span class="nx">FROM</span> <span class="nx">테이블명</span>
+<span class="nx">WHERE</span> <span class="nx">조건</span>
+</code></pre></div></div>
+
+<h3 id="avg">AVG()</h3>
+
+<ul>
+  <li>레코드의 평균을 낸다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">SELECT</span> <span class="nx">AVG</span><span class="p">(</span><span class="nx">레코드명</span><span class="p">)</span>
+<span class="nx">FROM</span> <span class="nx">테이블명</span>
+<span class="nx">WHERE</span> <span class="nx">조건</span>
+</code></pre></div></div>
+
+<h3 id="sum">SUM()</h3>
+
+<ul>
+  <li>레코드의 합을 낸다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">SELECT</span> <span class="nx">SUM</span><span class="p">(</span><span class="nx">레코드명</span><span class="p">)</span>
+<span class="nx">FROM</span> <span class="nx">테이블명</span>
+<span class="nx">WHERE</span> <span class="nx">조건</span>
+</code></pre></div></div>
+
+<h3 id="min">MIN()</h3>
+
+<ul>
+  <li>레코드의 최솟값을 낸다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">SELECT</span> <span class="nx">MIN</span><span class="p">(</span><span class="nx">레코드명</span><span class="p">)</span>
+<span class="nx">FROM</span> <span class="nx">테이블명</span>
+<span class="nx">WHERE</span> <span class="nx">조건</span>
+</code></pre></div></div>
+
+<h3 id="max">MAX()</h3>
+
+<ul>
+  <li>레코드의 최대값을 낸다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">SELECT</span> <span class="nx">MAX</span><span class="p">(</span><span class="nx">레코드명</span><span class="p">)</span>
+<span class="nx">FROM</span> <span class="nx">테이블명</span>
+<span class="nx">WHERE</span> <span class="nx">조건</span>
+</code></pre></div></div>
+
+<h3 id="select-실행-순서">SELECT 실행 순서</h3>
+
+<ol>
+  <li>FROM</li>
+  <li>WHERE</li>
+  <li>GROUP BY</li>
+  <li>HAVING</li>
+  <li>SELECT</li>
+  <li>ORDER BY</li>
+</ol>
+:ET

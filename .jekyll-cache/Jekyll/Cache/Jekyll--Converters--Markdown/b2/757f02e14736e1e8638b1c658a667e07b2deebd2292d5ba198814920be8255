@@ -1,0 +1,43 @@
+I"C<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 문제</span>
+<span class="nx">편의점에서</span> <span class="nx">아르바이트를</span> <span class="nx">하고</span> <span class="nx">있는</span> <span class="nx">중에</span><span class="p">,</span> <span class="nx">하필이면</span> <span class="nx">피크</span> <span class="nx">시간대에</span> 
+<span class="nx">손님에게</span> <span class="nx">거스름돈으로</span> <span class="nx">줄</span> <span class="nx">동전이</span> <span class="nx">부족하다는</span> <span class="nx">것을</span> <span class="nx">알게</span> <span class="nx">되었습니다</span><span class="p">.</span>
+<span class="nx">현재</span> <span class="nx">가지고</span> <span class="nx">있는</span> <span class="nx">동전은</span> <span class="mi">1</span><span class="nx">원</span><span class="p">,</span> <span class="mi">5</span><span class="nx">원</span><span class="p">,</span> <span class="mi">10</span><span class="nx">원</span><span class="p">,</span> <span class="mi">50</span><span class="nx">원</span><span class="p">,</span> <span class="mi">100</span><span class="nx">원</span><span class="p">,</span> <span class="mi">500</span><span class="nx">원으로</span> 
+<span class="nx">오름차순으로</span> <span class="nx">정렬되어</span> <span class="nx">있고</span><span class="p">,</span> <span class="nx">각</span> <span class="nx">동전들은</span> <span class="nx">서로</span> <span class="nx">배수</span> <span class="nx">관계에</span> <span class="nx">있습니다</span><span class="p">.</span>
+<span class="nx">동전</span> <span class="nx">개수를</span> <span class="nx">최소화하여</span> <span class="nx">거스름돈</span> <span class="nx">K를</span> <span class="nx">만들어야</span> <span class="nx">합니다</span><span class="p">.</span> 
+<span class="nx">이때</span><span class="p">,</span> <span class="nx">필요한</span> <span class="nx">동전</span> <span class="nx">개수의</span> <span class="nx">최솟값을</span> <span class="nx">구하는</span> <span class="nx">함수를</span> <span class="nx">작성해</span> <span class="nx">주세요</span><span class="p">.</span>
+
+<span class="c1">// 입력</span>
+<span class="nx">인자</span><span class="p">:</span> <span class="nx">k</span>
+<span class="o">-</span> <span class="nx">number</span> <span class="nx">타입의</span> <span class="nx">k</span>
+<span class="o">-</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="nx">k</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">,</span><span class="mi">000</span><span class="p">,</span><span class="mi">000</span>
+
+<span class="c1">// 출력</span>
+<span class="o">-</span> <span class="nx">number</span> <span class="nx">타입의</span> <span class="nx">거스름돈</span> <span class="nx">K원을</span> <span class="nx">만드는데</span> 
+  <span class="nx">필요한</span> <span class="nx">동전</span> <span class="nx">개수의</span> <span class="nx">최솟값을</span> <span class="nx">반환해야</span> <span class="nx">합니다</span><span class="p">.</span>
+
+<span class="c1">// 예시</span>
+<span class="c1">// 4000원을 받았을 때 500원짜리 동전 8개를 반환합니다.</span>
+<span class="kd">const</span> <span class="nx">output1</span> <span class="o">=</span> <span class="nx">test1</span><span class="p">(</span><span class="mi">4000</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">output1</span><span class="p">);</span> <span class="c1">// --&gt; 8</span>
+
+<span class="c1">// 4972원을 받았을 때 500원짜리 동전 9개, 100원짜리 동전 4개, </span>
+<span class="c1">// 50원짜리 동전 1개, 10원짜리 동전 2개, 1원짜리 동전 2개, </span>
+<span class="c1">// 총 18개를 반환합니다.</span>
+<span class="kd">const</span> <span class="nx">output2</span> <span class="o">=</span> <span class="nx">test1</span><span class="p">(</span><span class="mi">4972</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">output2</span><span class="p">);</span> <span class="c1">// --&gt; 18</span>
+</code></pre></div></div>
+
+<h3 id="풀이">풀이</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">partTimeJob</span><span class="p">(</span><span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+  <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span> <span class="p">;</span> <span class="nx">n</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">k</span> <span class="o">/</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">n</span><span class="p">])</span>
+    <span class="nx">result</span> <span class="o">+=</span> <span class="nx">sum</span>
+    <span class="nx">k</span> <span class="o">-=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">n</span><span class="p">]</span> <span class="o">*</span> <span class="nx">sum</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

@@ -1,0 +1,106 @@
+I"�<h2 id="import">@import</h2>
+
+<ul>
+  <li>1개의 CSS 파일에 모든 스타일을 작성하면 유지보수하기 힘들고 가독성이 좋지 않은 단점에 따라 CSS 파일을 분리해서 사용하면 재사용 및 유지보수 측면에 유리하다.</li>
+  <li>SASS는 @import를 사용하여 분리된 stylesheet 파일을 import할 수 있다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">import</span> <span class="dl">"</span><span class="s2">foo.scss</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">@</span><span class="nd">import</span> <span class="dl">"</span><span class="s2">foo</span><span class="dl">"</span><span class="p">;</span>
+<span class="c1">// 확장자는 생략 가능</span>
+
+<span class="p">@</span><span class="nd">import</span> <span class="dl">"</span><span class="s2">nav</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">footer</span><span class="dl">"</span><span class="p">;</span>
+<span class="c1">// 여러개의 파일을 한번에 임포트할 수 있다.</span>
+</code></pre></div></div>
+
+<h2 id="extend">@extend</h2>
+
+<ul>
+  <li>기존 스타일을 상속할때 사용한다. (확장)</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="p">.</span><span class="nx">nav</span> <span class="p">{</span>
+    <span class="nl">padding</span><span class="p">:</span> <span class="mi">10</span><span class="nx">px</span><span class="p">;</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="mi">10</span><span class="nx">px</span><span class="p">;</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="nx">red</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nx">nav</span><span class="o">-</span><span class="nx">blue</span> <span class="p">{</span>
+    <span class="p">@</span><span class="nd">extend</span> <span class="p">.</span><span class="nx">nav</span><span class="p">;</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="nx">blue</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 컴파일 후</span>
+<span class="p">.</span><span class="nx">nav</span> <span class="p">.</span><span class="nx">nav</span><span class="o">-</span><span class="nx">blue</span> <span class="p">{</span>
+    <span class="nl">padding</span><span class="p">:</span> <span class="mi">10</span><span class="nx">px</span><span class="p">;</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="mi">10</span><span class="nx">px</span><span class="p">;</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="nx">red</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nx">nav</span><span class="o">-</span><span class="nx">blue</span> <span class="p">{</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="nx">blue</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>위와 같이 다중 선택자를 만들 수 있다.</li>
+  <li>하지만 확장 기능은 부작용이 있을 수 있어 Mixin 사용을 권장한다.</li>
+</ul>
+
+<h2 id="mixin">Mixin</h2>
+
+<ul>
+  <li>Mixin은 재사용할 CSS 선언 그룹을 정의하는 기능이다.</li>
+  <li><code class="language-plaintext highlighter-rouge">@mixin</code>을 선언하고 <code class="language-plaintext highlighter-rouge">@include</code>로 불러들인다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">mixin</span> <span class="nx">name</span> <span class="p">{</span>
+  <span class="nx">style</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 예시</span>
+<span class="p">@</span><span class="nd">mixing</span> <span class="nx">square</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="mi">20</span><span class="nx">px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="mi">20</span><span class="nx">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nx">box</span> <span class="p">{</span>
+    <span class="p">@</span><span class="nd">include</span> <span class="nx">square</span><span class="p">;</span>
+    <span class="c1">// 추가적인 스타일지정도 가능</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="nx">red</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>위에 예시처럼 추가적인 스타일 지정도 가능하다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="p">@</span><span class="nd">mixin</span> <span class="nx">square</span><span class="p">(</span><span class="nx">$size</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="nx">$size</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="nx">$size</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nx">box</span> <span class="p">{</span>
+    <span class="p">@</span><span class="nd">include</span> <span class="nx">square</span><span class="p">(</span><span class="mi">10</span><span class="nx">px</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>mixin은 함수와 같이 매개 변수를 사용할 수 있다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="p">@</span><span class="nd">mixin</span> <span class="nx">square</span><span class="p">(</span><span class="nx">$size</span><span class="p">:</span> <span class="mi">10</span><span class="nx">px</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="nx">$size</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="nx">$size</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nx">box</span> <span class="p">{</span>
+    <span class="p">@</span><span class="nd">include</span> <span class="nx">square</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>매개 변수의 초기값 설정도 가능하다.</li>
+</ul>
+:ET

@@ -1,0 +1,168 @@
+I":<p>아직 태그를 사용하는 법이나 정확한 의미는 모르지만 앞으로 참고할일을 대비해 자주 사용하는 태그들만 찾아서 정리해보려고 한다!!</p>
+
+<h2 id="자주-사용되는-태그tag">자주 사용되는 태그(Tag)</h2>
+
+<h3 id="a-태그"><code class="language-plaintext highlighter-rouge">&lt;a&gt;</code> 태그</h3>
+
+<ul>
+  <li>다른 컨텐츠와 연결되는 하이퍼링크를 정의하는 태그</li>
+  <li>href 속성으로 링크를 넣을 수 있다</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//ex</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="p">=</span><span class="s">"https://kkangtaeng.github.io"</span><span class="p">&gt;</span>이동!!<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="br-태그"><code class="language-plaintext highlighter-rouge">&lt;br&gt;</code> 태그</h3>
+
+<ul>
+  <li>텍스트 내의 줄바꿈을 정의하는 태그</li>
+  <li>닫는 태그없이 사용한다</li>
+</ul>
+
+<h3 id="button-태그"><code class="language-plaintext highlighter-rouge">&lt;button&gt;</code> 태그</h3>
+
+<ul>
+  <li>클릭할 수 있는 버튼을 정의하는 태그</li>
+</ul>
+
+<h3 id="div-태그"><code class="language-plaintext highlighter-rouge">&lt;div&gt;</code> 태그</h3>
+
+<ul>
+  <li>컨텐츠를 하나로 묶어주기 위해 사용하는 태그</li>
+  <li>줄바꿈이 된다 (block-element)</li>
+</ul>
+
+<h3 id="h1--h6-태그"><code class="language-plaintext highlighter-rouge">&lt;h1&gt; ~ &lt;h6&gt;</code> 태그</h3>
+
+<ul>
+  <li>문서에서 제목을 정의하는 태그</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;h1&gt;</code>태그가 글자가 제일 크고, 갈수록 크기가 작아진다</li>
+</ul>
+
+<h3 id="head-태그"><code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> 태그</h3>
+
+<ul>
+  <li>웹 페이지의 정보나 문서에서 사용하는 외부 파일들을 링크할 때 사용하는 태그</li>
+</ul>
+
+<h3 id="html-태그"><code class="language-plaintext highlighter-rouge">&lt;html&gt;</code> 태그</h3>
+
+<ul>
+  <li>웹 페이지의 시작과 끝을 정의하는 태그</li>
+</ul>
+
+<h3 id="img-태그"><code class="language-plaintext highlighter-rouge">&lt;img&gt;</code> 태그</h3>
+
+<ul>
+  <li>웹 페이지에 이미지를 넣을 때 사용하는 태그</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;img&gt;</code>태그 하나당 1개의 이미지만 삽입 가능</li>
+  <li>src 속성과 alt 속성을 반드시 넣어줘야 한다</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//ex</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="p">=</span><span class="s">"images/emoji"</span> <span class="na">alt</span><span class="p">=</span><span class="s">"이모지"</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="input-태그"><code class="language-plaintext highlighter-rouge">&lt;input&gt;</code> 태그</h3>
+
+<ul>
+  <li>사용자로부터 입력을 받을 수 있는 필드를 정의하는 태그</li>
+</ul>
+
+<h3 id="li-태그"><code class="language-plaintext highlighter-rouge">&lt;li&gt;</code> 태그</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">&lt;ul&gt;</code>태그와 <code class="language-plaintext highlighter-rouge">&lt;ol&gt;</code>태그 안에서 각 항목을 나열할 때 사용하는 태그</li>
+  <li>목록 아이템을 나타낸다</li>
+</ul>
+
+<h3 id="link-태그"><code class="language-plaintext highlighter-rouge">&lt;link&gt;</code> 태그</h3>
+
+<ul>
+  <li>외부 파일을 연결할 때 사용하는 태그</li>
+</ul>
+
+<h3 id="ol-태그"><code class="language-plaintext highlighter-rouge">&lt;ol&gt;</code> 태그</h3>
+
+<ul>
+  <li>순서가 있는 리스트를 정의하는 태그</li>
+</ul>
+
+<h3 id="p-태그"><code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> 태그</h3>
+
+<ul>
+  <li>문단을 정의하는 태그</li>
+  <li>내용 앞뒤로 빈줄이 생긴다</li>
+</ul>
+
+<h3 id="script-태그"><code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> 태그</h3>
+
+<ul>
+  <li>자바스크립트와 같은 클라이언트 사이드 스크립트를 정의하는 태그</li>
+</ul>
+
+<h3 id="span-태그"><code class="language-plaintext highlighter-rouge">&lt;span&gt;</code> 태그</h3>
+
+<ul>
+  <li>컨텐츠를 하나로 묶어주기 위해 사용하는 태그</li>
+  <li>줄바꿈이 되지 않는다 (inline-element)</li>
+</ul>
+
+<h3 id="title-태그"><code class="language-plaintext highlighter-rouge">&lt;title&gt;</code> 태그</h3>
+
+<ul>
+  <li>문서의 제목을 정의하는 태그</li>
+</ul>
+
+<h3 id="ul-태그"><code class="language-plaintext highlighter-rouge">&lt;ul&gt;</code> 태그</h3>
+
+<ul>
+  <li>순서가 없는 리스트를 정의하는 태그</li>
+</ul>
+
+<h2 id="시멘틱-태그tag">시멘틱 태그(Tag)</h2>
+
+<ul>
+  <li>특정한 태그에 의미를 부여한 태그</li>
+</ul>
+
+<h3 id="article-태그"><code class="language-plaintext highlighter-rouge">&lt;article&gt;</code> 태그</h3>
+
+<ul>
+  <li>해당 문서나 페이지 또는 사의트와는 독립적으로 구성할 수 있는 요소를 정의하는 태그</li>
+  <li>시각적인 효과를 주는 태그는 아니지만, 본문을 명시해주기 위해 사용</li>
+</ul>
+
+<h3 id="asdie-태그"><code class="language-plaintext highlighter-rouge">&lt;asdie&gt;</code> 태그</h3>
+
+<ul>
+  <li>해당 컨텐츠들로부터 분리시킬 수 있는 컨텐츠로 구성된 페이지 영역을 정의하는 태그</li>
+  <li>사이드에 위치하는 공간을 의미</li>
+</ul>
+
+<h3 id="footer-태그"><code class="language-plaintext highlighter-rouge">&lt;footer&gt;</code> 태그</h3>
+
+<ul>
+  <li>문서나 특정 섹션의 푸터를 정의하는 태그</li>
+  <li>저작권 정보나 제작 정보 등을 표시한다</li>
+</ul>
+
+<h3 id="header-태그"><code class="language-plaintext highlighter-rouge">&lt;header&gt;</code> 태그</h3>
+
+<ul>
+  <li>문서나 특정 섹션의 헤더를 정의하는 태그</li>
+</ul>
+
+<h3 id="nav-태그"><code class="language-plaintext highlighter-rouge">&lt;nav&gt;</code> 태그</h3>
+
+<ul>
+  <li>다른 페이지 또는 현재 페이지의 다른 부분과 연결하는 링크들을 정의하는 태그</li>
+</ul>
+
+<h3 id="section-태그"><code class="language-plaintext highlighter-rouge">&lt;section&gt;</code> 태그</h3>
+
+<ul>
+  <li>독립적인 섹션을 정의하는 태그</li>
+</ul>
+:ET

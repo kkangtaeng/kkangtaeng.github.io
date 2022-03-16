@@ -1,0 +1,15 @@
+I"<p>코드 작성 중에 axios 통신으로 데이터(배열형태)를 받아와서 map 함수를 사용하려는데 갑자기..</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">TypeError</span><span class="p">:</span> <span class="nx">Cannot</span> <span class="nx">read</span> <span class="nx">properties</span> <span class="k">of</span> <span class="kc">undefined</span> <span class="p">(</span><span class="nx">reading</span> <span class="dl">'</span><span class="s1">map</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>라는 오류가 발생하였다. 분명히 잘못된것이 없는데 계속 오류가 떠서 찾아보니</p>
+
+<p>React에서 처음 렌더링이 되면서 return에서 map함수를 반복실행할 때 처음에 데이터가 없어서</p>
+
+<p>‘undefined’인 상태에서 실행되면서 ‘undefined’를 map하려고 하니 오류가 났던것이었다.</p>
+
+<p>그래서 해결책으로 &amp;&amp;(논리곱연산자) 을 사용하니 문제가 해결되었다!!</p>
+
+<p>&amp;&amp;(논리곱연산자)는 왼쪽부터 false값을 찾고 찾은경우 false를 반환하고 false가 없이 마지막에 도달하면 마지막 값을 반환한다</p>
+:ET

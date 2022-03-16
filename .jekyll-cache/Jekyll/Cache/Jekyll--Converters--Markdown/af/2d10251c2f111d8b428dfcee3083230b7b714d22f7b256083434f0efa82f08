@@ -1,0 +1,144 @@
+I"J5<h2 id="동기synchronous">동기(Synchronous)</h2>
+
+<ul>
+  <li>요청에 대한 결과가 동시에 일어난다 즉, 요청을 보낸 후 해당 요청의 응답을 받아야 다음 동작이 살행되는 방식을 말한다.</li>
+</ul>
+
+<h3 id="동기synchronous의-예시">동기(Synchronous)의 예시</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="p">.</span> <span class="nx">손님</span> <span class="mi">1</span><span class="nx">이</span> <span class="nx">아메리카노를</span> <span class="nx">주문한다</span><span class="p">.</span>
+<span class="mi">2</span><span class="p">.</span> <span class="nx">접수를</span> <span class="nx">받은</span> <span class="nx">직원이</span> <span class="nx">아메리카노를</span> <span class="nx">만든다</span><span class="p">.</span>
+<span class="mi">3</span><span class="p">.</span> <span class="nx">직원이</span> <span class="nx">손님</span> <span class="mi">1</span><span class="nx">에게</span> <span class="nx">아메리카노를</span> <span class="nx">전달한다</span><span class="p">.</span>
+<span class="mi">4</span><span class="p">.</span> <span class="nx">손님</span> <span class="mi">2</span><span class="nx">가</span> <span class="nx">카페라떼를</span> <span class="nx">주문한다</span><span class="p">.</span>
+<span class="mi">5</span><span class="p">.</span> <span class="nx">접수를</span> <span class="nx">받은</span> <span class="nx">직원이</span> <span class="nx">카페라떼를</span> <span class="nx">만든다</span><span class="p">.</span>
+<span class="mi">6</span><span class="p">.</span> <span class="nx">직원이</span> <span class="nx">손님</span> <span class="mi">2</span><span class="nx">에게</span> <span class="nx">카페라떼를</span> <span class="nx">전달한다</span><span class="p">.</span>
+</code></pre></div></div>
+
+<ul>
+  <li>위 방식에는 손님2는 손님1이 아메리카노를 받을 때까지 주문을 하지 못하고 기다려야한다.</li>
+</ul>
+
+<h2 id="비동기asynschronous">비동기(Asynschronous)</h2>
+
+<ul>
+  <li>요청에 대한 결과가 동시에 일어나지 않는다 즉, 요청을 보낸 후 응답이 완료되지 않아도 다음 동작을 실행하는 방식을 말한다.</li>
+</ul>
+
+<h3 id="비동기asynschronous의-예시">비동기(Asynschronous)의 예시</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="p">.</span> <span class="nx">손님</span> <span class="mi">1</span><span class="nx">이</span> <span class="nx">아메리카노를</span> <span class="nx">주문한다</span><span class="p">.</span>
+  <span class="mi">1</span><span class="p">.</span> <span class="nx">접수를</span> <span class="nx">받은</span> <span class="nx">직원이</span> <span class="nx">아메리카노를</span> <span class="nx">만든다</span><span class="p">.</span>
+  <span class="mi">2</span><span class="p">.</span> <span class="nx">아메리카노가</span> <span class="nx">완성되면</span> <span class="nx">직원이</span> <span class="nx">손님</span> <span class="mi">1</span><span class="nx">을</span> <span class="nx">부른다</span><span class="p">.</span>
+  <span class="mi">3</span><span class="p">.</span> <span class="nx">아메리카노를</span> <span class="nx">손님</span> <span class="mi">1</span><span class="nx">에게</span> <span class="nx">전달한다</span><span class="p">.</span>
+<span class="mi">2</span><span class="p">.</span> <span class="nx">손님</span> <span class="mi">2</span><span class="nx">가</span> <span class="nx">카페라떼를</span> <span class="nx">주문한다</span><span class="p">.</span>
+  <span class="mi">1</span><span class="p">.</span> <span class="nx">접수를</span> <span class="nx">받은</span> <span class="nx">직원이</span> <span class="nx">카페라떼를</span> <span class="nx">만든다</span><span class="p">.</span>
+  <span class="mi">2</span><span class="p">.</span> <span class="nx">카페라떼가</span> <span class="nx">완성되면</span> <span class="nx">직원이</span> <span class="nx">손님</span> <span class="mi">2</span><span class="nx">를</span> <span class="nx">부른다</span><span class="p">.</span>
+  <span class="mi">3</span><span class="p">.</span> <span class="nx">카페라떼를</span> <span class="nx">손님</span> <span class="mi">2</span><span class="nx">에게</span> <span class="nx">전달한다</span><span class="p">.</span>
+</code></pre></div></div>
+
+<ul>
+  <li>위 방식에는 주문을 blocking 없이 전부 받고 전달은 비동기적으로 이뤄진다 즉, 주문은 계속 받으며 커피가 완성이 되면 손님에게 전달하는 방식으로 진행되어, 동기(Synchronous)보다 효율적인 작업이 가능하다.</li>
+</ul>
+
+<h2 id="callback">Callback</h2>
+
+<ul>
+  <li>Callback 함수란 다른 함수의 인자로 함수를 전달하고, 이벤트가 발생한 후 인자로 전달한 함수가 다시 호출되는 것을 말한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">printString</span> <span class="o">=</span> <span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+    <span class="nx">callback</span><span class="p">();</span>
+  <span class="p">},</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">printAll</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">printString</span><span class="p">(</span><span class="dl">"</span><span class="s2">A</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">printString</span><span class="p">(</span><span class="dl">"</span><span class="s2">B</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">printString</span><span class="p">(</span><span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{});</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+<span class="nx">printAll</span><span class="p">();</span>
+</code></pre></div></div>
+
+<ul>
+  <li>위처럼 랜덤하게 숫자가 나와도 callback 함수로 인해, ABC 차례대로 콘솔에 찍히는것을 볼 수 있다.</li>
+</ul>
+
+<p><img width="973" alt="스크린샷 2022-01-09 19 20 56" src="https://user-images.githubusercontent.com/85768164/148678337-0eb4bf5b-6eef-4e00-bb11-9158fbf03ce4.png" /></p>
+
+<ul>
+  <li>하지만 callback 함수는 순차적으로 이어져셔 많아지게 되면 코드를 읽는 가독성과 관리가 어려워진다. 이를 콜백지옥이라고 부른다. 이를 보완하기 위해 Promise 가 나오게 된다.</li>
+</ul>
+
+<h2 id="promise">Promise</h2>
+
+<ul>
+  <li>Promise는 Callback과 기능은 동일하나 더 간결하고 가독성이 좋아지게 한다.</li>
+  <li>Promise는 resolve와 reject를 인자로 받는다.
+    <ul>
+      <li>resolve: 성공시 실행</li>
+      <li>reject: 실패시 실행</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">printString</span> <span class="o">=</span> <span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+      <span class="nx">resolve</span><span class="p">();</span>
+    <span class="p">},</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">printAll</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">printString</span><span class="p">(</span><span class="dl">"</span><span class="s2">A</span><span class="dl">"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">printString</span><span class="p">(</span><span class="dl">"</span><span class="s2">B</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">printString</span><span class="p">(</span><span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+<span class="nx">printAll</span><span class="p">();</span>
+</code></pre></div></div>
+
+<ul>
+  <li>callback과 같은 값을 출력한다.</li>
+</ul>
+
+<h2 id="asyncawait">Async/await</h2>
+
+<ul>
+  <li>가장 최근에 나온 비동기 처리 패턴으로 Promise와 기능은 동일한 syntatic sugar이다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">printString</span> <span class="o">=</span> <span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+      <span class="nx">resolve</span><span class="p">();</span>
+    <span class="p">},</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">printAll</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">await</span> <span class="nx">printString</span><span class="p">(</span><span class="dl">"</span><span class="s2">A</span><span class="dl">"</span><span class="p">);</span>
+  <span class="k">await</span> <span class="nx">printString</span><span class="p">(</span><span class="dl">"</span><span class="s2">B</span><span class="dl">"</span><span class="p">);</span>
+  <span class="k">await</span> <span class="nx">printString</span><span class="p">(</span><span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="nx">printAll</span><span class="p">();</span>
+</code></pre></div></div>
+
+<ul>
+  <li>promise와 같은 값을 출력한다.</li>
+</ul>
+
+<hr />
+
+<p>비동기의 대략적인 개념자체는 어느정도 이해한듯 하지만 실제 적용하는것이 아직 어려운것 같다..<br />
+sprint를 풀면서 최대한 이해하고 복습하도록 해야겠다!!!</p>
+:ET

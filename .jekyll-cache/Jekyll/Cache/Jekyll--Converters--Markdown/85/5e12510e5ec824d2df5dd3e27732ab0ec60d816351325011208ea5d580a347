@@ -1,0 +1,121 @@
+I"�&<h2 id="spreadrest-문법">Spread/Rest 문법</h2>
+
+<h3 id="spread-문법">Spread 문법</h3>
+
+<ul>
+  <li>주로 배열을 풀어서 인자로 전달하거나, 배열을 풀어서 각각의 요소를 넣을 때에 사용한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span> <span class="o">+</span> <span class="nx">z</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">number</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+
+<span class="nx">sum</span><span class="p">(...</span><span class="nx">numbers</span><span class="p">);</span> <span class="c1">// 6</span>
+
+<span class="c1">// ... 을 사용해 number에 있는 배열을 풀어서 인자로 전달되어</span>
+<span class="c1">// 1 + 2 + 3 이 리턴되어 리턴값은 6이 된다.</span>
+</code></pre></div></div>
+
+<h3 id="rest-문법">Rest 문법</h3>
+
+<ul>
+  <li>인자를 배열의 형태로 받아서 사용할 수 있고, 인자의 개수가 가변적일 때 유용하다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">sum</span><span class="p">(...</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">num</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">pre</span><span class="p">,</span> <span class="nx">cur</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">pre</span> <span class="o">+</span> <span class="nx">cur</span><span class="p">;</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// 6</span>
+<span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="c1">// 10</span>
+
+<span class="c1">// 함수 정의에는 하나의 ... 만 존재할 수 있다.</span>
+<span class="c1">// sum(...num1, ...num2) X</span>
+
+<span class="c1">// 함수 정의에는 정의의 마지막 매개변수여야 한다.</span>
+<span class="c1">// sum(...num1, num2) X</span>
+<span class="c1">// sum(num1, ...num2) O</span>
+</code></pre></div></div>
+
+<h3 id="배열에서-사용하기">배열에서 사용하기</h3>
+
+<ul>
+  <li>배열 합치기</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">arr3</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">arr1</span><span class="p">,</span> <span class="nx">arr2</span><span class="p">];</span>
+
+<span class="k">return</span> <span class="nx">arr3</span><span class="p">;</span> <span class="c1">// [0, 1, 2, 3, 4, 5]</span>
+
+<span class="c1">// ... 을 사용해 arr1의 배열과 arr2의 배열을 합친다</span>
+</code></pre></div></div>
+
+<ul>
+  <li>배열 복사</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">arr1</span><span class="p">];</span>
+<span class="nx">arr2</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+
+<span class="k">return</span> <span class="nx">arr2</span><span class="p">;</span> <span class="c1">// [1, 2, 3, 4]</span>
+
+<span class="c1">// ... 을 사용해 arr1을 arr2에 복사한다.(arr1.slice()와 유사)</span>
+<span class="c1">// arr2에 4를 push 한다.</span>
+</code></pre></div></div>
+
+<h3 id="객체에서-사용하기">객체에서 사용하기</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span> <span class="na">foo</span><span class="p">:</span> <span class="dl">"</span><span class="s2">bar</span><span class="dl">"</span><span class="p">,</span> <span class="na">x</span><span class="p">:</span> <span class="mi">42</span> <span class="p">};</span>
+<span class="kd">let</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{</span> <span class="na">foo</span><span class="p">:</span> <span class="dl">"</span><span class="s2">baz</span><span class="dl">"</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">13</span> <span class="p">};</span>
+
+<span class="kd">let</span> <span class="nx">clonedObj</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">obj1</span> <span class="p">};</span>
+<span class="kd">let</span> <span class="nx">mergedObj</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">obj1</span><span class="p">,</span> <span class="p">...</span><span class="nx">obj2</span> <span class="p">};</span>
+
+<span class="k">return</span> <span class="nx">clonedObj</span><span class="p">;</span> <span class="c1">// { foo: 'bar', x: 42 };</span>
+
+<span class="k">return</span> <span class="nx">mergedObj</span><span class="p">;</span> <span class="c1">// { foo: 'baz', x: 42, y: 13 };</span>
+
+<span class="c1">// 객체에서도 그대로 복사되고 중복되는 값은 나중에 입력되는 값으로 변경된다.</span>
+</code></pre></div></div>
+
+<h2 id="구조-분해">구조 분해</h2>
+
+<ul>
+  <li>Spread 문법을 사용하여 값을 해체한 후, 개별 값을 변수에 새로 할당하는 과정이다.</li>
+</ul>
+
+<h3 id="배열">배열</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="p">...</span><span class="nx">rest</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">];</span>
+
+<span class="k">return</span> <span class="nx">a</span><span class="p">;</span> <span class="c1">// 10</span>
+
+<span class="k">return</span> <span class="nx">b</span><span class="p">;</span> <span class="c1">// 20</span>
+
+<span class="k">return</span> <span class="nx">rest</span><span class="p">;</span> <span class="c1">// [30, 40, 50]</span>
+</code></pre></div></div>
+
+<h3 id="객체">객체</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="p">...</span><span class="nx">rest</span> <span class="p">}</span> <span class="o">=</span> <span class="p">{</span> <span class="na">a</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="na">b</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="na">c</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="na">d</span><span class="p">:</span> <span class="mi">40</span> <span class="p">};</span>
+
+<span class="k">return</span> <span class="nx">a</span><span class="p">;</span> <span class="c1">// 10</span>
+
+<span class="k">return</span> <span class="nx">b</span><span class="p">;</span> <span class="c1">// 20</span>
+
+<span class="k">return</span> <span class="nx">rest</span><span class="p">;</span> <span class="c1">// {c: 30, d: 40}</span>
+</code></pre></div></div>
+
+<p>이번 Koans 스프린트를 진행하면서 그동안 부족했던 Spread/Rest 문법과 구조분해할당에 대해서 한번더 개념정리를 했다.</p>
+
+<p>나중에 중요하게 쓰이는걸 알기 때문에 확실히 집고 넘어가야 된다고 생각이 들었다.</p>
+
+<p>계속 복습!!!!</p>
+:ET

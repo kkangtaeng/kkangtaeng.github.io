@@ -1,0 +1,23 @@
+I"�
+<p><img src="https://user-images.githubusercontent.com/85768164/156364799-22cf8c1c-6a8c-40ad-b395-6155de76ed32.png" alt="스크린샷" /></p>
+
+<h3 id="풀이">풀이</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">people</span><span class="p">,</span> <span class="nx">limit</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">sorted</span> <span class="o">=</span> <span class="nx">people</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">);</span>
+  <span class="kd">let</span> <span class="nx">large</span> <span class="o">=</span> <span class="nx">sorted</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">small</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nx">large</span> <span class="o">&gt;</span> <span class="nx">small</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">sorted</span><span class="p">[</span><span class="nx">large</span><span class="p">]</span> <span class="o">+</span> <span class="nx">sorted</span><span class="p">[</span><span class="nx">small</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="nx">limit</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+      <span class="nx">small</span><span class="o">++</span><span class="p">;</span>
+      <span class="nx">large</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">large</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">people</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="nx">count</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

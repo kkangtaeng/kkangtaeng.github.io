@@ -1,0 +1,87 @@
+I"<h2 id="display">display</h2>
+
+<ul>
+  <li>display 프로퍼티는 layout 정의에 자주 사용되는 중요한 프로퍼티이다.</li>
+  <li>display 프로퍼티를 적용하지 않아도 기본적으로 디폴트 값을 가진다. (block 또는 inline)</li>
+</ul>
+
+<h3 id="block">block</h3>
+
+<ul>
+  <li>항상 새로운 라인에서 시작한다.</li>
+  <li>화면 크기 전체의 가로폭을 차지한다. (width:100%)</li>
+  <li>width, height, margin, padding 프로퍼티 지정이 가능하다.</li>
+  <li>block 레벨 요소 내에 inline 레벨 요소를 포함할 수 있다.</li>
+  <li>예시
+    <ul>
+      <li>div, p, ol, ul, li 등</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="inline">inline</h3>
+
+<ul>
+  <li>새로운 라인에서 시작하지 않으며 문장의 중간에 들어갈 수 있다. 즉, 줄을 바꾸지 않고 다른 요소와 함께 한 행에 위치한다.</li>
+  <li>content의 너비만큼 가로폭을 차지한다.</li>
+  <li>width, height, margin-top, margin-bottom 프로퍼티를 지정할 수 없다. (상,하 여백은 line-height로 지정)</li>
+  <li>inline 레벨 요소 뒤에 공백이 있는 경우, 정의하지 않은 space(4px)가 자동 지정된다.</li>
+  <li>inline 레벨 요소 내에 block 레벨 요소를 포함할 수 없다.</li>
+  <li>예시
+    <ul>
+      <li>span, a, img, input, button 등</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="inline-block">inline-block</h3>
+
+<ul>
+  <li>기본적으로 inline 레벨 요소와 흡사하게 줄을 바꾸지 않고 다른 요소와 함께 한 행에 위치한다.</li>
+  <li>block 레벨 요소처럼 width, height, margin, padding 프로퍼티를 모두 정의할 수 있다.</li>
+  <li>content의 너비만큼 가로폭을 차지한다.</li>
+  <li>inline-block 레벨 요소 뒤에 공백이 있는 경우, 정의하지 않은 space(4px)가 자동 지정된다.</li>
+</ul>
+
+<h2 id="visibility">visibility</h2>
+
+<ul>
+  <li>visibility 프로퍼티는 요소를 숨기거나 숨기지 않을 때 사용한다.</li>
+</ul>
+
+<table>
+  <tbody>
+    <tr>
+      <td>프로퍼티값</td>
+      <td>설명</td>
+    </tr>
+    <tr>
+      <td>visible</td>
+      <td>해당 요소를 보이게 한다.(기본값)</td>
+    </tr>
+    <tr>
+      <td>hidden</td>
+      <td>해당 요소를 보이지 않게 한다.</td>
+    </tr>
+    <tr>
+      <td>collapse</td>
+      <td>table 요소에 사용하며 행이나 열을 보이지 않게 한다.</td>
+    </tr>
+    <tr>
+      <td>none</td>
+      <td>table 요소의 row나 column을 보이지 않게 한다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">display:none</code>은 해당 요소의 공간까지 사라지게 하지만 <code class="language-plaintext highlighter-rouge">visibility:hidden</code>은 해당 요소의 공간은 사라지지 않고 남아있다.</li>
+</ul>
+
+<h2 id="opacity">opacity</h2>
+
+<ul>
+  <li>opacity 프로퍼티는 요소의 투명도를 정의한다.</li>
+  <li>0.0 ~ 1.0 사이의 값을 입력하며 0.0은 투명, 1.0은 불투명을 의미한다.</li>
+</ul>
+:ET

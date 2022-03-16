@@ -1,0 +1,25 @@
+I"�<p><img src="https://user-images.githubusercontent.com/85768164/156364106-43202645-4465-4973-9984-83c1aa672c1a.png" alt="스크린샷" /></p>
+
+<h3 id="풀이">풀이</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">week</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">FRI</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">SAT</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">SUN</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">MON</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">TUE</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">WED</span><span class="dl">"</span><span class="p">];</span>
+  <span class="kd">let</span> <span class="nx">days</span> <span class="o">=</span> <span class="p">[</span><span class="mi">31</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">];</span>
+  <span class="kd">let</span> <span class="nx">month</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">a</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">month</span> <span class="o">+=</span> <span class="nx">days</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+  <span class="p">}</span>
+  <span class="nx">month</span> <span class="o">+=</span> <span class="nx">b</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">div</span> <span class="o">=</span> <span class="nx">month</span> <span class="o">%</span> <span class="mi">7</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">div</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">THU</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">week</span><span class="p">[</span><span class="nx">div</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>해당 일에 7 나머지가 0 이면 목요일이다..</li>
+</ul>
+:ET

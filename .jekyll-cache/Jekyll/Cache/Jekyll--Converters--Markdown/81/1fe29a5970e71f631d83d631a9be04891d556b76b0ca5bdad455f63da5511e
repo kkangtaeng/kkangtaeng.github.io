@@ -1,0 +1,62 @@
+I"_)<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 문제</span>
+
+<span class="nx">김코딩과</span> <span class="nx">박해커는</span> <span class="nx">사무실</span> <span class="nx">이사를</span> <span class="nx">위해</span> 
+<span class="nx">짐을</span> <span class="nx">미리</span> <span class="nx">싸</span> <span class="nx">둔</span> <span class="nx">뒤</span><span class="p">,</span> <span class="nx">짐을</span> <span class="nx">넣을</span> <span class="nx">박스를</span> <span class="nx">사왔다</span><span class="p">.</span> 
+<span class="nx">박스를</span> <span class="nx">사오고</span> <span class="nx">보니</span> <span class="nx">각</span> <span class="nx">이사짐의</span> <span class="nx">무게는</span> <span class="nx">들쭉날쭉한</span> <span class="nx">반면</span><span class="p">,</span> 
+<span class="nx">박스는</span> <span class="nx">너무</span> <span class="nx">작아서</span> <span class="nx">한번에</span> <span class="nx">최대</span> <span class="mi">2</span><span class="nx">개의</span> <span class="nx">짐</span> <span class="nx">밖에</span> <span class="nx">넣을</span> <span class="nx">수</span> <span class="nx">없었고</span> 
+<span class="nx">무게</span> <span class="nx">제한도</span> <span class="nx">있었다</span><span class="p">.</span>
+<span class="nx">예를</span> <span class="nx">들어</span><span class="p">,</span> <span class="nx">짐의</span> <span class="nx">무게가</span> <span class="p">[</span><span class="mi">70</span><span class="nx">kg</span><span class="p">,</span> <span class="mi">50</span><span class="nx">kg</span><span class="p">,</span> <span class="mi">80</span><span class="nx">kg</span><span class="p">,</span> <span class="mi">50</span><span class="nx">kg</span><span class="p">]</span><span class="nx">이고</span> 
+<span class="nx">박스의</span> <span class="nx">무게</span> <span class="nx">제한이</span> <span class="mi">100</span><span class="nx">kg이라면</span> <span class="mi">2</span><span class="nx">번째</span> <span class="nx">짐과</span> <span class="mi">4</span><span class="nx">번째</span> <span class="nx">짐은</span> <span class="nx">같이</span> <span class="nx">넣을</span> <span class="nx">수</span> <span class="nx">있지만</span> 
+<span class="mi">1</span><span class="nx">번째</span> <span class="nx">짐과</span> <span class="mi">3</span><span class="nx">번째</span> <span class="nx">짐의</span> <span class="nx">무게의</span> <span class="nx">합은</span> <span class="mi">150</span><span class="nx">kg이므로</span> 
+<span class="nx">박스의</span> <span class="nx">무게</span> <span class="nx">제한을</span> <span class="nx">초과하여</span> <span class="nx">같이</span> <span class="nx">넣을</span> <span class="nx">수</span> <span class="nx">없다</span><span class="p">.</span>
+<span class="nx">박스를</span> <span class="nx">최대한</span> <span class="nx">적게</span> <span class="nx">사용하여</span> <span class="nx">모든</span> <span class="nx">짐을</span> <span class="nx">옮기려고</span> <span class="nx">합니다</span><span class="p">.</span>
+<span class="nx">짐의</span> <span class="nx">무게를</span> <span class="nx">담은</span> <span class="nx">배열</span> <span class="nx">stuff와</span> <span class="nx">박스의</span> <span class="nx">무게</span> <span class="nx">제한</span> <span class="nx">limit가</span> <span class="nx">매개변수로</span> <span class="nx">주어질</span> <span class="nx">때</span><span class="p">,</span> 
+<span class="nx">모든</span> <span class="nx">짐을</span> <span class="nx">옮기기</span> <span class="nx">위해</span> <span class="nx">필요한</span> <span class="nx">박스</span> <span class="nx">개수의</span> <span class="nx">최소값을</span> <span class="k">return</span> <span class="nx">하도록</span> 
+<span class="nx">movingStuff</span> <span class="nx">함수를</span> <span class="nx">작성하세요</span><span class="p">.</span>
+
+<span class="c1">// 입력</span>
+<span class="nx">인자</span> <span class="mi">1</span><span class="p">:</span> <span class="nx">stuff</span>
+<span class="o">-</span> <span class="nb">Number</span> <span class="nx">타입의</span> <span class="mi">40</span> <span class="nx">이상</span> <span class="mi">240</span> <span class="nx">이하의</span> <span class="nx">자연수를</span> <span class="nx">담은</span> <span class="nx">배열</span>
+  <span class="o">-</span> <span class="nx">ex</span><span class="p">)</span> <span class="p">[</span><span class="mi">70</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="nx">인자</span> <span class="mi">2</span><span class="p">:</span> <span class="nx">limited</span>
+<span class="o">-</span> <span class="nb">Number</span> <span class="nx">타입의</span> <span class="mi">40</span> <span class="nx">이상</span> <span class="mi">240</span> <span class="nx">이하의</span> <span class="nx">자연수</span>
+
+<span class="c1">// 출력</span>
+<span class="o">-</span> <span class="nb">Number</span> <span class="nx">타입을</span> <span class="nx">리턴해야</span> <span class="nx">합니다</span><span class="p">.</span>
+<span class="o">-</span> <span class="nx">모든</span> <span class="nx">짐을</span> <span class="nx">옮기기</span> <span class="nx">위해</span> <span class="nx">필요한</span> <span class="nx">박스</span> <span class="nx">개수의</span> <span class="nx">최솟값을</span> <span class="nx">숫자로</span> <span class="nx">반환합니다</span><span class="p">.</span>
+
+<span class="c1">// 주의사항</span>
+
+<span class="o">-</span> <span class="nx">옮겨야</span> <span class="nx">할</span> <span class="nx">짐의</span> <span class="nx">개수는</span> <span class="mi">1</span><span class="nx">개</span> <span class="nx">이상</span> <span class="mi">50</span><span class="p">,</span><span class="mi">000</span><span class="nx">개</span> <span class="nx">이하입니다</span><span class="p">.</span>
+<span class="o">-</span> <span class="nx">박스의</span> <span class="nx">무게</span> <span class="nx">제한은</span> <span class="nx">항상</span> <span class="nx">짐의</span> <span class="nx">무게</span> <span class="nx">중</span> <span class="nx">최대값보다</span> 
+  <span class="nx">크게</span> <span class="nx">주어지므로</span> <span class="nx">짐을</span> <span class="nx">나르지</span> <span class="nx">못하는</span> <span class="nx">경우는</span> <span class="nx">없습니다</span><span class="p">.</span>
+
+<span class="c1">// 예시</span>
+<span class="kd">let</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">movingStuff</span><span class="p">([</span><span class="mi">70</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="mi">100</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">output</span><span class="p">);</span> <span class="c1">// 3</span>
+
+<span class="kd">let</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">movingStuff</span><span class="p">([</span><span class="mi">60</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">130</span><span class="p">],</span> <span class="mi">140</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">output</span><span class="p">);</span> <span class="c1">// 4</span>
+</code></pre></div></div>
+
+<h3 id="풀이">풀이</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">movingStuff</span><span class="p">(</span><span class="nx">stuff</span><span class="p">,</span> <span class="nx">limit</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">sorted</span> <span class="o">=</span> <span class="nx">stuff</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">)</span>
+  <span class="kd">let</span> <span class="nx">large</span> <span class="o">=</span> <span class="nx">sorted</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span>
+  <span class="kd">let</span> <span class="nx">small</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">while</span><span class="p">(</span><span class="nx">large</span> <span class="o">&gt;</span> <span class="nx">small</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">sorted</span><span class="p">[</span><span class="nx">large</span><span class="p">]</span> <span class="o">+</span> <span class="nx">sorted</span><span class="p">[</span><span class="nx">small</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="nx">limit</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">count</span><span class="o">++</span>
+      <span class="nx">small</span><span class="o">++</span>
+      <span class="nx">large</span><span class="o">--</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">large</span><span class="o">--</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">stuff</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="nx">count</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

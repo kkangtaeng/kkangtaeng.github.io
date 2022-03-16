@@ -1,0 +1,228 @@
+I"�x<h2 id="배열">배열</h2>
+
+<ul>
+  <li>배열은 순서가 있는 값이다</li>
+  <li>여기서 값은 element (요소) 라고 하고 순서는 index (인덱스)라고 부른다</li>
+  <li>index 는 1이 아닌 0부터 번호를 매긴다</li>
+</ul>
+
+<p><img width="377" alt="_2021-06-28_19 48 14" src="https://user-images.githubusercontent.com/85768164/147482400-a1ad4fd4-2a2a-4b02-ab5b-88add92389f6.png" /></p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">myNumber</span> <span class="o">=</span> <span class="p">[</span><span class="mi">73</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">96</span><span class="p">];</span>
+
+<span class="nx">myNumber</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// 61</span>
+<span class="c1">// myNumber라는 배열의 3번째 index를 조회한다</span>
+
+<span class="nx">myNumber</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span> <span class="c1">// 200</span>
+<span class="c1">// myNumber라는 배열의 3번째 index의 값을 변경한다</span>
+
+<span class="nx">myNumber</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="c1">// 4</span>
+<span class="c1">//myNumber라는 배열의 길이를 알아낸다</span>
+</code></pre></div></div>
+
+<h3 id="배열이-빈배열인지-확인하기">배열이 빈배열인지 확인하기</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="배열의-반복">배열의 반복</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="nx">myNum</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">n</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myNum</span><span class="p">[</span><span class="nx">n</span><span class="p">]);</span>
+<span class="p">}</span>
+<span class="c1">// 배열의 element를 한번씩 출력하려면 위같은 반복문을 사용한다</span>
+
+<span class="kd">let</span> <span class="nx">myNum</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">10</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="nx">myNum</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">n</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">sum</span> <span class="o">=</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">myNum</span><span class="p">[</span><span class="nx">n</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">);</span>
+<span class="c1">// 배열의 element를 다 더한 값을 출력하려면 위같은 반복문을 사용한다</span>
+</code></pre></div></div>
+
+<h2 id="배열의-메소드">배열의 메소드</h2>
+
+<h3 id="arrayisarray----특정값이-배열인지-판별하기">Array.isArray( ) - 특정값이 배열인지 판별하기</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">배열</span><span class="p">);</span> <span class="c1">// 배열인지 확인 후 boolean 값을 반환한다</span>
+
+<span class="kd">let</span> <span class="nx">words</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">bye</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">hi</span><span class="dl">"</span><span class="p">];</span>
+<span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="dl">"</span><span class="s2">string</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">words</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span> <span class="c1">// true</span>
+</code></pre></div></div>
+
+<h3 id="push----마지막에-element를-추가한다">.push( ) - 마지막에 element를 추가한다</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">words</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">bye</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">hi</span><span class="dl">"</span><span class="p">];</span>
+<span class="nx">words</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="dl">"</span><span class="s2">good</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// 배열 마지막에 'good'을 추가한다</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">words</span><span class="p">);</span>
+<span class="c1">// ['hello', 'bye', 'hi', 'good']</span>
+</code></pre></div></div>
+
+<h3 id="pop----마지막에-element를-제거한다">.pop( ) - 마지막에 element를 제거한다</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">words</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">bye</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">hi</span><span class="dl">"</span><span class="p">];</span>
+<span class="nx">words</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span> <span class="c1">// 배열 마지막에 'hi'를 제거한다</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">words</span><span class="p">);</span>
+<span class="c1">// ['hello', 'bye',]</span>
+</code></pre></div></div>
+
+<h3 id="unshift----맨-앞에-element를-추가한다">.unshift( ) - 맨 앞에 element를 추가한다</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">words</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">bye</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">hi</span><span class="dl">"</span><span class="p">];</span>
+<span class="nx">words</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="dl">"</span><span class="s2">good</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// 배열 맨 앞에 'good'을 추가한다</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">words</span><span class="p">);</span>
+<span class="c1">// ['good', 'hello', 'bye', 'hi']</span>
+</code></pre></div></div>
+
+<h3 id="shift----맨-앞에-element를-제거한다">.shift( ) - 맨 앞에 element를 제거한다</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">words</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">bye</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">hi</span><span class="dl">"</span><span class="p">];</span>
+<span class="nx">words</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span> <span class="c1">// 배열 맨 앞에 'hello'를 제거한다</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">words</span><span class="p">);</span>
+<span class="c1">// ['bye', 'hi']</span>
+</code></pre></div></div>
+
+<h3 id="indexof----해당-element의-index-값을-반환한다">.indexOf( ) - 해당 element의 index 값을 반환한다</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">words</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">bye</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">hi</span><span class="dl">"</span><span class="p">];</span>
+<span class="nx">words</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// 0</span>
+<span class="nx">words</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="dl">"</span><span class="s2">hi</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// 2</span>
+<span class="nx">words</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="dl">"</span><span class="s2">good</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// -1 , 배열안에 해당 element가 나오면 -1을 반환한다</span>
+</code></pre></div></div>
+
+<h3 id="includes----해당-element의-유무를-boolean-값으로-반환한다">.includes( ) - 해당 element의 유무를 boolean 값으로 반환한다</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">words</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">bye</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">hi</span><span class="dl">"</span><span class="p">];</span>
+<span class="nx">words</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">words</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="dl">"</span><span class="s2">good</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="nx">words</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// false , 대소문자도 구분한다</span>
+</code></pre></div></div>
+
+<h3 id="concat----서로-다른-두-배열을-합친다">.concat( ) - 서로 다른 두 배열을 합친다</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">arr3</span> <span class="o">=</span> <span class="nx">arr1</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">arr2</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr3</span><span class="p">);</span>
+<span class="c1">// [1, 2, 3, 4, 5, 6]</span>
+</code></pre></div></div>
+
+<h3 id="slice----배열을-자른다">.slice( ) - 배열을 자른다</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span> <span class="c1">// [3, 4, 5, 6] , 2번째 부터 자른다</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span> <span class="c1">// [3, 4]       , 2번째 부터 3번째까지 자른다</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span> <span class="c1">// [2, 3, 4, 5] , 1번째 부터 4번째까지 자른다</span>
+<span class="c1">// slice(start, end) = start부터 end 미만까지 자른다</span>
+
+<span class="kd">let</span> <span class="nx">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">num</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span> <span class="c1">// [1, 2, 3, 4, 5, 6]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">);</span> <span class="c1">// [2, 3]</span>
+<span class="c1">//배열 .slice() 는 원본 배열 손상 없이 똑같이 복제한다</span>
+</code></pre></div></div>
+
+<h3 id="splice---배열의-요소를-삭제-또는-교체-또는-추가한다">.splice( ) = 배열의 요소를 삭제 또는 교체 또는 추가한다</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">month</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">Jan</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">March</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">April</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">June</span><span class="dl">"</span><span class="p">];</span>
+<span class="nx">months</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Feb</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// 1번째 인덱스에 삭제하지 않고 'Feb'를 추가한다</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">months</span><span class="p">);</span> <span class="c1">// ["Jan", "Feb", "March", "April", "June"]</span>
+
+<span class="nx">months</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="dl">"</span><span class="s2">May</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// 4번째 인덱스에 1개를 삭제하고 'May'를 추가한다</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">months</span><span class="p">);</span> <span class="c1">// ["Jan", "Feb", "March", "April", "May"]</span>
+</code></pre></div></div>
+
+<h3 id="find---배열-중-첫번째-true값만-반환한다-만약-없으면-undefined-를-반환한다">find - 배열 중 첫번째 true값만 반환한다 만약 없으면 undefined 를 반환한다</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+
+<span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">find</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">item</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="c1">// 2</span>
+
+<span class="c1">//////</span>
+
+<span class="kd">let</span> <span class="nx">userList</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Mike</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">30</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Jane</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">27</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Tom</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">10</span> <span class="p">},</span>
+<span class="p">];</span>
+
+<span class="nx">userList</span><span class="p">.</span><span class="nx">find</span><span class="p">((</span><span class="nx">user</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">age</span> <span class="o">&lt;</span> <span class="mi">19</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="c1">// {name: "Tom", age: 10}</span>
+</code></pre></div></div>
+
+<h3 id="arrreverse----배열을-역순으로-재정렬한다">arr.reverse( ) - 배열을 역순으로 재정렬한다</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span> <span class="c1">// [5, 4, 3, 2, 1]</span>
+</code></pre></div></div>
+
+<h3 id="arrsort----배열을-재정렬한다">arr.sort( ) - 배열을 재정렬한다</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span> <span class="c1">// [1, 2, 3, 4, 5]</span>
+
+<span class="c1">//////</span>
+
+<span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">27</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">];</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span> <span class="c1">// [5, 8, 13, 27]</span>
+</code></pre></div></div>
+
+<h3 id="foreach---함수를-인수로-받아-배열을-반복한다">forEach - 함수를 인수로 받아 배열을 반복한다</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">Mike</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Tom</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Jane</span><span class="dl">"</span><span class="p">];</span>
+
+<span class="nx">arr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">name</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Mike Tom Jane</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="s2">. </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span> <span class="c1">// 1.Mike 2.Tom 3. Jane</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="join----배열을-합쳐서-문자열로-반환한다">join( ) - 배열을 합쳐서 문자열로 반환한다</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">안녕</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">나는</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">철수야</span><span class="dl">"</span><span class="p">];</span>
+
+<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">join</span><span class="p">();</span> <span class="c1">// 안녕,나는,철수야</span>
+<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">"</span><span class="s2">-</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// 안녕-나는-철수야</span>
+<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">"</span><span class="s2"> </span><span class="dl">"</span><span class="p">);</span> <span class="c1">// 안녕 나는 철수야</span>
+</code></pre></div></div>
+
+<h3 id="filter---배열을-거른다">.filter() - 배열을 거른다</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[];</span>
+</code></pre></div></div>
+
+<h3 id="mathmax---가장-큰-숫자를-반환한다">Math.max - 가장 큰 숫자를 반환한다</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(...</span><span class="nx">arr</span><span class="p">));</span> <span class="c1">// 3</span>
+
+<span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(...</span><span class="nx">arr</span><span class="p">));</span> <span class="c1">// -1</span>
+</code></pre></div></div>
+
+<h2 id="느낀점">느낀점</h2>
+
+<p>자바스크립트 기초를 할때 너무 부족한 실력이었기에 더 열심히 하려고 노력했고</p>
+
+<p>그래서 이번엔 페어와 함께 코플릿 문제를 잘 풀었다!!</p>
+
+<p>이번 페어분도 정말 친절해서 문제 푸는동안 너무 수월하게 진행되었다</p>
+
+<p>복습 또 복습!! 내일 객체도 기분좋게 마무리 해야겠다!!</p>
+:ET

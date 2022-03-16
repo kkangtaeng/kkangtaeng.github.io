@@ -1,0 +1,13 @@
+I"w<p><img src="https://user-images.githubusercontent.com/85768164/154528433-9239d597-be14-4f85-ace7-8dab100cf40f.png" alt="스크린샷" /></p>
+
+<h3 id="풀이">풀이</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">num</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">'</span><span class="s1"> </span><span class="dl">'</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nx">min</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(...</span><span class="nx">num</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(...</span><span class="nx">num</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">min</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="nx">max</span><span class="p">}</span><span class="s2">`</span>
+    <span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

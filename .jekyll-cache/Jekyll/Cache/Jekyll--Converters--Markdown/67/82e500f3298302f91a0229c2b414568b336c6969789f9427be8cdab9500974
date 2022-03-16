@@ -1,0 +1,146 @@
+I"u<h2 id="사용권한">사용권한</h2>
+
+<ul>
+  <li>명령어 <code class="language-plaintext highlighter-rouge">ls -l</code>을 입력하면 파일의 권한을 알 수 있다.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/150669433-85e2d9bf-fd83-411f-bb01-1796dbdea5d5.png" alt="다운로드" /></p>
+
+<p>처음 시작은 <code class="language-plaintext highlighter-rouge">-</code>와 <code class="language-plaintext highlighter-rouge">d</code>로 각각 not directory와 directory로 파일이면 <code class="language-plaintext highlighter-rouge">-</code> 폴더이면 <code class="language-plaintext highlighter-rouge">d</code>를 나타낸다.<br />
+다음으로 <code class="language-plaintext highlighter-rouge">r</code>은 read permission으로 일기 권한,<br />
+<code class="language-plaintext highlighter-rouge">w</code>는 write permission으로 쓰기 권한,<br />
+<code class="language-plaintext highlighter-rouge">x</code>는 execute permission으로 실행 권한을 나타낸다.</p>
+
+<ul>
+  <li>user: 파일의 소유자로 기본적으로 파일을 만든 사람이 소유자가 된다. 따라서 user를 소유자라고 하기도 한다.</li>
+  <li>group: 여러 user가 포함될 수 있는데, 그룹에 속한 모든 user는 파일에 대한 동일한 group 엑세스 권한을 갖는다.</li>
+  <li>other: 파일에 대한 엑세스 권한이 있는 다른 user이며, 파일을 만들지 않은 다른 모든 user를 의미한다.</li>
+</ul>
+
+<h2 id="chmod">chmod</h2>
+
+<ul>
+  <li>폴더나 파일의 권한을 변경하는 명령어로, 읽기, 쓰기, 실행 권한을 변경할 수 있다.</li>
+  <li>폴더나 파일의 소유자가 다를 경우엔, <code class="language-plaintext highlighter-rouge">sudo</code>명령어를 통해 변경할 수 있다.</li>
+</ul>
+
+<h3 id="symbolic-method">Symbolic method</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">+</code>, <code class="language-plaintext highlighter-rouge">-</code>, <code class="language-plaintext highlighter-rouge">=</code>과 액세스 유형을 표기해서 변경하는 방법이다.</li>
+  <li>Access class, Operator, Access Type 으로 구분한다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Access class</th>
+      <th>Operator</th>
+      <th>Access Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>u (user)</td>
+      <td>+ (add access)</td>
+      <td>r (read)</td>
+    </tr>
+    <tr>
+      <td>g (group)</td>
+      <td>- (remove access)</td>
+      <td>w (write)</td>
+    </tr>
+    <tr>
+      <td>o (other)</td>
+      <td>= (set exact access)</td>
+      <td>x (execute)</td>
+    </tr>
+    <tr>
+      <td>a (all)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="nx">chmod</span> <span class="nx">g</span><span class="o">-</span><span class="nx">r</span> <span class="nx">test</span><span class="p">.</span><span class="nx">js</span>
+<span class="nx">chmod</span> <span class="nx">g</span><span class="o">+</span><span class="nx">w</span> <span class="nx">test</span><span class="p">.</span><span class="nx">js</span>
+</code></pre></div></div>
+
+<h3 id="absolute-form">Absolute form</h3>
+
+<ul>
+  <li>숫자 7까지 나타내는 3 bit의 합으로 표기하여 변경하는 방법이다.</li>
+  <li>각 그룹마다 rwx가 나타나고, 각 영역의 boolean 값으로 표기할 수 있다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Permission</th>
+      <th>Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>r (read)</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>w (write)</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>e (execute)</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//예시</span>
+<span class="nx">chmod</span> <span class="mi">744</span> <span class="nx">test</span><span class="p">.</span><span class="nx">js</span> <span class="c1">// -rwxr--r--</span>
+<span class="c1">// user=rwx(4+2+1), group/read=r(4+0+0)</span>
+</code></pre></div></div>
+
+<h2 id="환경변수">환경변수</h2>
+
+<ul>
+  <li>명령어 <code class="language-plaintext highlighter-rouge">export</code>를 이용해, 기록된 환경변수를 확인할 수 있다.</li>
+  <li>명령어 <code class="language-plaintext highlighter-rouge">export</code>를 이용해, 새로운 환경변수를 추가할 수 있다.
+    <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="nx">urclass</span><span class="o">=</span><span class="dl">"</span><span class="s2">is good</span><span class="dl">"</span>
+<span class="c1">// 이 때 등호 표시 앞뒤에는 반드시 공백이 없어야 한다!!</span>
+</code></pre></div>    </div>
+  </li>
+  <li>명령어 <code class="language-plaintext highlighter-rouge">echo</code>와 환경변수를 같이 입력하면, 환경변수의 값을 확인할 수 있다. 이 때 환경변수의 앞에는 <code class="language-plaintext highlighter-rouge">$</code>을 입력해야 한다.
+    <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">echo</span> <span class="nx">$urclass</span>
+<span class="c1">// is good</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="dotenv">dotenv</h3>
+
+<ul>
+  <li>dotenv를 이용하여 Javascript에서 환경변수를 사용할 수 있다.
+    <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mkdir</span> <span class="nx">environment_variable</span>
+<span class="nx">cd</span> <span class="nx">environment_variable</span>
+<span class="nx">npm</span> <span class="nx">init</span> <span class="c1">// 엔터 키를 여러번 입력한다.</span>
+<span class="nx">npm</span> <span class="nx">i</span> <span class="nx">dotenv</span> <span class="c1">// dotenv 모듈을 설치합니다.</span>
+<span class="c1">// 이 때 생성된 폴더는 설치할 모듈과 이름이 같으면 안된다.</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="env">.env</h3>
+
+<ul>
+  <li>환경변수를 Node.js에서 영구 적용하는 방법이다.
+    <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">dotenv</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">dotenv</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">dotenv</span><span class="p">.</span><span class="nx">config</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">myname</span><span class="p">);</span>
+</code></pre></div>    </div>
+    <p>index.js를 위처럼 수정하고, node index.js를 하면 환경변수를 출력할 수 있다.</p>
+  </li>
+</ul>
+:ET

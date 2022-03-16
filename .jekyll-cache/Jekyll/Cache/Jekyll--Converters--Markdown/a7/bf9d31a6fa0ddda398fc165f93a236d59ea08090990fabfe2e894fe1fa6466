@@ -1,0 +1,117 @@
+I"("<h2 id="react">React</h2>
+
+<ul>
+  <li>React는 프론트엔드 개발을 위한 Javascript 오픈소스 라이브러리 이다.</li>
+</ul>
+
+<h3 id="react의-3가지-특징">React의 3가지 특징</h3>
+
+<ol>
+  <li>선언형 프로그래밍
+    <ul>
+      <li>코드를 자세히 분석하지 않아도 코드를 분명히 알 수 있게 작성하는 것을 의미한다.</li>
+      <li>React는 한 페이지를 보여주기 위해 HTML, CSS, Javascript로 나눠서 적기보다 하나의 파일에 JSX를 활용해 명시적으로 작성하여 코드를 작성할 수 있다.</li>
+    </ul>
+  </li>
+  <li>컴포넌트 기반
+    <ul>
+      <li>하나의 기능 구현을 위해 여러 종류의 코드를 묶어둔 컴포넌트 기반으로 개발한다.</li>
+      <li>서로 독립적이고 재사용이 가능하기에, 기능 자체에 집중하여 개발할 수 있다.</li>
+    </ul>
+  </li>
+  <li>범용성
+    <ul>
+      <li>React는 Javascript 라이브러리 라고 부른다.</li>
+      <li>기존에 다른 Javascript 프레임워크로 제작된 웹 어플리케이션에 React를 추가해서 작업할 수 있다.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="jsx의-규칙">JSX의 규칙</h3>
+
+<ul>
+  <li>하나의 엘리먼트 안에 모든 엘리먼트가 포함되어야 한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>hello<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>world<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>엘리먼트 class를 사용 시, class를 className으로 표기해야 한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"greeting"</span><span class="p">&gt;</span>hello<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Javascript 표현식 사용 시, 중괄호 {} 를 사용해야 한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Taeng</span><span class="dl">"</span><span class="p">;</span>
+  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>hello, <span class="si">{</span><span class="nx">name</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>사용자 정의 컴포넌트는 대문자로 시작해야 한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Hello</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>hello<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">HelloWorld</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nc">Hello</span> <span class="p">/&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>조건부 렌더링에는 삼항연산자를 사용해야 한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 삼항연산자</span>
+<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">condition</span> <span class="p">?</span> <span class="nx">value</span> <span class="p">:</span> <span class="nx">value2</span><span class="p">;</span>
+<span class="c1">// condition이 true라면 value1을 false라면 value2를 반환한다</span>
+
+<span class="kd">let</span> <span class="nx">allowAge</span> <span class="o">=</span> <span class="nx">age</span> <span class="o">&gt;</span> <span class="mi">18</span> <span class="p">?</span> <span class="kc">true</span> <span class="p">:</span> <span class="kc">false</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>여러 개의 HTML 엘리먼트를 표시할 때에는 map()함수를 사용해야 한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// map 함수를 사용할 때는 반드시 'key' JSX 속성을 넣어주는 것이 제일 좋다</span>
+
+<span class="kd">const</span> <span class="nx">posts</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">title</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span><span class="p">,</span> <span class="na">content</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Welcome!</span><span class="dl">"</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">title</span><span class="p">:</span> <span class="dl">"</span><span class="s2">World</span><span class="dl">"</span><span class="p">,</span> <span class="na">content</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Goodbye!</span><span class="dl">"</span> <span class="p">},</span>
+<span class="p">];</span>
+
+<span class="kd">function</span> <span class="nx">Blog</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">posts</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">post</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">key</span><span class="p">=</span><span class="si">{</span><span class="nx">post</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">post</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">post</span><span class="p">.</span><span class="nx">content</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">));</span>
+
+  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">content</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="컴포넌트">컴포넌트</h2>
+
+<ul>
+  <li>컴포넌트는 하나의 기능을 구현하기 위한 여러 종류의 코드들의 묶음이다.</li>
+  <li>컴포넌트는 UI를 구성하는 필수 요소이다.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/148385475-9a2b93ee-3087-4732-8ad6-f94203773c89.png" alt="123" /></p>
+:ET

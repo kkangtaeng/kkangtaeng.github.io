@@ -1,0 +1,73 @@
+I"�<h2 id="orm">ORM</h2>
+
+<ul>
+  <li>Javascript의 객체와 클래스를 ORM을 통해 데이터베이스의 엔티티, 레코드 들을 다루는 일을 한다. 즉, Javascript의 객체와 관계형 데이터베이스의 중개자 역활을 한다.</li>
+</ul>
+
+<h2 id="sequelize">Sequelize</h2>
+
+<ul>
+  <li>Promise기반의 Node.js ORM이다.</li>
+</ul>
+
+<h3 id="sequelize-설치">Sequelize 설치</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span> <span class="nx">sequelize</span>
+</code></pre></div></div>
+
+<h3 id="sequelize-cli-설치">Sequelize-cli 설치</h3>
+
+<ul>
+  <li>Migration을 할 수 있도록 돕는 툴로, CLI에서 Model을 생성해 주거나, 스키마 적용을 할 수 있도록 한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">npx sequelize-cli --help</code>를 통해 명령의 종류를 파악할 수 있다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span> <span class="nx">sequelize</span><span class="o">-</span><span class="nx">cli</span>
+</code></pre></div></div>
+
+<h3 id="bootstraping">bootstraping</h3>
+
+<ul>
+  <li>먼저 CLI를 통해 ORM을 잘 사용할 수 있도록 bootstraping(프로젝트 초기 단계를 자동으로 설정할 수 있도록 도와주는 일)을 해야한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">config</span><span class="o">/</span><span class="nx">config</span><span class="p">.</span><span class="nx">json</span>
+<span class="nx">models</span><span class="o">/</span>
+<span class="nx">migrations</span><span class="o">/</span>
+<span class="nx">seeders</span><span class="o">/</span>
+<span class="c1">// 성공적으로 bootstraping이 완료되면 다음 파일 및 폴더들이 생성된다.</span>
+<span class="c1">// 직접 models 폴더를 만드는것은 아니다!</span>
+</code></pre></div></div>
+
+<h3 id="model-생성">Model 생성</h3>
+
+<ul>
+  <li>Model을 만들기 위해서 <code class="language-plaintext highlighter-rouge">model:generate</code>라는 명령어를 사용하는데 2가지 옵션이 있다.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">name</code>: Model의 이름</li>
+      <li><code class="language-plaintext highlighter-rouge">attributes</code>: 모델의 속성 목록</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// User라는 이름의 Model 생성 예시</span>
+<span class="nx">npx</span> <span class="nx">sequelize</span><span class="o">-</span><span class="nx">cli</span> <span class="nx">model</span><span class="p">:</span><span class="nx">generate</span> <span class="o">--</span><span class="nx">name</span> <span class="nx">User</span> <span class="o">--</span><span class="nx">attributes</span> <span class="nx">firstName</span><span class="p">:</span><span class="nx">string</span><span class="p">,</span><span class="nx">lastName</span><span class="p">:</span><span class="nx">string</span><span class="p">,</span><span class="nx">email</span><span class="p">:</span><span class="nx">string</span>
+</code></pre></div></div>
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">firstName, lastName, email</code> 필드는 자동으로 생성되며, <code class="language-plaintext highlighter-rouge">models</code> 폴더 안에 <code class="language-plaintext highlighter-rouge">user</code>라는 파일의 model이 생성되고 <code class="language-plaintext highlighter-rouge">migrations</code> 폴더 안에 <code class="language-plaintext highlighter-rouge">XXXXXXXXXXXXXX-create-user.js</code>와 같은 파일이 생성된다.</p>
+  </li>
+  <li>
+    <p>Model을 잘못 만든 경우, 생성된 파일을 직접 수정하거나 삭제 후 명령을 다시 실행할 수 있다.</p>
+  </li>
+</ul>
+
+<h3 id="migration">Migration</h3>
+
+<ul>
+  <li>이제 데이터베이스에 테이블을 생성하려면 <code class="language-plaintext highlighter-rouge">db:migrate</code> 명령어를 입력해야 한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npx</span> <span class="nx">sequelize</span><span class="o">-</span><span class="nx">cli</span> <span class="nx">db</span><span class="p">:</span><span class="nx">migrate</span>
+</code></pre></div></div>
+:ET

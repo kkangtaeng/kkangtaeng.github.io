@@ -1,0 +1,66 @@
+I"�<h3 id="오늘-한것">오늘 한것</h3>
+
+<ul>
+  <li>상세보기 페이지에서 모든 기능을 완료하였고 추가적인 css 작업과 약간의 수정만 하면 모두 완성된다!!</li>
+  <li>모두보기 페이지에서 필터링 기능구현을 시도하였다.</li>
+</ul>
+
+<h3 id="힘든-점">힘든 점</h3>
+
+<ul>
+  <li>모두보기 페이지에서 필터링하는 기능이 많이 어려운것 같다.. 알고리즘 푸는 느낌이기도하고.. 한가지 기준만 적용이되면 쉬웠지만 3가지의 기준과 각 기준에서의 항목을 적용하여 필터링하는것이 생각보다 복잡했다…</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">filterServices</span> <span class="o">=</span> <span class="p">(</span><span class="nx">category</span><span class="p">,</span> <span class="nx">price</span><span class="p">,</span> <span class="nx">free</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">category</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setCategoryName</span><span class="p">(</span><span class="nx">category</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">category</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">모든 카테고리</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">setFilter</span><span class="p">(</span><span class="nx">services</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">filtered</span> <span class="o">=</span> <span class="nx">test</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">service</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">service</span><span class="p">.</span><span class="nx">category</span> <span class="o">===</span> <span class="nx">category</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">();</span>
+      <span class="p">});</span>
+      <span class="nx">setFilter</span><span class="p">(</span><span class="nx">filtered</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">price</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setpriceName</span><span class="p">(</span><span class="nx">price</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">price</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">모든 가격</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">setFilter</span><span class="p">(</span><span class="nx">services</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">filtered</span> <span class="o">=</span> <span class="nx">services</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">service</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span>
+          <span class="nb">Number</span><span class="p">(</span><span class="nx">service</span><span class="p">.</span><span class="nx">Prices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">price</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;=</span>
+          <span class="nb">Number</span><span class="p">(</span><span class="nx">price</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span><span class="p">)</span>
+        <span class="p">);</span>
+      <span class="p">});</span>
+      <span class="nx">setFilter</span><span class="p">(</span><span class="nx">filtered</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">free</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setfreeName</span><span class="p">(</span><span class="nx">free</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">free</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">모든 체험</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">setFilter</span><span class="p">(</span><span class="nx">services</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">filtered</span> <span class="o">=</span> <span class="nx">services</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">service</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">free</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">유</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">service</span><span class="p">.</span><span class="nx">demo</span> <span class="o">===</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">service</span><span class="p">.</span><span class="nx">demo</span> <span class="o">===</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">});</span>
+      <span class="nx">setFilter</span><span class="p">(</span><span class="nx">filtered</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<ul>
+  <li>처음 생각한 필터링 구현이다</li>
+  <li>각 기준에서 항목이 있을 때 필터하는 코드이지만 추가적인 보안작업이 필요할듯 하다… 추가적으로 각 버튼을 클릭시로 변경 후 기준들을 상태로 저장해서 하는 방향으로 수정예정중이다</li>
+</ul>
+
+<h3 id="내일은">내일은!!</h3>
+
+<ul>
+  <li>필터링 기능 완벽 구현하기</li>
+  <li>상세보기페이지 가격버튼 default값으로 주기!</li>
+</ul>
+:ET

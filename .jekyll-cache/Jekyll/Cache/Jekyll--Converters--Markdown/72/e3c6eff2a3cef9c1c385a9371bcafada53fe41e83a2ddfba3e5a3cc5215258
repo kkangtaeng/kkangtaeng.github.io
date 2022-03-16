@@ -1,0 +1,129 @@
+I"T<h2 id="sql">SQL</h2>
+
+<ul>
+  <li>SQL(Structured Query Language)은 데이터베이스 용 플고그래밍 언어로, 데이터베이스에 Query를 보내 원하는 데이터를 가져오거나 삽입할 수 있다.</li>
+  <li>데이터가 구조화된 테이블을 사용하는 데이터베이스에서 활용할 수 있다. (구조화된 Query 언어이다.)</li>
+</ul>
+
+<h2 id="데이터베이스-명령어">데이터베이스 명령어</h2>
+
+<h3 id="데이터베이스-생성-삭제">데이터베이스 생성, 삭제</h3>
+<ul>
+  <li>데이터베이스 생성
+    <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">CREATE</span> <span class="nx">DATABASE</span> <span class="nx">이름</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>데이터베이스 삭제
+    <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">DROP</span> <span class="nx">DATABASE</span> <span class="nx">이름</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="데이터베이스-사용">데이터베이스 사용</h3>
+<ul>
+  <li>데이터베이스를 이용해 테이블을 만들거나 수정, 삭제 등의 작업을 하려면, 먼저 데이터베이스를 사용하는 명령어를 입력해야한다.
+    <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">USE</span> <span class="nx">이름</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="테이블-생성">테이블 생성</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">USE</code>를 이용해 데이터베이스를 선택했다면, 테이블을 만들 수 있다. 테이블은 필드(열)와 함께 만들어야 한다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>필드명</th>
+      <th>필드 타입</th>
+      <th>그 외 속성</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>숫자</td>
+      <td>Primary key이면서 자동 증가하도록 설정</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>문자열 (최대 255개의 문자)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>email</td>
+      <td>문자열 (최대 255개의 문자)</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="nx">test</span> <span class="p">(</span>
+    <span class="nx">id</span> <span class="nx">int</span> <span class="nx">PRIMARY</span> <span class="nx">KEY</span> <span class="nx">AUTO_INCREMENTm</span>
+    <span class="nx">name</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+    <span class="nx">email</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="테이블-삭제">테이블 삭제</h3>
+
+<ul>
+  <li>테이블 삭제
+    <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">DROP</span> <span class="nx">TABLE</span> <span class="nx">이름</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>테이블 내 데이터 삭제
+    <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">TRUNCATE</span> <span class="nx">TABLE</span> <span class="nx">이름</span><span class="p">;</span>
+<span class="c1">// 위 명령어는 테이블은 삭제하지 않고 테이블 내 데이터만 삭제한다.</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="테이블-변경">테이블 변경</h3>
+<ul>
+  <li>
+    <p>테이블의 열을 추가, 삭제 또는 수정할 수 있다.</p>
+  </li>
+  <li>
+    <p>테이블 열 추가</p>
+  </li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">ALTER</span> <span class="nx">TABLE</span> <span class="nx">테이블명</span>
+<span class="nx">ADD</span> <span class="nx">열이름</span> <span class="nx">데이터타입</span>
+
+<span class="c1">//예시</span>
+<span class="nx">ALTER</span> <span class="nx">TABLE</span> <span class="nx">Users</span>
+<span class="nx">ADD</span> <span class="nx">Email</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>테이블 열 삭제</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">ALTER</span> <span class="nx">TABLE</span> <span class="nx">테이블명</span>
+<span class="nx">DROP</span> <span class="nx">COLUMN</span> <span class="nx">열이름</span>
+
+<span class="c1">//예시</span>
+<span class="nx">ALTER</span> <span class="nx">TABLE</span> <span class="nx">Users</span>
+<span class="nx">DROP</span> <span class="nx">COLUMN</span> <span class="nx">Email</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>테이블 열 변경</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">ALTER</span> <span class="nx">TABLE</span> <span class="nx">테이블명</span>
+<span class="nx">ALTER</span> <span class="nx">COLUMN</span> <span class="nx">열이름</span> <span class="nx">데이터타입</span>
+
+<span class="c1">//예시</span>
+<span class="nx">ALTER</span> <span class="nx">TABLE</span> <span class="nx">Users</span>
+<span class="nx">MODIFY</span> <span class="nx">COLUMN</span> <span class="nx">Email</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="테이블-정보-확인">테이블 정보 확인</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">DESCRIBE</span> <span class="nx">이름</span><span class="p">;</span>
+</code></pre></div></div>
+:ET

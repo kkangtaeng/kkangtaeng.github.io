@@ -1,0 +1,116 @@
+I"�2<h3 id="오늘-한것">오늘 한것</h3>
+
+<ul>
+  <li>로그인 후 로그인했을 때와 로그아웃 했을 때 상세페이지를 구현하였다.</li>
+  <li>localStorage에 로그인 유무, 유저정보, 토큰을 저장했다!!</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">isLogin</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">isLogin</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// 로그인 유무</span>
+<span class="kd">const</span> <span class="nx">loginUserInfo</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">loginUserInfo</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// 유저정보</span>
+<span class="kd">const</span> <span class="nx">accessToken</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">accessToken</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// 토큰</span>
+
+<span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">loginUserInfo</span><span class="dl">"</span><span class="p">,</span> <span class="nx">loginUserInfo</span><span class="p">);</span>
+<span class="p">},</span> <span class="p">[</span><span class="nx">loginUserInfo</span><span class="p">]);</span>
+
+<span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">accessToken</span><span class="dl">"</span><span class="p">,</span> <span class="nx">accessToken</span><span class="p">);</span>
+<span class="p">},</span> <span class="p">[</span><span class="nx">accessToken</span><span class="p">]);</span>
+
+<span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">isLogin</span><span class="dl">"</span><span class="p">,</span> <span class="nx">isLogin</span><span class="p">);</span>
+<span class="p">},</span> <span class="p">[</span><span class="nx">isLogin</span><span class="p">]);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>상세페이지 내에서 scrap 버튼을 클릭시 서버에 요청을 보내고 오류없이 버튼 상태도 변경되었다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s2">`/service/</span><span class="p">${</span><span class="nx">ServiceId</span><span class="p">}</span><span class="s2">`</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">setScrapNum</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">scrapNum</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+<span class="c1">// 처음 상세보기 페이지로 들어온 후 scrap한 숫자 받아와서 상태에 저장</span>
+
+<span class="kd">const</span> <span class="nx">addScrap</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">axios</span>
+    <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`/scrap/</span><span class="p">${</span><span class="nx">ServiceId</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="na">authorization</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">accessToken</span><span class="p">)}</span><span class="s2">`</span> <span class="p">},</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">setIsScrap</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+<span class="c1">// scrap버튼을 눌렀을 때 post요청으로 서버데이터를 변경하고 scrap유무 상태를 변경</span>
+
+<span class="kd">const</span> <span class="nx">deleteScrap</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">axios</span>
+    <span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`/scrap/</span><span class="p">${</span><span class="nx">ServiceId</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="na">authorization</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">accessToken</span><span class="p">)}</span><span class="s2">`</span> <span class="p">},</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">setIsScrap</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+<span class="c1">// scrap버튼을 눌렀을 때 delete요청으로 서버데이터를 삭제하고 scrap유무 상태를 변경</span>
+</code></pre></div></div>
+
+<ul>
+  <li>댓글 등록시 오류없이 요청을 보내고 댓글 상태도 업데이트 되고 중복 등록시나 입력을 다 안했을 시 모달로 피드백을 주었다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">sendComment</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">comment</span> <span class="o">&amp;&amp;</span> <span class="nx">like</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">axios</span>
+      <span class="p">.</span><span class="nx">post</span><span class="p">(</span>
+        <span class="s2">`/comment/</span><span class="p">${</span><span class="nx">ServiceId</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+        <span class="p">{</span>
+          <span class="na">commenter</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">loginUserInfo</span><span class="p">).</span><span class="nx">nickname</span><span class="p">,</span>
+          <span class="na">message</span><span class="p">:</span> <span class="nx">comment</span><span class="p">,</span>
+          <span class="na">likes</span><span class="p">:</span> <span class="nx">like</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="na">authorization</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">accessToken</span><span class="p">)}</span><span class="s2">`</span> <span class="p">},</span>
+        <span class="p">}</span>
+      <span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// 아무 에러없을 시</span>
+        <span class="nx">setComments</span><span class="p">([...</span><span class="nx">comments</span><span class="p">,</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">comment</span><span class="p">]);</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// 이미 등록한 댓글일 시</span>
+        <span class="nx">setAlertMsg</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">이미 작성하셨습니다</span><span class="dl">"</span><span class="p">,</span> <span class="na">button</span><span class="p">:</span> <span class="dl">"</span><span class="s2">확인</span><span class="dl">"</span> <span class="p">});</span>
+        <span class="nx">setOpen</span><span class="p">(</span><span class="o">!</span><span class="nx">open</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// 댓글이나 추천비추천 선택을 하나라도 안했을 시</span>
+    <span class="nx">setAlertMsg</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">모두 입력해주세요</span><span class="dl">"</span><span class="p">,</span> <span class="na">button</span><span class="p">:</span> <span class="dl">"</span><span class="s2">확인</span><span class="dl">"</span> <span class="p">});</span>
+    <span class="nx">setOpen</span><span class="p">(</span><span class="o">!</span><span class="nx">open</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="힘든-점">힘든 점</h3>
+
+<ul>
+  <li>힘든점은 아니지만 props로 내려준 image의 url을 styled-component에 어떻게 적용할지에 대해 고민해보았다. 그러다 props로 url을 내려서 적용시키니 적용이 되었다!!! styled-component에 대해서 조금더 공부가 되었던것 같다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nc">BackgroundImage</span> <span class="na">detail</span><span class="p">=</span><span class="si">{</span><span class="nx">detail</span><span class="p">.</span><span class="nx">inner_image</span><span class="si">}</span><span class="p">&gt;</span>
+...
+
+const BackgroundImage = styled.div`
+  background-image: url($<span class="si">{</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">props</span><span class="p">.</span><span class="nx">detail</span><span class="si">}</span>);
+...
+</code></pre></div></div>
+
+<h3 id="내일은">내일은!!</h3>
+
+<ul>
+  <li>가격 표시 컴포넌트 마무리하기!!</li>
+  <li>가격에 대한 설명글 찾아보기!!</li>
+  <li>상세보기 페이지 90% 마무리 하기!!</li>
+</ul>
+:ET

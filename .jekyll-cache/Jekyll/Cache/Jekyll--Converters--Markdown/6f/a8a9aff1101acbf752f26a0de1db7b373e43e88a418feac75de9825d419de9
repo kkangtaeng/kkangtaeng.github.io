@@ -1,0 +1,105 @@
+I"Z<h2 id="transition">transition</h2>
+
+<ul>
+  <li>transition은 애니메이션이 일정 시간에 걸쳐 진행되도록 한다.</li>
+  <li>transition은 가상 클래스 선택자 또는 Javascript의 부수적인 액션에 의해 발동된다. (자동으로 발동되지 않음)</li>
+</ul>
+
+<h3 id="transition-duration">transition-duration</h3>
+
+<ul>
+  <li>transition이 끝날 때까지 걸리는 시간을 정한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="nx">transition</span><span class="o">-</span><span class="nx">duration</span><span class="p">:</span> <span class="nx">time</span>
+<span class="c1">// 기본값은 0이다.</span>
+</code></pre></div></div>
+
+<h3 id="transition-delay">transition-delay</h3>
+
+<ul>
+  <li>transition이 시작하는 시간을 지연시킨다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="nx">transition</span><span class="o">-</span><span class="nx">delay</span><span class="p">:</span> <span class="nx">time</span>
+<span class="c1">// 기본값은 0이다.</span>
+</code></pre></div></div>
+
+<h3 id="transition-property">transition-property</h3>
+
+<ul>
+  <li>transition이 적용될 속성을 정한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">transition</span><span class="o">-</span><span class="nx">property</span><span class="p">:</span> <span class="nx">none</span> <span class="o">|</span> <span class="nx">all</span> <span class="o">|</span> <span class="nx">property</span>
+
+<span class="c1">// 예시</span>
+<span class="nx">transition</span><span class="o">-</span><span class="nx">property</span><span class="p">:</span> <span class="nx">all</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>이름</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>none</td>
+      <td>모든 속성에 적용하지 않는다.</td>
+    </tr>
+    <tr>
+      <td>all</td>
+      <td>모든 속성에 적용한다.</td>
+    </tr>
+    <tr>
+      <td>property</td>
+      <td>속성을 정한다.(여러개의 속성을 지정할 경우 쉼표로 구분)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="transition-timing-function">transition-timing-function</h3>
+
+<ul>
+  <li>transition의 진행 속도를 정한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="nx">transition</span><span class="o">-</span><span class="nx">timing</span><span class="o">-</span><span class="kd">function</span><span class="p">:</span> <span class="nx">linear</span> <span class="o">|</span> <span class="nx">ease</span> <span class="o">|</span> <span class="nx">ease</span><span class="o">-</span><span class="k">in</span> <span class="o">|</span> <span class="nx">ease</span><span class="o">-</span><span class="nx">out</span> <span class="o">|</span> <span class="nx">ease</span><span class="o">-</span><span class="k">in</span><span class="o">-</span><span class="nx">out</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>이름</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>linear</td>
+      <td>처음부터 끝까지 일정한 속도로 진행</td>
+    </tr>
+    <tr>
+      <td>ease</td>
+      <td>천천히 시작되어, 그다음에는 빨리지고, 마지막에는 다시 느려진다.(기본값)</td>
+    </tr>
+    <tr>
+      <td>ease-in</td>
+      <td>천천히 시작된다.</td>
+    </tr>
+    <tr>
+      <td>ease-out</td>
+      <td>천천히 끝난다.</td>
+    </tr>
+    <tr>
+      <td>ease-in-out</td>
+      <td>천천히 시작되어 천천히 끝난다.</td>
+    </tr>
+  </tbody>
+</table>
+:ET

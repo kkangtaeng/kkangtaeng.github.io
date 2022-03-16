@@ -1,4 +1,233 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-03T17:25:49+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">깃 블로그</title><subtitle>공부 블로그</subtitle><author><name>깡탱</name></author><entry><title type="html">Sass @import, @extend, Mixin</title><link href="http://localhost:4000/html%20&%20css/CSS13/" rel="alternate" type="text/html" title="Sass @import, @extend, Mixin" /><published>2022-02-25T00:00:00+09:00</published><updated>2022-02-25T00:00:00+09:00</updated><id>http://localhost:4000/html%20&amp;%20css/CSS13</id><content type="html" xml:base="http://localhost:4000/html%20&amp;%20css/CSS13/">&lt;h2 id=&quot;import&quot;&gt;@import&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-16T23:34:16+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">깃 블로그</title><subtitle>공부 블로그</subtitle><author><name>깡탱</name></author><entry><title type="html">TypeScript의 사용 이유와 기본 타입</title><link href="http://localhost:4000/javascript/JS16/" rel="alternate" type="text/html" title="TypeScript의 사용 이유와 기본 타입" /><published>2022-03-16T00:00:00+09:00</published><updated>2022-03-16T00:00:00+09:00</updated><id>http://localhost:4000/javascript/JS16</id><content type="html" xml:base="http://localhost:4000/javascript/JS16/">&lt;h2 id=&quot;typescript를-사용하는-이유&quot;&gt;TypeScript를 사용하는 이유&lt;/h2&gt;
+
+&lt;p&gt;Javascript는 타입 시스템이 없는 동적 프로그래밍 언어로, 변수에 문자열, 숫자, 불린 등 여러 타입의 값을 가질 수 있다.&lt;br /&gt;
+그로인해 유연하게 개발할 수 있는 환경을 제공하는 장점이 있지만, 런타임 환경에서 쉽게 에러가 발생할 수 있는 단점이 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예시를 한번 보자&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Javascript&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;num1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;num2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;num1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;num2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// NaN&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// NaN&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 3&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 3&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;world&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// &apos;helloworld&apos;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// TypeScript&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;num1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;num2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;num1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;num2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// err&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// err&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 3&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// err&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;world&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// err&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위처럼 Javascript는 원하는 방식과 원하는 값을 얻을 수 없고 실수가 있었음에도 아무런 경고없이 실행되게된다.&lt;br /&gt;
+Javascript는 동적 프로그래밍 언어로 실행되는 시점 즉, 런타임에 타입이 결정되며 오류가 있으면 런타임시 발견된다.&lt;br /&gt;
+반면 TypeScript는 정적 프로그래밍 언어로 컴파일 타임에 타입이 결정되며 오류가 있으면 발견된다. 코드 작성시에 코드를 잘 짜여진다면 안정적이고 빠르게 작업을 할 수 있는 장점이 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;기본-타입&quot;&gt;기본 타입&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;프로그램이 유용하려면 문자열, 숫자, 불리언 등과 같은 간단한 데이터 단위가 필요하다.&lt;br /&gt;
+TypeScript는 Javascript와 거의 동일한 데이터 타입을 지원하며, 열거 타입을 사용하여 더 편리하게 사용할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;작성법&quot;&gt;작성법&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;TypeScript는 일반 변수, 파라미터, 프로퍼티 등에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;: TYPE&lt;/code&gt;과 같은 형태로 타입을 작성한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;문자열-string&quot;&gt;문자열 (String)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;TypeScript도 Javascript처럼 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;string&lt;/code&gt;이라고 표현하며 큰따옴표(““)나 작은따옴표(‘‘)를 사용하여 문자열 데이터를 감싸는데 사용한다.&lt;/li&gt;
+  &lt;li&gt;백틱(``)을 사용해 템플릿 문자열도 사용 가능하다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;black&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`kim`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;29&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;introduce&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`Hello, my name is &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;. I&apos;m &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; years old.`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;숫자-number&quot;&gt;숫자 (Number)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Javascript와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;number&lt;/code&gt;라고 표현한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;29&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;불리언-boolean&quot;&gt;불리언 (Boolean)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Javascript와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boolean&lt;/code&gt;이라고 표현한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;isDone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;배열-array&quot;&gt;배열 (Array)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Javascript와 같이 값들을 배열로 다룰 수 있으며 두가지 방법으로 사용할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;[]&lt;/p&gt;
+
+    &lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Array&lt;type&gt;&lt;/type&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;튜플-tuple&quot;&gt;튜플 (Tuple)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;튜플 타입은 요소의 타입과 개수가 고정된 배열을 표현할 수 있다. 즉, 인덱스 별로 타입이 다를 때 사용할 수 있으며 타입이 모두 같을 필요는 없다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Hello&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// ok&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Hello&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// err&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toLowerCase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// &apos;hello&apos;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toLowerCase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// err&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;열거-enum&quot;&gt;열거 (Enum)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;enum은 숫자 혹은 문자열 값 집합에 이름을 부여할 수 있는 타입으로, 값의 종류가 일정한 범위로 정해져 있는 경우 유용하다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Color&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;Red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 0&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;Blue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;Black&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 2&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 기본적으로 0부터 시작하며 값은 1씩 증가한다.&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Color&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;Red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 0&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;Blue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 5&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;Black&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 6&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 수동으로 값을 변경할 수 있으며, 값을 변경한 부분부터 다시 1씩 증가한다.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;모든-타입-any&quot;&gt;모든 타입 (Any)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Any는 모든 타입을 의미한다. 따라서 일반적인 Javascript 변수와 동일하게 어떤 타입의 값도 할당할 수 있으며 외부 자원을 활용해 개발할 때 불가피하게 타입을 단언할 수 없는 경우에 유용하다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;some&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;any&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;123&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// ok&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;any&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// ok&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;void&quot;&gt;Void&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Void는 일반적으로 값을 반환하지 않는 함수에서 사용한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`hello &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;kim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;never&quot;&gt;Never&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Never는 절대 발생하지 않을 값을 나타내며, 어떠한 타입도 적용할 수 없다.&lt;/li&gt;
+  &lt;li&gt;보통 항상 에러만을 반환하거나 영원히 끝나지 않는 함수의 타입으로 사용할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;showErr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;never&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Loop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;never&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>깡탱</name></author><category term="JavaScript" /><summary type="html">TypeScript를 사용하는 이유</summary></entry><entry><title type="html">Project_Log 2</title><link href="http://localhost:4000/lohas/log2/" rel="alternate" type="text/html" title="Project_Log 2" /><published>2022-03-14T00:00:00+09:00</published><updated>2022-03-14T00:00:00+09:00</updated><id>http://localhost:4000/lohas/log2</id><content type="html" xml:base="http://localhost:4000/lohas/log2/">&lt;h2 id=&quot;오늘-한것&quot;&gt;오늘 한것&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Wiki 대략적인 틀 구성&lt;/li&gt;
+  &lt;li&gt;대략적인 Requirements 및 Wireframe 작성&lt;/li&gt;
+  &lt;li&gt;대략적인 스키마 및 API 작성&lt;/li&gt;
+  &lt;li&gt;Client 페이지 작성 및 라우팅 연결&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;내일은&quot;&gt;내일은!!&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Server 초기 개발 환경 설계 및 구축&lt;/li&gt;
+  &lt;li&gt;대략적인 Prototype 및 UI 디자인&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>깡탱</name></author><category term="Lohas" /><summary type="html">오늘 한것</summary></entry><entry><title type="html">Project_Log 1</title><link href="http://localhost:4000/lohas/log1/" rel="alternate" type="text/html" title="Project_Log 1" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/lohas/log1</id><content type="html" xml:base="http://localhost:4000/lohas/log1/">&lt;h2 id=&quot;lohas&quot;&gt;Lohas&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;인테리어 회사 소개 및 시공사례 (포트폴리오) 게시 사이트&lt;/li&gt;
+  &lt;li&gt;관리자 로그인 및 관리자 사진 밑 글 작성 기능&lt;/li&gt;
+  &lt;li&gt;추가적으로 커뮤니티 기능도 생각중&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;오늘-한것&quot;&gt;오늘 한것&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;사이트 탐색 및 대략적인 구상&lt;/li&gt;
+  &lt;li&gt;대략적인 툴 준비&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;사용-예정-스택-프론트엔드&quot;&gt;사용 예정 스택 (프론트엔드)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Javascript&lt;/li&gt;
+  &lt;li&gt;React&lt;/li&gt;
+  &lt;li&gt;Styled-components&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;다음엔&quot;&gt;다음엔!!&lt;/h3&gt;
+
+&lt;p&gt;인테리어 하는 친구의 부탁으로 연습 겸 만들어 볼 예정이다!! 앞으로 최대한 log를 남겨보려고 한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;대략적인 디자인 틀 구현&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>깡탱</name></author><category term="Lohas" /><summary type="html">Lohas</summary></entry><entry><title type="html">Sass @import, @extend, Mixin</title><link href="http://localhost:4000/html%20&%20css/CSS13/" rel="alternate" type="text/html" title="Sass @import, @extend, Mixin" /><published>2022-02-25T00:00:00+09:00</published><updated>2022-02-25T00:00:00+09:00</updated><id>http://localhost:4000/html%20&amp;%20css/CSS13</id><content type="html" xml:base="http://localhost:4000/html%20&amp;%20css/CSS13/">&lt;h2 id=&quot;import&quot;&gt;@import&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;1개의 CSS 파일에 모든 스타일을 작성하면 유지보수하기 힘들고 가독성이 좋지 않은 단점에 따라 CSS 파일을 분리해서 사용하면 재사용 및 유지보수 측면에 유리하다.&lt;/li&gt;
@@ -1160,425 +1389,4 @@
 &lt;span class=&quot;nx&quot;&gt;radial&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gradient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;yellow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;brown&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// 원 중심으로 부터 색상이 정해진다.&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// 선형 그라데이션과 같이 색상 뒤에 길이를 입력할 수 있다.&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>깡탱</name></author><category term="HTML &amp; CSS" /><summary type="html">Shadow</summary></entry><entry><title type="html">position</title><link href="http://localhost:4000/html%20&%20css/CSS6/" rel="alternate" type="text/html" title="position" /><published>2022-02-16T00:00:00+09:00</published><updated>2022-02-16T00:00:00+09:00</updated><id>http://localhost:4000/html%20&amp;%20css/CSS6</id><content type="html" xml:base="http://localhost:4000/html%20&amp;%20css/CSS6/">&lt;h2 id=&quot;position&quot;&gt;position&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;position 프로퍼티는 요소의 위치를 정의하며 top, bottom, left, right 프로퍼티와 함께 사용하여 위치를 지정한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;static-기본위치&quot;&gt;static (기본위치)&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;static은 position 프로퍼티의 기본값으로 아무것도 지정하지 않았을 때와 같다.&lt;/li&gt;
-  &lt;li&gt;기본적인 요소의 배치 순서에 따라 위에서 아래로, 왼쪽에서 오른쪽으로 순서에 따라 배치되며 부모 요소 내에 자식 요소로서 존재할 때는 부모 요소의 위치를 기준으로 배치된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;relative-상대위치&quot;&gt;relative (상대위치)&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;기본 위치를 기준으로 좌표 프로퍼티(top, bottom, left, right)를 사용하여 위치를 이동시킨다.&lt;/li&gt;
-  &lt;li&gt;static을 선언한 요소와 relative를 선언한 요소의 차이점은 좌표 프로퍼티의 동작 여부뿐이다.
-    &lt;ul&gt;
-      &lt;li&gt;position을 relative로 지정해도, 좌표 프로퍼티를 지정해주지 않으면 static과 같은 위치를 가진다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;absolute-절대위치&quot;&gt;absolute (절대위치)&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;부모 요소 또는 가장 가까이 있는 조상 요소를 기준으로 좌표 프로퍼티만큼 이동한다.&lt;/li&gt;
-  &lt;li&gt;만약 부모 또는 조상 요소가 static인 경우, body를 기준으로 위치하게 된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;fixed-고정위치&quot;&gt;fixed (고정위치)&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;부모 요소와 관계없이 브라우저의 viewport를 기준으로 위치한다.&lt;/li&gt;
-  &lt;li&gt;스크롤이 되더라도 화면에서 사라지지 않고 항상 같은 곳에 위치한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;z-index&quot;&gt;z-index&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;z-index 프로퍼티에 큰 숫자값을 지정할수록 화면 전면에 출력된다.&lt;/li&gt;
-  &lt;li&gt;position 프로퍼티가 static 이외인 요소에만 적용된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;overflow&quot;&gt;overflow&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;overflow 프로퍼티는 자식 요소가 부모 요소의 영역을 벗어났을 때 처리 방법을 정의한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;프로퍼티값&lt;/th&gt;
-      &lt;th&gt;설명&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;visible&lt;/td&gt;
-      &lt;td&gt;영역을 벗어난 부분을 표시한다. (기본값)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;hidden&lt;/td&gt;
-      &lt;td&gt;영역을 벗어난 부분을 잘라내어 보이지 않게 한다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;scroll&lt;/td&gt;
-      &lt;td&gt;영역을 벗어난 부분이 없어도 스크롤을 표시한다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;auto&lt;/td&gt;
-      &lt;td&gt;영역을 벗어난 부분이 있을때만 스크롤을 표시한다.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;</content><author><name>깡탱</name></author><category term="HTML &amp; CSS" /><summary type="html">position</summary></entry><entry><title type="html">display, visibilty, opacity</title><link href="http://localhost:4000/html%20&%20css/CSS5/" rel="alternate" type="text/html" title="display, visibilty, opacity" /><published>2022-02-15T00:00:00+09:00</published><updated>2022-02-15T00:00:00+09:00</updated><id>http://localhost:4000/html%20&amp;%20css/CSS5</id><content type="html" xml:base="http://localhost:4000/html%20&amp;%20css/CSS5/">&lt;h2 id=&quot;display&quot;&gt;display&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;display 프로퍼티는 layout 정의에 자주 사용되는 중요한 프로퍼티이다.&lt;/li&gt;
-  &lt;li&gt;display 프로퍼티를 적용하지 않아도 기본적으로 디폴트 값을 가진다. (block 또는 inline)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;block&quot;&gt;block&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;항상 새로운 라인에서 시작한다.&lt;/li&gt;
-  &lt;li&gt;화면 크기 전체의 가로폭을 차지한다. (width:100%)&lt;/li&gt;
-  &lt;li&gt;width, height, margin, padding 프로퍼티 지정이 가능하다.&lt;/li&gt;
-  &lt;li&gt;block 레벨 요소 내에 inline 레벨 요소를 포함할 수 있다.&lt;/li&gt;
-  &lt;li&gt;예시
-    &lt;ul&gt;
-      &lt;li&gt;div, p, ol, ul, li 등&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;inline&quot;&gt;inline&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;새로운 라인에서 시작하지 않으며 문장의 중간에 들어갈 수 있다. 즉, 줄을 바꾸지 않고 다른 요소와 함께 한 행에 위치한다.&lt;/li&gt;
-  &lt;li&gt;content의 너비만큼 가로폭을 차지한다.&lt;/li&gt;
-  &lt;li&gt;width, height, margin-top, margin-bottom 프로퍼티를 지정할 수 없다. (상,하 여백은 line-height로 지정)&lt;/li&gt;
-  &lt;li&gt;inline 레벨 요소 뒤에 공백이 있는 경우, 정의하지 않은 space(4px)가 자동 지정된다.&lt;/li&gt;
-  &lt;li&gt;inline 레벨 요소 내에 block 레벨 요소를 포함할 수 없다.&lt;/li&gt;
-  &lt;li&gt;예시
-    &lt;ul&gt;
-      &lt;li&gt;span, a, img, input, button 등&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;inline-block&quot;&gt;inline-block&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;기본적으로 inline 레벨 요소와 흡사하게 줄을 바꾸지 않고 다른 요소와 함께 한 행에 위치한다.&lt;/li&gt;
-  &lt;li&gt;block 레벨 요소처럼 width, height, margin, padding 프로퍼티를 모두 정의할 수 있다.&lt;/li&gt;
-  &lt;li&gt;content의 너비만큼 가로폭을 차지한다.&lt;/li&gt;
-  &lt;li&gt;inline-block 레벨 요소 뒤에 공백이 있는 경우, 정의하지 않은 space(4px)가 자동 지정된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;visibility&quot;&gt;visibility&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;visibility 프로퍼티는 요소를 숨기거나 숨기지 않을 때 사용한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;프로퍼티값&lt;/td&gt;
-      &lt;td&gt;설명&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;visible&lt;/td&gt;
-      &lt;td&gt;해당 요소를 보이게 한다.(기본값)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;hidden&lt;/td&gt;
-      &lt;td&gt;해당 요소를 보이지 않게 한다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;collapse&lt;/td&gt;
-      &lt;td&gt;table 요소에 사용하며 행이나 열을 보이지 않게 한다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;none&lt;/td&gt;
-      &lt;td&gt;table 요소의 row나 column을 보이지 않게 한다.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;display:none&lt;/code&gt;은 해당 요소의 공간까지 사라지게 하지만 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;visibility:hidden&lt;/code&gt;은 해당 요소의 공간은 사라지지 않고 남아있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;opacity&quot;&gt;opacity&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;opacity 프로퍼티는 요소의 투명도를 정의한다.&lt;/li&gt;
-  &lt;li&gt;0.0 ~ 1.0 사이의 값을 입력하며 0.0은 투명, 1.0은 불투명을 의미한다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>깡탱</name></author><category term="HTML &amp; CSS" /><summary type="html">display</summary></entry><entry><title type="html">CSS selector</title><link href="http://localhost:4000/html%20&%20css/CSS4/" rel="alternate" type="text/html" title="CSS selector" /><published>2022-02-14T00:00:00+09:00</published><updated>2022-02-14T00:00:00+09:00</updated><id>http://localhost:4000/html%20&amp;%20css/CSS4</id><content type="html" xml:base="http://localhost:4000/html%20&amp;%20css/CSS4/">&lt;h2 id=&quot;복합-셀렉터-combinator&quot;&gt;복합 셀렉터 (Combinator)&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/85768164/155125474-2fc8cfd3-ad62-400d-bd1b-983eb6299511.png&quot; alt=&quot;스크린샷&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;자신의 한단계 상위에 속하는 요소를 부모 요소, 한단계 하위에 속하는 요소를 자손(자식) 요소라고 한다.&lt;/li&gt;
-  &lt;li&gt;자신보다 한단계 이상 하위에 속하는 요소는 후손 요소라고 한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;후손-샐렉터-descendant-combinator&quot;&gt;후손 샐렉터 (Descendant Combinator)&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;후손 셀렉터는 셀렉터A의 모든 후손 요소 중 셀렉터B와 일치하는 요소를 선택한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;셀렉터A&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;셀렉터B&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;자식-셀렉터-child-combinator&quot;&gt;자식 셀렉터 (Child Combinator)&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;자식 셀렉터는 셀렉터A의 모든 자식 요소 중 셀렉터B와 일치하는 요소를 선택한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;셀렉터A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;셀렉터B&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;형제-셀렉터-sibling-combinator&quot;&gt;형제 셀렉터 (Sibling Combinator)&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/85768164/155126380-044ae3f0-630f-454a-9dff-d40b604a2438.png&quot; alt=&quot;스크린샷&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;형제 셀렉터는 형제 관계에서 뒤에 위치하는 요소를 선택할 때 사용한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;인접-형제-셀렉터-adjacent-sibling-combinator&quot;&gt;인접 형제 셀렉터 (Adjacent Sibling Combinator)&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;셀렉터A의 형제 요소 중 셀렉터A 바로 뒤에 위치하는 셀렉터B 요소를 선택한다.&lt;/li&gt;
-  &lt;li&gt;셀렉터A와 셀렉터B 사이에 다른 요소가 존재하면 선택되지 않는다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;셀렉터A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;셀렉터B&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ul&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;일반-형제-셀렉터-general-sibling-combinator&quot;&gt;일반 형제 셀렉터 (General Sibling Combinator)&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;셀렉터A의 형제 요소 중 셀렉터A 뒤에 위치하는 셀렉터B 요소를 모두 선택한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;셀렉터A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;셀렉터B&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ul&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;가상-클래스-셀렉터-pseudo-class-selector&quot;&gt;가상 클래스 셀렉터 (Pseudo-Class Selector)&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;가상 클래스는 요소의 특정 상태에 따라 스타일을 정의할 때 사용한다.
-    &lt;ul&gt;
-      &lt;li&gt;마우스가 올라와 있을 때&lt;/li&gt;
-      &lt;li&gt;링크를 방문했을 때와 아직 방문하지 않았을 때&lt;/li&gt;
-      &lt;li&gt;포커스가 들어와 있을 때&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;가상 클래스는 마침표(.) 대신 콜론(:)을 사용한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;셀렉터&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;가상셀렉터&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;프로퍼티&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;값&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hover&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;링크-셀렉터link-pseudo-classes-동적-셀렉터user-action-pseudo-classes&quot;&gt;링크 셀렉터(Link pseudo-classes), 동적 셀렉터(User action pseudo-classes)&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;가상 클래스&lt;/th&gt;
-      &lt;th&gt;설명&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:link&lt;/td&gt;
-      &lt;td&gt;셀렉터가 방문하지 않은 링크일 때&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:visited&lt;/td&gt;
-      &lt;td&gt;셀렉터가 방문한 링크일 때&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:hover&lt;/td&gt;
-      &lt;td&gt;셀렉터에 마우스가 올라와져 있을 때&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:active&lt;/td&gt;
-      &lt;td&gt;셀렉터가 클릭된 상태일 때&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:focus&lt;/td&gt;
-      &lt;td&gt;셀렉터에 포커스가 들어와 있을 때&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;ui-요소-상태-셀렉터ui-element-states-pseudo-classes&quot;&gt;UI 요소 상태 셀렉터(UI element states pseudo-classes)&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;가상클래스&lt;/th&gt;
-      &lt;th&gt;설명&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:checked&lt;/td&gt;
-      &lt;td&gt;셀렉터가 체크 상태일 때&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:enabled&lt;/td&gt;
-      &lt;td&gt;셀렉터가 사용 가능한 상태일 때&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:disabled&lt;/td&gt;
-      &lt;td&gt;셀렉터가 사용 불가능한 상태일 때&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;구조-가상-클래스-셀렉터structural-pseudo-classes&quot;&gt;구조 가상 클래스 셀렉터(Structural pseudo-classes)&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;가상클래스&lt;/th&gt;
-      &lt;th&gt;설명&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:first-child&lt;/td&gt;
-      &lt;td&gt;셀렉터에 해당하는 모든 요소 중 첫번째 자식인 요소를 선택&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:last-child&lt;/td&gt;
-      &lt;td&gt;셀렉터에 해당하는 모든 요소 중 마지막 자식인 요소를 선택&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:nth-child(n)&lt;/td&gt;
-      &lt;td&gt;셀렉터에 해당하는 모든 요소 중 앞에서 n번째 자식인 요소를 선택&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:nth-last-child(n)&lt;/td&gt;
-      &lt;td&gt;셀렉터에 해당하는 모든 요소 중 뒤에서 n번째 자식인 요소를 선택&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:first-of-type&lt;/td&gt;
-      &lt;td&gt;셀렉터에 해당하는 요소의 부모 요소의 자식 요소 중 첫번째 등장하는 요소를 선택&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:last-of-type&lt;/td&gt;
-      &lt;td&gt;셀렉터에 해당하는 요소의 부모 요소의 자식 요소 중 마지막에 등장하는 요소를 선택&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:nth-of-type(n)&lt;/td&gt;
-      &lt;td&gt;셀렉터에 해당하는 요소의 부모 요소의 자식 요소 중 앞에서 n번째 등장하는 요소를 선택&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:nth-last-of-type(n)&lt;/td&gt;
-      &lt;td&gt;셀렉터에 해당하는 요소의 부모 요소의 자식 요소 중 뒤에서 n번째 등장하는 요소를 선택&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;부정-셀렉터-negation-pseudo-class&quot;&gt;부정 셀렉터 (Negation pseudo-class)&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;가상클래스&lt;/th&gt;
-      &lt;th&gt;설명&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;:not&lt;/td&gt;
-      &lt;td&gt;셀렉터에 해당하지 않는 모든 요소를 선택&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;가상-요소-셀렉터-pseudo-element-selector&quot;&gt;가상 요소 셀렉터 (Pseudo-Element Selector)&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;가상 요소는 요소의 특정 부분에 스타일을 적용하기 위해 사용된다.
-    &lt;ul&gt;
-      &lt;li&gt;요소 컨텐츠의 첫글자 또는 첫줄&lt;/li&gt;
-      &lt;li&gt;요소 컨텐츠의 앞 또는 뒤&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;가상 요소에는 두개의 콜론(::)을 사용한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;셀렉터&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;가상요소&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;프로퍼티&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;값&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;letter&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;가상요소&lt;/th&gt;
-      &lt;th&gt;설명&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;::first-letter&lt;/td&gt;
-      &lt;td&gt;컨텐츠의 첫글자를 선택&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;::first-line&lt;/td&gt;
-      &lt;td&gt;컨텐츠의 첫줄을 선택(블록 요소에만 적용 가능)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;::after&lt;/td&gt;
-      &lt;td&gt;컨텐츠의 뒤에 위치하는 공간을 선택(일반적으로 content 프로퍼티와 함께 사용)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;::before&lt;/td&gt;
-      &lt;td&gt;컨텐츠의 앞에 위치하는 공간을 선택(일반적으로 content 프로퍼티와 함께 사용)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;::selection&lt;/td&gt;
-      &lt;td&gt;드래그한 컨텐츠를 선택&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;</content><author><name>깡탱</name></author><category term="HTML &amp; CSS" /><summary type="html">복합 셀렉터 (Combinator)</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>깡탱</name></author><category term="HTML &amp; CSS" /><summary type="html">Shadow</summary></entry></feed>

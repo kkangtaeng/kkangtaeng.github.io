@@ -1,0 +1,19 @@
+I"j	<p>알고리즘 공부를 하고 너무 어려웠다.. 아직도 익숙하지 않고 프로그래밍적 사고?!를 하기에 익숙하지 않은것 같아 알고리즘 문제를 틈틈히 조금씩 풀어보려고 한다!! 오늘부터 천천히 가즈아!!</p>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/151381967-6d793465-eafe-46e1-9976-47fd8e0aa519.png" alt="스크린샷" /></p>
+
+<h3 id="풀이">풀이</h3>
+
+<p>slice 메소드를 이용해 뒤번호와 나머지 앞번호를 나누고 앞번호 길이만큼 *로 바꾼후 리턴한다.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">phone_number</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">back</span> <span class="o">=</span> <span class="nx">phone_number</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">);</span>
+  <span class="kd">let</span> <span class="nx">front</span> <span class="o">=</span> <span class="nx">phone_number</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">);</span>
+  <span class="kd">let</span> <span class="nx">star</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="nx">front</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">n</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">star</span> <span class="o">+=</span> <span class="dl">"</span><span class="s2">*</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">star</span> <span class="o">+</span> <span class="nx">back</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

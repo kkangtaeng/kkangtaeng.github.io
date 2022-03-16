@@ -1,0 +1,305 @@
+I"K<<h2 id="ip와-ip-packet">IP와 IP Packet</h2>
+
+<ul>
+  <li>클라이언트와 서버는 IP(인터넷 프로토콜) 주소를 컴퓨터에 부여하여 이를 이용해 통신한다. IP는 지정한 IP 주소에 패킷(Packet)이라는 통신 단위로 데이터를 전달한다.</li>
+</ul>
+
+<p><img width="502" alt="스크린샷" src="https://user-images.githubusercontent.com/85768164/152999280-7ad19086-3351-417e-b411-0f1e63a113c0.png" /></p>
+
+<ul>
+  <li>IP 패킷은 소포로 비유하여 보면 우체국 송장처럼 전송 데이터를 전송하기 위해 출발지 IP, 목적지 IP와 같은 정보가 포함되어 있다.</li>
+  <li>패킷 단위로 전송을 하면 목적지 IP에 도달하기 위해 서로 데이터를 전달하고 이를 통해 복잡한 인터넷 망 사이에서 정확한 목적지로 패킷을 전송하게 된다. 만약 서버에서 무사히 데이터를 전송받으면 서버도 이에 대한 응답을 IP 패킷을 이용해 클라이언트에 응답을 전달한다.</li>
+</ul>
+
+<h3 id="ip-프로토콜의-한계">IP 프로토콜의 한계</h3>
+
+<ul>
+  <li>하지만 IP프토콜의 한계도 존재한다.</li>
+</ul>
+
+<ol>
+  <li>비연결성
+    <ul>
+      <li>패킷을 받을 대상이 없거나 서비스 불능 상태여도 패킷 전송</li>
+    </ul>
+  </li>
+  <li>비신뢰성
+    <ul>
+      <li>중간에 패킷이 사라질 수 있음</li>
+      <li>패킷의 순서를 보장할 수 없음</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="tcp와-udp">TCP와 UDP</h2>
+
+<p><img width="433" alt="스크린샷" src="https://user-images.githubusercontent.com/85768164/153001521-0c143390-5d76-4007-9e9d-da61fc4429bb.png" /></p>
+
+<p>네트워크 프로토콜 계층은 다음과 같이 OSI 7계층과 TCP/IP 4계층으로 나눌 수 있다.<br />
+IP 프로토콜 보다 더 높은 계층에 TCP 프로토콜이 존재하기 때문에 앞서 다룬 IP 프로토콜의 한계를 보완할 수 있다.</p>
+
+<h3 id="tcpip-패킷">TCP/IP 패킷</h3>
+
+<p><img width="480" alt="스크린샷" src="https://user-images.githubusercontent.com/85768164/153001952-901d0c64-c35c-4c1e-9da8-338ab4bc48e7.png" /></p>
+
+<ul>
+  <li>TCP 세그먼트에는 IP 패킷의 출발지 IP와 목적지 IP 정보를 보완할 수 있는 출발지 PORT, 목적지 PORT, 전송 제어, 순서, 검증 정보를 포함한다.</li>
+</ul>
+
+<h3 id="tcp의-특징">TCP의 특징</h3>
+
+<ol>
+  <li>연결 지향 - TCP 3 way handshake (가상 연결)
+  <img width="576" alt="스크린샷" src="https://user-images.githubusercontent.com/85768164/153002250-532bf669-cdd5-4d86-bd24-ec50b1b30e24.png" />
+    <ul>
+      <li>클라이언트는 서버에 접속을 요청하는 SYN 패킷을 보낸다.</li>
+      <li>서버는 SYN 요청을 받고 클라이언트에게 요청을 수락한다는 ACK와 SYN이 설정된 패킷을 보내고 클라이언트가 다시 ACK로 응답을 기다린다.</li>
+      <li>클라이언트가 서버에게 ACK를 보내면 이 이후로부터 연결이 성립되며 데이터를 전송할 수 있다.</li>
+      <li>만약 서버가 꺼져이ㅣㅆ다면 클라이언트가 SYN을 보내고 서버에서 응답이 없기 때문에 데이터를 보내지 않는다.</li>
+    </ul>
+  </li>
+  <li>데이터 전달 보증
+    <ul>
+      <li>데이터 전송이 성공적으로 이루어진다면 이에 대한 응답을 돌려주기 때문에 IP 패킷의 한계인 비연결성을 보완할 수 있다.</li>
+    </ul>
+  </li>
+  <li>순서 보장
+    <ul>
+      <li>만약 패킷이 순서대로 도착하지 않는다면 TCP 세그먼트에 있는 정보를 토대로 다시 패킷 전송을 요청하여 IP 패킷의 한계인 비신뢰성(순서를 보장X)을 보완할 수 있다.</li>
+    </ul>
+  </li>
+  <li>신뢰할 수 있는 프로토콜</li>
+</ol>
+
+<h3 id="udp">UDP</h3>
+
+<ul>
+  <li>UDP는 IP 프로토콜에 PORT, 체크섬 필드 정보만 추가된 단순한 프로토콜이다.</li>
+</ul>
+
+<h3 id="udp의-특징">UDP의 특징</h3>
+
+<ul>
+  <li>비 연결 지향 - TCP 3 way handshake X</li>
+  <li>데이터 전달 보증 X</li>
+  <li>순서 보장 X</li>
+  <li>데이터 전달 및 순서가 보장되지 않지만, 단순하고 빠름</li>
+  <li>신뢰성보다는 연속성이 중요한 서비스에 자주 사용</li>
+</ul>
+
+<h3 id="tcp와-udp의-차이점">TCP와 UDP의 차이점</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>TCP</th>
+      <th>UDP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>연결지향형 프로토콜</td>
+      <td>비 연결지향형 프로토콜</td>
+    </tr>
+    <tr>
+      <td>전송 순서 보장 O</td>
+      <td>전송 순서 보장 X</td>
+    </tr>
+    <tr>
+      <td>데이터 수신 여부 확인 O</td>
+      <td>데이터 수신 여부 확인 X</td>
+    </tr>
+    <tr>
+      <td>신뢰성이 높지만 속도 느림</td>
+      <td>신뢰성이 낮지만 속도 빠름</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="http">HTTP</h2>
+
+<h3 id="http의-특징">HTTP의 특징</h3>
+
+<ul>
+  <li>클라이언트 서버 구조
+    <ul>
+      <li>클라이언트가 서버에 요청을 보내면 서버는 그에 대한 응답을 보내는 클라이언트 서버 구조로 이루어져 있다.</li>
+    </ul>
+  </li>
+  <li>무상태 프로토콜 (Stateless)
+    <ul>
+      <li>서버가 클라이언트의 상태를 보존하지 않는다. 따라서, 서버 확장성이 높은 반면 클라이언트가 추가 데이터를 전송해야 하는 단점이 있다.</li>
+      <li>로그인이 필요없는 단순한 서비스 소개 화면 같은 경우엔 무상태로 설계할 수 있지만 로그인이 필요한 서비스라면 유저의 상태를 유지해야 하므로 브라우저 쿠키, 서버 세션, 토큰 등을 이용해 상태를 유지해야 한다.</li>
+    </ul>
+  </li>
+  <li>비연결성 (Connectionless)
+    <ul>
+      <li>실제로 요청을 주고받을 때만 연결을 유지하고 응답을 주고 나면 연결을 끊어 최소한의 자원으로 서버 유지가 가능하다.</li>
+    </ul>
+  </li>
+  <li>HTTP 메세지</li>
+  <li>단순하고 확장 가능</li>
+</ul>
+
+<h2 id="http-헤더">HTTP 헤더</h2>
+
+<ul>
+  <li>HTTP 메세지는 헤더와 바디로 구분하며 HTTP 바디에서는 데이터 메세지 본문을 통해 표현 데이터를 전달하고 데이터를 실어 나르는 부분을 Payload라고 한다.</li>
+  <li>표현은 요청이나 응답에서 전달할 실제 데이터를 뜻하며 표현 헤더는 표현 데이터를 해석할 수 있는 정보를 제공한다.</li>
+  <li>HTTP 헤더는 HTTP 전송에 필요한 모든 부가정보 (메세지 바디의 내용, 크키, 압축 등)를 담기 위해 사용한다.</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 헤더 형식</span>
+<span class="p">&lt;</span><span class="nt">field</span><span class="err">-</span><span class="na">name</span><span class="p">&gt;</span> : <span class="p">&lt;</span><span class="nt">field</span><span class="err">-</span><span class="na">value</span><span class="p">&gt;</span>
+// field-name은 대소문자 구분 없음
+
+// 예시
+Content-Type : text/html;charset=UTF-8
+</code></pre></div></div>
+
+<h3 id="표현-헤더">표현 헤더</h3>
+
+<p>표현 데이터의 형식, 압축 방식, 자연 언어, 길이 등을 설명하는 헤더이며 요청, 응답 둘다 사용한다.</p>
+
+<ul>
+  <li>Content-Type: 표현 데이터의 형식</li>
+  <li>Content-Encoding: 표현 데이터의 압축 방식</li>
+  <li>Content-Language: 표현 데이터의 자연 언어</li>
+  <li>Content-Length: 표현 데이터의 길이</li>
+</ul>
+
+<h3 id="요청request에서-사용되는-주요-헤더">요청(Request)에서 사용되는 주요 헤더</h3>
+
+<ul>
+  <li>From: 유저 에이전트의 이메일 정보
+    <ul>
+      <li>일반적으로 잘 사용하지 않음</li>
+      <li>검색 엔진에서 주로 사용</li>
+    </ul>
+  </li>
+  <li>Referer: 이전 웹 페이지 주소</li>
+  <li>User-Agent: 유저 에이전트 어플리케이션 정보</li>
+  <li>Host: 요청한 호스트 정보(도메인)
+    <ul>
+      <li>필수 헤더</li>
+      <li>하나의 서버가 여러 도메인을 처리해야 할 때 호스트 정보를 명시하기 위해 사용</li>
+      <li>하나의 IP 주소에 여러 도메인이 적용되어 있을 때 호스트 정보를 명시하기 위해 사용</li>
+    </ul>
+  </li>
+  <li>Origin: 서버로 POST 요청을 보낼 때, 요청을 시작한 주소를 나타냄
+    <ul>
+      <li>여기서 요청을 보낸 주소와 받는 주소가 다르면 CORS 에러가 난다.</li>
+    </ul>
+  </li>
+  <li>Authorization: 인증 토큰을 서버로 보낼 때 사용하는 헤더</li>
+</ul>
+
+<h3 id="응답response에서-사용되는-주요-헤더">응답(Response)에서 사용되는 주요 헤더</h3>
+
+<ul>
+  <li>Server: 요청을 처리하는 ORIGIN 서버의 소프트웨어 정보</li>
+  <li>Date: 메세지가 발생한 날짜와 시간</li>
+  <li>Location: 페이지 리디렉션</li>
+  <li>Allow: 허용 가능한 HTTP 메소드</li>
+  <li>Retry-After: 유저 에이전트가 다음 요청을 하기까지 기다려야 하는 시간</li>
+</ul>
+
+<h3 id="컨텐츠-협상-헤더">컨텐츠 협상 헤더</h3>
+
+<ul>
+  <li>Accept: 클라이언트가 선호하는 미디어 타입 전달</li>
+  <li>Accept-Charset: 클라이언트가 선호하는 문자 인코딩</li>
+  <li>Accept-Encoding: 클라이언트가 선호하는 압축 인코딩</li>
+  <li>Accept-Language: 클라이언트가 선호하는 자연 언어</li>
+</ul>
+
+<h2 id="캐시">캐시</h2>
+
+<ul>
+  <li>캐시는 컴퓨터 과학에서 데이터나 값을 미리 복사해 놓는 임시 장소를 기리킨다.</li>
+</ul>
+
+<h3 id="캐시-기본-원리">캐시 기본 원리</h3>
+
+<ul>
+  <li>캐시는 캐시의 접근 시간에 비해 원래 데이터를 접근하는 시간이 오래 걸리는 경우나 값을 다시 계산하는 시간을 절약하고 싶은 경우에 사용한다.</li>
+  <li>캐시에 데이터를 미리 복사해 놓으면 계산이나 접근 시간 없이 더 빠른 속도로 데이터에 접근할 수 있다.</li>
+  <li>브라우저에 캐시를 저장할 때 헤더에 <code class="language-plaintext highlighter-rouge">cache-control</code> 속성을 통해 캐시가 유효한 시간을 지정할 수 있는데 예를 들어, 60초로 설정한다면 60초 동안만 해당 캐시가 유효하다는 뜻이다.</li>
+  <li>만약 캐시 유효시간이 만료된다면 서버를 통해 데이터를 다시 조회하고, 캐시를 갱신한다. 이 때, 다시 네트워크 다운로드가 발생하게 된다.</li>
+</ul>
+
+<h2 id="캐시-검증-헤더">캐시 검증 헤더</h2>
+
+<h3 id="last-modified와-if-modified-since">Last-Modified와 If-Modified-Since</h3>
+
+<ul>
+  <li>검증 헤더 <code class="language-plaintext highlighter-rouge">Last Modified</code>는 데이터가 마지막으로 수정된 시간 정보를 헤더에 포함한다. 이로 인해 응답 결과를 캐시에 저장할 때 데이터 최종 수정일도 저장된다.</li>
+  <li>캐시 유효시간이 초과되더라도 <code class="language-plaintext highlighter-rouge">If-Modified-Since</code>헤더를 이용해 조건부 요청을 할 수 있다.</li>
+  <li>캐시 유효 시간이 만료되어도, 서버의 데이터가 갱신되지 않았다면 304 Not Modified와 헤더 메타 데이터만 응답한다. (바디 X)</li>
+  <li>클라이언트는 서버가 보낸 응답 헤더 정보로 캐시의 메타데이터를 갱신한다.</li>
+  <li>클라이언트는 캐시에 저장되어 있는 데이터를 재활용 한다.</li>
+  <li>결과적으로 네트워크 다운로드가 발생하지만 용량이 적은 헤더 정보만 다운로드 한다.</li>
+</ul>
+
+<h3 id="last-modified와-if-modified-since의-단점">Last-Modified와 If-Modified-Since의 단점</h3>
+
+<ul>
+  <li>1초 미만 단위로 캐시 조정이 불가능 하다.</li>
+  <li>날짜 기반의 로직을 사용한다.</li>
+  <li>데이터를 수정해서 날짜가 다르지만, 같은 데이터를 수정해서 데이터 결과가 똑같은 경우</li>
+  <li>서버에서 별도의 캐시 로직을 관리하고 싶은 경우</li>
+</ul>
+
+<h3 id="etag와-if-none-match">ETag와 If-None-Match</h3>
+
+<ul>
+  <li>단순하게 ETag만 보내서 같으면 유지하고, 다르면 다시 받는 방식이다.</li>
+  <li>캐시 제어 로직을 서버에서 완전히 관리한다.</li>
+  <li>클라이언트는 단순히 이 값을 서버에 제공한다. (클라이언트는 캐시 메커니즘을 모름)</li>
+</ul>
+
+<h3 id="cache-control">Cache-Control</h3>
+
+<ul>
+  <li>Cache-Control: max-age - 캐시 유효 시간 (초 단위)</li>
+  <li>Cache-Control: no-cache - 데이터는 캐시해도 되지만, 항상 Origin 서버에 검증하고 사용</li>
+  <li>Cache-Control: no-store - 데이터에 민감한 정보가 있으므로 저장하면 안됨</li>
+</ul>
+
+<h3 id="expires">Expires</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="nx">Expire</span><span class="p">:</span> <span class="nx">Mon</span><span class="p">,</span> <span class="mi">01</span> <span class="nx">Jan</span> <span class="mi">1990</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="nx">GMT</span>
+</code></pre></div></div>
+<ul>
+  <li>캐시 만료일을 정확한 날짜로 지정</li>
+  <li>HTTP 1.0부터 사용</li>
+  <li>지금은 더 유연한 Cache-Control: max-age 사용 권장하고 같이 사용하게 된다면 Expires는 무시</li>
+</ul>
+
+<h2 id="프록시-서버">프록시 서버</h2>
+
+<ul>
+  <li>프록시란, 클라이언트와 서버 사이에 대리로 통신을 수행하는 것을 말하고, 그 중계 기능을 하는 서버를 프록시 서버라고 한다.</li>
+  <li>클라이언트가 다른 네트워크 서비스에 간접적으로 접속할 수 있게 하는 컴퓨터 시스템이나 응용프로그램을 의미한다.</li>
+  <li>클라이언트에서 사용하고 저장하는 캐시를 private 캐시라 하고 프록시 캐시 서버의 캐시를 public 캐시라고 한다.</li>
+</ul>
+
+<h3 id="프록시-캐시와-관련된-cache-control-헤더">프록시 캐시와 관련된 Cache-Control 헤더</h3>
+
+<ul>
+  <li>Cache-Control: public - 응답이 public 캐시에 저장되어도 됨</li>
+  <li>Cache-Control: private - 응답이 해당 사용자만을 위한 것, private 캐시에 저장해야 함(기본값)</li>
+  <li>Cache-Control: s-message - 프록시 캐시에만 적용되는 max-age</li>
+  <li>Age: 60 (HTTP 헤더) - Origin 서버에서 응답 후 프록시 캐시 내에 머문 시간(초)</li>
+</ul>
+
+<h3 id="캐시를-무효화하는-cache-control-헤더">캐시를 무효화하는 Cache-Control 헤더</h3>
+
+<ul>
+  <li>Cache-Control: no-cache - 데이터는 캐시해도 되지만, 항상 Origin 서버에 검증하고 사용</li>
+  <li>Cache-Control: no-store - 데이터에 민감한 정보가 있으므로 저장하면 안됨</li>
+  <li>Cache-Control: must-revalidate - 캐시 만료 후 최초 조회 시 Origin 서버에 검증해야 하고 Origin 서버 접근 실패 시 반드시 오류가 발생해야 함.</li>
+  <li>Pragma: no-cache - HTTP 1.0 하위 호환</li>
+</ul>
+:ET

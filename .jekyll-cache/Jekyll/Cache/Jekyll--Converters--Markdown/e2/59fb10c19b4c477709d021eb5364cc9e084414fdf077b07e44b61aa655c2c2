@@ -1,0 +1,195 @@
+I"Y!<h2 id="클라이언트---서버-아키텍처">클라이언트 - 서버 아키텍처</h2>
+
+<h3 id="2티어-아키텍처">2티어 아키텍처</h3>
+
+<ul>
+  <li>리소스를 사용하는 앱과 리소스가 존재하는 곳을 분리시킨 것을 말한다. 즉, 리소스를 사용하는 앱(클라이언트)에서 리소스가 존재하는 곳(서버)로 요청을 보내고, 그 보낸 요청에 따라 리소스가 존재하는 곳(서버)는 응답을 하는 것을 말한다.</li>
+</ul>
+
+<h3 id="3티어-아키텍처">3티어 아키텍처</h3>
+
+<ul>
+  <li>하지만 서버는 리소스를 전달만 해줄뿐, 저장하고 있지 않고 데이터베이스에 리소스를 저장하고 있다. 이처럼, 클라이언트-서버 아키텍처에 데이터베이스가 추가된 형태를 3티어 아키텍처라고 한다.</li>
+</ul>
+
+<h2 id="http">HTTP</h2>
+
+<ul>
+  <li>HTTP는 클라이언트와 서버가 서로 통신을 하기 위해 이용하는 프로토콜이다.</li>
+</ul>
+
+<h3 id="http-메세지">HTTP 메세지</h3>
+
+<ul>
+  <li>HTTP 메세지는 클라이언트와 서버 사이에서 데이터가 교환되는 방식을 말한다. HTTP 메세지에는 요청(Requests)와 응답(Responses)의 두가지 유형이 있다.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/85768164/148946672-8e5cad7d-0121-42a2-9ed6-dc3887a7c44f.png" alt="httpmsg" /></p>
+
+<ul>
+  <li>start line - 요청이나 응답의 상태를 나타내고 항상 첫번째 줄에 위치한다.</li>
+  <li>HTTP headers - 요청을 지정하거나, 메세지에 포함된 본문을 설명하는 header의 집합이다.</li>
+  <li>empty line - header와 본문을 구분하는 줄이다.</li>
+  <li>body - 요청이나 응답에서 관련된 데이터나 문서를 포함한다.</li>
+</ul>
+
+<p>이 중 start line과 HTTP headers를 묶어 요청이나 응답의 헤드(head)라고 하고, payload는 body라고 한다.</p>
+
+<h2 id="url과-uri">URL과 URI</h2>
+
+<h3 id="url">URL</h3>
+
+<ul>
+  <li>Uniform Resource Locator의 약자로, 네트워크 상에서 웹 페이지, 이미지 동영상 등의 파일이 위치한 정보를 나타내고, scheme, hosts, url-path로 구분할 수 있다.</li>
+</ul>
+
+<h3 id="uri">URI</h3>
+
+<ul>
+  <li>Uniform Resource Identifier의 약자로, 일반적으로 URL의 기본 요소인 scheme, hosts, url-path에 더해 query, bookmark를 포함한다. 브라우저의 검색창을 클릭하면 나타나는 주소로, URI는 URL의 상위개념이다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>부분</th>
+      <th>명칭</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">http://</code>, <code class="language-plaintext highlighter-rouge">https://</code>, …</td>
+      <td>scheme</td>
+      <td>통신 프로토콜</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">127.0.0.1</code>, <code class="language-plaintext highlighter-rouge">www.naver.com</code>, …</td>
+      <td>hosts</td>
+      <td>웹 페이지, 이미지, 동영상 등의 파일이 위치한 웹 서버, 도메인 또는 IP</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">:80</code>, <code class="language-plaintext highlighter-rouge">:443</code>, <code class="language-plaintext highlighter-rouge">:3000</code>, …</td>
+      <td>port</td>
+      <td>웹 서버에 접속하기 위한 통로</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/search</code>, <code class="language-plaintext highlighter-rouge">/user</code>, …</td>
+      <td>url-path</td>
+      <td>웹 서버의 루트 디텍토리부터 웹 페이지, 이미지 동영상 등의 파일의 위치까지의 경로</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">q=JS</code>, <code class="language-plaintext highlighter-rouge">q=http</code>, …</td>
+      <td>query</td>
+      <td>웹 서버에 전달하는 질문</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="ip와-port">IP와 PORT</h2>
+
+<h3 id="ip">IP</h3>
+
+<ul>
+  <li>
+    <p>Internet Protocol의 약자로, 인터넷상에서 사용하는 주소체계를 의미한다.</p>
+  </li>
+  <li>
+    <p>IPv4: 인터넷에 연결된 모든 PC는 IP 주소체계를 따라 네 덩이의 숫자로 구분된다. 이를 IPv4라고 하며, IP주소체계의 4번째 버전을 의미한다. 또한, IPv4는 각 덩어리마다 0부터 255까지 나타낼 수 있고, 2^(32)인 약 43억 개의 IP 주소를 표현할 수 있다.</p>
+  </li>
+  <li>
+    <p>IPv6: 많은 PC의 보급으로 각종 서비스를 위해 서버를 생산하면서 IPv4로 할당할 수 있는 PC가 한계가 오면서 나온것이 IPv6이다. IPv6는 2^(128)개의 IP 주소를 표현할 수 있다.</p>
+  </li>
+</ul>
+
+<h3 id="port">PORT</h3>
+
+<ul>
+  <li>IP 주소 뒤에 :80, :3000과 같은 숫자가 표시되는데 이 숫자를 PORT라고 하며, IP 주소가 가리키는 PC에 접속할 수 있는 통로를 의미한다.</li>
+  <li>이미 사용중인 PORT 번호는 중복해서 사용할 수 없다.</li>
+  <li>PORT 번호는 0~65,535 까지 사용할 수 있으며, 그 중에서 0~1024번 까지의 포트 번호는 주요 통신을 위한 규약에 따라 이미 정해져 있다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>잘 알려진 포트 번호</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>22</td>
+      <td>SSH</td>
+    </tr>
+    <tr>
+      <td>80</td>
+      <td>HTTP</td>
+    </tr>
+    <tr>
+      <td>443</td>
+      <td>HTTPS</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="도메인과-dns">도메인과 DNS</h2>
+
+<h3 id="도메인">도메인</h3>
+
+<ul>
+  <li>웹 브라우저를 통해 특정 사이트에 진입할 때, IP 주소를 대신하여 사용하는 주소를 말한다.</li>
+</ul>
+
+<h3 id="dns">DNS</h3>
+
+<ul>
+  <li>Domain Name System의 약자로, 호스트의 도메인 이름을 IP 주소로 변환하거나 반대의 경우를 수행할 수 있도록 개발된 데이터베이스 시스템이다.</li>
+</ul>
+
+<h2 id="ajax">AJAX</h2>
+
+<ul>
+  <li>Asynchronous JavaScript And XMLHttpRequest의 약자로, JavaScript, DOM, Fetch, XMLHttpReqest, HTML 등의 다양한 기술을 사용하는 웹 개발 기법이다.</li>
+  <li>AJAX의 가장 큰 특징은 웹 페이지에 필요한 부분에 필요한 데이터만 비동기적으로 받아와 화면에 표시할 수 있다는 점이다.</li>
+</ul>
+
+<h2 id="ssr과-csr">SSR과 CSR</h2>
+
+<h3 id="ssr">SSR</h3>
+
+<ul>
+  <li>Server Side Rendering의 약자로, 웹 페이지를 브라우저에서 렌더링하는 대신, 서버에서 렌더링하는 것을 말한다.</li>
+  <li>브라우저가 서버의 URI로 GET 요청을 보내면, 서버는 정해진 웹 페이지 파일을 브라우저로 전송하고 서버의 웹페이지가 브라우저에 도착하면 완전히 렌더링된다. 즉, 서버에서 웹 페이지를 브라우저로 보내기 전에, 서버에서 완전히 렌더링 했기 때문에 SSR이라고 한다.</li>
+</ul>
+
+<h3 id="csr">CSR</h3>
+
+<ul>
+  <li>Client Side Rendering의 약자로, SSR의 반대로 브라우저에서 랜더링하는 것을 말한다.</li>
+  <li>브라우저가 서버로 요청을 보내면 서버는 웹 페이지를 렌더링하는 대신, 웹 페이지의 골격이 될 단일 페이지를 클라이언트에 보낸다. 이 때 서버는 웹 페이지와 함께 Javascript 파일을 보내게 된다.<br />
+클라이언트가 웹 페이지를 받게되면 Javascript 파일은 브라우저에서 웹 페이지를 완전히 렌더링 된 페이지로 바꾼다.</li>
+</ul>
+
+<h3 id="차이점">차이점</h3>
+
+<ul>
+  <li>둘의 주요 차이점은 페이지가 렌더링되는 위치이다. SSR은 서버에서 CSR은 클라이언트에서 페이지를 렌더링한다.</li>
+</ul>
+
+<h3 id="ssr의-사용-예시">SSR의 사용 예시</h3>
+
+<ul>
+  <li>SEO가 우선순위인 경우, 일반적으로 사용</li>
+  <li>웹 페이지의 첫 화면 렌더링이 빠르게 필요한 경우, 단일 파일의 용량이 작은 SSR이 유리</li>
+  <li>웹 페이지가 사용자와 상호작용이 적은 경우</li>
+</ul>
+
+<h3 id="csr의-사용-예시">CSR의 사용 예시</h3>
+
+<ul>
+  <li>SEO가 우선순위가 아닌 경우</li>
+  <li>사이트에 풍부한 상호 작용이 있는 경우, SCR은 빠른 라우팅으로 강력한 사용자 경험을 제공</li>
+  <li>웹 어플리케이션을 제작하는 경우, 더 나은 사용자 경혐을 제공</li>
+</ul>
+:ET
