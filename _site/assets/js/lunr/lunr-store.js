@@ -616,4 +616,22 @@ var store = [{
         "tags": [],
         "url": "/javascript/JS16/",
         "teaser": null
+      },{
+        "title": "Err_Handling 1",
+        "excerpt":"ERROR 1364: Field ‘createdAt’ doesn’t have a default value migration 후 seed를 연결하려고 하니 계속 위와 같은 에러가 떳다.. createdAt과 updatedAt은 자동으로 생성되어 문제가 발생하지 않을것 같았는데 뭐가 문제인지 몰랐다.. 시도1 일단 기본값이 없다고 하는것을 보고 sequelize 기본값 설정을 검색하며 찾아보았다 defaultValue란 키가 있어서 적용해보았지만 되지 않았다.. createdAt: { allowNull:...","categories": ["Lohas"],
+        "tags": [],
+        "url": "/lohas/err1/",
+        "teaser": null
+      },{
+        "title": "Sequelize 연결 및 MVC",
+        "excerpt":"Sequelize Sequelize-cli 설치 npm install --save-dev sequelize-cli 위 명령어를 입력해 설치한다. Sequelize-cli 초기세팅 npx sequelize-cli init 위 명령어를 입력하면 config, models, migrations, seeders 폴더가 생성된다. config에는 처음에 config.json파일로 { \"development\": { \"username\": \"root\", \"password\": null, \"database\": \"database_development\", \"host\": \"127.0.0.1\", \"dialect\": \"mysql\" }, \"test\": { \"username\": \"root\", \"password\": null, \"database\": \"database_test\",...","categories": ["Lohas"],
+        "tags": [],
+        "url": "/lohas/etc1/",
+        "teaser": null
+      },{
+        "title": "Project_Log 3",
+        "excerpt":"오늘 한것      스키마 수정            portfolio 테이블 수정           서버 초기 환경세팅   sequelize 연결 및 테스트   마이그레이션 및 시드 연결   사설 인증서 발급 및 https 서버 구현   내일은!!      토근기반 인증 구현   로컬환경에서 서버 기능 테스트  ","categories": ["Lohas"],
+        "tags": [],
+        "url": "/lohas/log3/",
+        "teaser": null
       }]

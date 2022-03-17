@@ -1,0 +1,116 @@
+I"�3<h2 id="sequelize">Sequelize</h2>
+
+<h3 id="sequelize-cli-설치">Sequelize-cli 설치</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span> <span class="nx">sequelize</span><span class="o">-</span><span class="nx">cli</span>
+</code></pre></div></div>
+
+<p>위 명령어를 입력해 설치한다.</p>
+
+<h3 id="sequelize-cli-초기세팅">Sequelize-cli 초기세팅</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npx</span> <span class="nx">sequelize</span><span class="o">-</span><span class="nx">cli</span> <span class="nx">init</span>
+</code></pre></div></div>
+
+<p>위 명령어를 입력하면 config, models, migrations, seeders 폴더가 생성된다.</p>
+
+<p>config에는 처음에 config.json파일로</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">development</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">username</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">root</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">password</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">database</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">database_development</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">host</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">127.0.0.1</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">dialect</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">mysql</span><span class="dl">"</span>
+  <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">test</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">username</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">root</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">password</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">database</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">database_test</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">host</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">127.0.0.1</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">dialect</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">mysql</span><span class="dl">"</span>
+  <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">production</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">username</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">root</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">password</span><span class="dl">"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">database</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">database_production</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">host</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">127.0.0.1</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">dialect</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">mysql</span><span class="dl">"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위와같이 생성된다. 하지만 환경변수를 사용하게 위해 <code class="language-plaintext highlighter-rouge">.env</code>파일을 생성 후</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">DATABASE_USERNAME</span><span class="o">=</span><span class="nx">root</span>
+<span class="nx">DATABASE_PASSWORD</span><span class="o">=</span><span class="nx">qwer1234</span>
+<span class="nx">DATABASE_NAME</span><span class="o">=</span><span class="nx">lohas</span>
+</code></pre></div></div>
+
+<p>위와 같이 만들고 config.json 파일을 config.js로 변경 후</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">dotenv</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">dotenv</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">dotenv</span><span class="p">.</span><span class="nx">config</span><span class="p">();</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">development</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">username</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_USERNAME</span><span class="p">,</span>
+    <span class="na">password</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_PASSWORD</span><span class="p">,</span>
+    <span class="na">database</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_NAME</span><span class="p">,</span>
+    <span class="na">host</span><span class="p">:</span> <span class="dl">"</span><span class="s2">127.0.0.1</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">dialect</span><span class="p">:</span> <span class="dl">"</span><span class="s2">mysql</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">test</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">username</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_USERNAME</span><span class="p">,</span>
+    <span class="na">password</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_PASSWORD</span><span class="p">,</span>
+    <span class="na">database</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_NAME</span><span class="p">,</span>
+    <span class="na">host</span><span class="p">:</span> <span class="dl">"</span><span class="s2">127.0.0.1</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">dialect</span><span class="p">:</span> <span class="dl">"</span><span class="s2">mysql</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">production</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">username</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_USERNAME</span><span class="p">,</span>
+    <span class="na">password</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_PASSWORD</span><span class="p">,</span>
+    <span class="na">database</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_NAME</span><span class="p">,</span>
+    <span class="na">host</span><span class="p">:</span> <span class="dl">"</span><span class="s2">127.0.0.1</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">dialect</span><span class="p">:</span> <span class="dl">"</span><span class="s2">mysql</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>위와 같이 작성해 주었다. models/index.js 파일에</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/../config/config.js</span><span class="dl">"</span><span class="p">)[</span><span class="nx">env</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>이것도 js로 변경해야한다!!</p>
+
+<h3 id="models-생성-및-migration">models 생성 및 migration</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예시</span>
+<span class="nx">npx</span> <span class="nx">sequelize</span><span class="o">-</span><span class="nx">cli</span> <span class="nx">model</span><span class="p">:</span><span class="nx">generate</span> <span class="o">--</span><span class="nx">name</span> <span class="nx">이름</span> <span class="o">--</span><span class="nx">attributes</span> <span class="nx">속성</span><span class="p">:</span><span class="nx">값</span>
+
+<span class="nx">npx</span> <span class="nx">sequelize</span><span class="o">-</span><span class="nx">cli</span> <span class="nx">model</span><span class="p">:</span><span class="nx">generate</span> <span class="o">--</span><span class="nx">name</span> <span class="nx">portfolio</span> <span class="o">--</span><span class="nx">attributes</span> <span class="nx">title</span><span class="p">:</span><span class="nx">string</span><span class="p">,</span><span class="nx">message</span><span class="p">:</span><span class="nx">text</span><span class="p">,</span><span class="nx">size</span><span class="p">:</span><span class="nx">integer</span><span class="p">...</span>
+</code></pre></div></div>
+
+<p>위의 예시와 같이 입력하면 생성할 수 있다. 신기했던건 varchar가 아닌 string을 입력하는 거였다.<br />
+찾아보니 sequelize의 타입 정의와 MYSQL의 타입 정의가 달랐다 그 이유는 여러 개의 관계형 데이터베이스 시스템을 호환하기 위해서 공통의 문법으로 통일 했기 때문이라고 한다!!</p>
+
+<p>다시 돌아와서 위처럼 model을 생성하게 되면 migration도 같이 만들어지게 된다.<br />
+추가적인 기능이 필요하다면 models와 migrations 파일들을 수정해야한다.(defaultValue 등)</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npx</span> <span class="nx">sequelize</span><span class="o">-</span><span class="nx">cli</span> <span class="nx">db</span><span class="p">:</span><span class="nx">migrate</span>
+</code></pre></div></div>
+
+<p>이제 만들어놓은 데이터베이스에 migration 하기 위해서 위 명령어를 입력하면 모델이 데이터베이스에 생성된다.</p>
+
+<h3 id="seed-생성-및-연결">seed 생성 및 연결</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//예시</span>
+<span class="nx">npx</span> <span class="nx">sequelize</span><span class="o">-</span><span class="nx">cli</span> <span class="nx">seed</span><span class="p">:</span><span class="nx">generate</span> <span class="o">--</span><span class="nx">name</span> <span class="nx">이름</span>
+
+<span class="nx">npx</span> <span class="nx">sequelize</span><span class="o">-</span><span class="nx">cli</span> <span class="nx">seed</span><span class="p">:</span><span class="nx">generate</span> <span class="o">--</span><span class="nx">name</span> <span class="nx">portfolio</span>
+</code></pre></div></div>
+
+<p>위와 같이 시드를 생성하게 되면 <code class="language-plaintext highlighter-rouge">seeders</code></p>
+:ET

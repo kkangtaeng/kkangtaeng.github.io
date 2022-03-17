@@ -1,0 +1,64 @@
+I"q<h2 id="error-1364-field-createdat-doesnt-have-a-default-value">ERROR 1364: Field ‘createdAt’ doesn’t have a default value</h2>
+
+<p>migration 후 seed를 연결하려고 하니 계속 위와 같은 에러가 떳다..<br />
+createdAt과 updatedAt은 자동으로 생성되어 문제가 발생하지 않을것 같았는데 뭐가 문제인지 몰랐다..</p>
+
+<h3 id="시도1">시도1</h3>
+
+<p>일단 기본값이 없다고 하는것을 보고 sequelize 기본값 설정을 검색하며 찾아보았다<br />
+defaultValue란 키가 있어서 적용해보았지만 되지 않았다..</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">createdAt</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">allowNull</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">type</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DATE</span><span class="p">,</span>
+        <span class="nx">defaultValue</span><span class="p">:</span> <span class="mi">0</span>
+      <span class="p">},</span>
+<span class="c1">// 실패..</span>
+
+<span class="nx">createdAt</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">allowNull</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">type</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DATE</span><span class="p">,</span>
+        <span class="nx">defaultValue</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+      <span class="p">},</span>
+<span class="c1">// 실패..</span>
+</code></pre></div></div>
+
+<h3 id="시도2">시도2</h3>
+
+<p>결국 안되서 공식문서를 찾아보게 되었다</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">up</span><span class="p">(</span><span class="nx">queryInterface</span><span class="p">,</span> <span class="nx">Sequelize</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">queryInterface</span><span class="p">.</span><span class="nx">createTable</span><span class="p">(</span><span class="dl">"</span><span class="s2">my-table</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">id</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">INTEGER</span><span class="p">,</span>
+        <span class="na">primaryKey</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">autoIncrement</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="p">},</span>
+
+      <span class="c1">// Timestamps</span>
+      <span class="na">createdAt</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DATE</span><span class="p">,</span>
+      <span class="na">updatedAt</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DATE</span><span class="p">,</span>
+    <span class="p">});</span>
+  <span class="p">},</span>
+  <span class="nx">down</span><span class="p">(</span><span class="nx">queryInterface</span><span class="p">,</span> <span class="nx">Sequelize</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">queryInterface</span><span class="p">.</span><span class="nx">dropTable</span><span class="p">(</span><span class="dl">"</span><span class="s2">my-table</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>위와같이 나왔는데 위처럼 해봐도 해결되지 않았다… 구글링을 해보았다..</p>
+
+<h3 id="시도3">시도3</h3>
+
+<p>아 죄다 영어 문서라서 찾기 힘들었지만 결국 <code class="language-plaintext highlighter-rouge">defaultValue: sequelize.fn('NOW)</code>라는 것을 찾았다</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">createdAt</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">allowNull</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">type</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">DATE</span><span class="p">,</span>
+        <span class="nx">defaultValue</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">fn</span><span class="p">(</span><span class="dl">"</span><span class="s2">NOW</span><span class="dl">"</span><span class="p">),</span>
+      <span class="p">},</span>
+</code></pre></div></div>
+
+<p>위와 같이 수정하고 <code class="language-plaintext highlighter-rouge">migrate:undo:all</code>을 한후 다시 seed를 입히니 에러없이 해결되었다!!!!</p>
+:ET
